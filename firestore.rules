@@ -36,7 +36,7 @@ service cloud.firestore {
   
   function isValidImage(image){
   return image.size() == 5
-  	&& 'title' in image && image.Title is string
+  	&& 'title' in image && image.title is string
     && 'imageUrl' in image && image.imageUrl is string
     && 'screenName' in image && image.screenName is string
     && 'displayName' in image && image.displayName is string
@@ -84,7 +84,8 @@ service cloud.firestore {
     }
     match/images/{imageId}{
     	allow read;
-      allow create;
+      allow create:if isValidImage(request.resource.data)
+      	&& request.resource.data.createdAt == request.time
     }
   }
 }

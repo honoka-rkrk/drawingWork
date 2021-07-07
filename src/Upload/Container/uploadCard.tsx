@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import firebase, { storage } from '../../firebase';
 import CompUploadCard from '../Component/uploadCard';
@@ -10,7 +10,6 @@ const UploadCard: React.FC = () => {
   const [clickable, setClickable] = useState(false);
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState<string>('無題');
-  const [imageUrl, setImageUrl] = useState<string>('');
   const { user } = useContext(UserContext);
 
   //タイトルが変更されたとき
@@ -66,8 +65,8 @@ const UploadCard: React.FC = () => {
           title: title,
           imageUrl: String(url),
           screenName: user.screenName,
-          dislaypName: user.displayName,
-          createdAt: new Date()
+          displayName: user.displayName,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
     }
   };
