@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import { Image } from '../../Model/image';
 
 import DetailPicture from '../Container/detailPicture';
+import ExitBtn from '../Container/exitBtn';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -30,6 +31,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
             </Box>
           ))
         : null}
+      <ExitBtn />
     </>
   );
 };

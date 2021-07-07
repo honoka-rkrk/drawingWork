@@ -6,6 +6,7 @@ import CompDispPicture from '../Component/dispPicture';
 
 const DispPicture: React.FC = () => {
   const [images, setImages] = useState<Array<Image> | null>(null);
+  const [favNum, setFavNum] = useState<number>(5);
 
   useEffect(() => {
     let unmounted = false;
