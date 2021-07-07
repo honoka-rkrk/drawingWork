@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CompWritingSpace from '../../Component/WritingSpace/writingSpace';
-import { db } from '../../../firebase';
+import firebase, { db } from '../../../firebase';
 
 const WritingSpace: React.FC = () => {
   const [message, setMessage] = useState<string>('');
@@ -10,7 +10,7 @@ const WritingSpace: React.FC = () => {
     if (message !== '') {
       db.collection('message').doc().set({
         messages: message,
-        createdAt: new Date()
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       setMessage('');
     } else {
@@ -30,6 +30,7 @@ const WritingSpace: React.FC = () => {
       handleContentChange={handleContentChange}
       submitError={submitError}
       message={message}
+      handleOnSubmit={handleOnSubmit}
     />
   );
 };

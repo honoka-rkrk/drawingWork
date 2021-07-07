@@ -32,6 +32,7 @@ type WritingSpaceProps = {
   ) => void;
   submitError: boolean;
   message: string;
+  handleOnSubmit: () => void;
 };
 
 const WritingSpace: React.FC<WritingSpaceProps> = (props: WritingSpaceProps) => {
@@ -39,7 +40,8 @@ const WritingSpace: React.FC<WritingSpaceProps> = (props: WritingSpaceProps) => 
   const {
     handleContentChange = () => undefined,
     submitError = false,
-    message = ''
+    message = '',
+    handleOnSubmit = () => undefined
   } = props;
   return (
     <>
@@ -73,7 +75,12 @@ const WritingSpace: React.FC<WritingSpaceProps> = (props: WritingSpaceProps) => 
         />
       )}
       <Box className={styles.buttonBox}>
-        <Button className={styles.button} variant='outlined' color='primary'>
+        <Button
+          onClick={handleOnSubmit}
+          className={styles.button}
+          variant='outlined'
+          color='primary'
+        >
           {'送信'}
         </Button>
       </Box>

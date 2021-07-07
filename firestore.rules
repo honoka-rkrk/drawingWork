@@ -35,13 +35,17 @@ service cloud.firestore {
   }
   
   function isValidImage(image){
-  return image.size() == 5
+  return image.size() == 6
   	&& 'title' in image && image.title is string
     && 'imageUrl' in image && image.imageUrl is string
     && 'screenName' in image && image.screenName is string
-    && 'displayName' in image && image.displayName is string
+    && 'displayName' in image 
+    && (image.displayName is string || image.displayName == null)
+    && 'iconUrl' in image 
+    && (image.iconUrl is string || image.iconUrl == null)
     && 'createdAt' in image && image.createdAt is timestamp;
   }
+
   
   match /databases/{database}/documents {
   	match/messages/{messagesId}{
@@ -84,7 +88,9 @@ service cloud.firestore {
     }
     match/images/{imageId}{
     	allow read;
-      allow create:if isValidImage(request.resource.data)
+      allow create:if request.auth != null
+      	&& isValidImage(request.resource.data)
+        && isValidIconImage(request.resource.data.iconUrl)
       	&& request.resource.data.createdAt == request.time
     }
   }

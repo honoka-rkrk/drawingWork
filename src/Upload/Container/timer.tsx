@@ -4,7 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 import CompTimer from '../Component/timer';
 
-const Timer: React.FC = () => {
+type TimerProps = {
+  setTimerEnd: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Timer: React.FC<TimerProps> = (props: TimerProps) => {
+  const { setTimerEnd } = props;
   const [end, setEnd] = useState<Moment | null>(null);
   const [tmMinutes, setTmMinutes] = useState<string>('');
   const [tmSeconds, setTmSeconds] = useState<string>('');
@@ -16,7 +21,7 @@ const Timer: React.FC = () => {
     const dtNow = moment().startOf('day');
     // const endHour = dtNow.add(18, 'hours');
     // const endTime = endHour.add(3, 'minutes');
-    const endTime = moment().add(2, 'minutes');
+    const endTime = moment().add(30, 'seconds');
     setEnd(endTime);
   }, [setEnd]);
 
@@ -27,6 +32,7 @@ const Timer: React.FC = () => {
       setTmMinutes(String(Math.floor(timerDiff / 60)));
       setTmSeconds(String(timerDiff % 60));
       if (timerDiff === 0) {
+        setTimerEnd(true);
         setIsEnd(true);
       }
       if (Math.floor(timerDiff / 60) < 1) {
@@ -45,7 +51,7 @@ const Timer: React.FC = () => {
     } else {
       return;
     }
-  }, [updateTime]);
+  }, [updateTime, isEnd]);
 
   const clickOK = useCallback(() => {
     history.push('/');

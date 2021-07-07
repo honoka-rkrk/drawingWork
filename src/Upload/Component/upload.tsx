@@ -20,15 +20,21 @@ const useStyle = makeStyles(() =>
   })
 );
 
-const Upload: React.FC = () => {
+type UploadProps = {
+  setTimerEnd: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsUpd: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Upload: React.FC<UploadProps> = (props: UploadProps) => {
   const styles = useStyle();
+  const { setTimerEnd, setIsUpd } = props;
   return (
     <>
       <Box className={styles.timerDisp}>
-        <Timer />
+        <Timer setTimerEnd={setTimerEnd} />
       </Box>
       <Box className={styles.uploadCommon}>
-        <UploadCard />
+        <UploadCard setIsUpd={setIsUpd} />
       </Box>
       <ExitBtn />
     </>

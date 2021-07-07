@@ -1,17 +1,25 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
-import firebase, { storage } from '../../firebase';
+
+import firebase, { storage, db } from '../../firebase';
 import CompUploadCard from '../Component/uploadCard';
 import { UserContext } from '../../Context/contexts';
-import { db } from '../../firebase';
 
-const UploadCard: React.FC = () => {
+type UploadCardProps = {
+  setIsUpd: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
+  const { setIsUpd } = props;
   const [myFiles, setMyFiles] = useState<File[]>([]);
   const [clickable, setClickable] = useState(false);
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState<string>('無題');
   const { user } = useContext(UserContext);
-
+  const [header, setHeader] = useState<string>('画像をアップロードしてください');
+  const [subHeader, setSubHeader] = useState<string>(
+    'ファイルの種類は「Jpeg」「Jpg」「Png」にしてください。'
+  );
   //タイトルが変更されたとき
   const handleTitleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -55,19 +63,16 @@ const UploadCard: React.FC = () => {
   const postUrl = async () => {
     const url = await storage.ref(`/images/${myFiles[0].name}`).getDownloadURL();
     if (url !== '' && user) {
-      console.log(String(url));
-      console.log(title);
-      console.log(user.screenName);
-      console.log(user.displayName);
-      db.collection('images')
-        .doc()
-        .set({
-          title: title,
-          imageUrl: String(url),
-          screenName: user.screenName,
-          displayName: user.displayName,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
+      console.log(user.photoUrl);
+      console.log(url);
+      db.collection('images').doc().set({
+        title: title,
+        imageUrl: url,
+        screenName: user.screenName,
+        displayName: user.displayName,
+        iconUrl: user.photoUrl,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
     }
   };
 
@@ -79,6 +84,12 @@ const UploadCard: React.FC = () => {
     console.log(snapshot);
     if (percent === 100) {
       postUrl();
+      setClickable(false);
+      setIsUpd(true);
+      setHeader('画像がアップロードできました！');
+      setSubHeader(
+        '制限時間が終わると自動的に閲覧画面に移動します。制限時間が終わるまで今しばらくお待ちください。'
+      );
     }
   };
 
@@ -111,6 +122,8 @@ const UploadCard: React.FC = () => {
       handleUpload={handleUpload}
       title={title}
       handleTitleChange={handleTitleChange}
+      header={header}
+      subHeader={subHeader}
     />
   );
 };

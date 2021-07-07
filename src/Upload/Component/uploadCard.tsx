@@ -51,6 +51,8 @@ type UploadCardProps = {
   handleTitleChange: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
+  header: string;
+  subHeader: string;
 };
 
 const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
@@ -63,16 +65,14 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
     clickable = false,
     handleUpload = () => undefined,
     title = '無題',
-    handleTitleChange = () => undefined
+    handleTitleChange = () => undefined,
+    header = '画像をアップロードしてください',
+    subHeader = 'ファイルの種類は「Jpeg」「Jpg」「Png」にしてください。'
   } = props;
   return (
     <>
       <Card className={styles.cardCommon}>
-        <CardHeader
-          className={styles.header}
-          title='Upload Your image'
-          subheader='ファイルの種類は「Jpeg」「Jpg」「Png」にしてください。'
-        />
+        <CardHeader className={styles.header} title={header} subheader={subHeader} />
         <CardContent className={styles.contentCommon}>
           <Box {...getRootProps()} className={styles.content}>
             <input {...getInputProps()} />
