@@ -30,8 +30,17 @@ service cloud.firestore {
       && 'updatedAt' in user && user.updatedAt is timestamp;
   }
   
+  function isValidIconImage(iconImage){
+  	return iconImage == null || iconImage.matches('^https?://.+[.](jpg|jpeg|gif|png)');
+  }
+  
   function isValidImage(image){
-  	return image == null || image.matches('^https?://.+[.](jpg|jpeg|gif|png)');
+  return image.size() == 5
+  	&& 'title' in image && image.Title is string
+    && 'imageUrl' in image && image.imageUrl is string
+    && 'screenName' in image && image.screenName is string
+    && 'displayName' in image && image.displayName is string
+    && 'createdAt' in image && image.createdAt is timestamp;
   }
   
   match /databases/{database}/documents {
@@ -58,20 +67,24 @@ service cloud.firestore {
       || request.resource.data.count == resource.data.count -1);
     }
     match/users/{userId}{
-    allow read;
-    allow create:if request.auth.uid != null && request.auth.uid == userId
-    	&& isValidUser(request.resource.data)
-      && isValidImage(request.resource.data.photoUrl)
-      && request.resource.data.createdAt == request.time
-      && request.resource.data.updatedAt == request.time;
-    allow update:if request.auth != null && request.auth.uid == userId
-    	&& isValidUser(request.resource.data)
-      && isValidImage(request.resource.data.photoUrl)
-      && request.resource.data.updatedAt == request.time
-      && request.resource.data.screenName == resource.data.screenName
-      && request.resource.data.providerUid == resource.data.providerUid
-      && request.resource.data.createdAt == resource.data.createdAt
-    allow delete:if request.auth != null && request.auth.uid == userId;
+      allow read;
+      allow create:if request.auth.uid != null && request.auth.uid == userId
+        && isValidUser(request.resource.data)
+        && isValidIconImage(request.resource.data.photoUrl)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update:if request.auth != null && request.auth.uid == userId
+        && isValidUser(request.resource.data)
+        && isValidIconImage(request.resource.data.photoUrl)
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.screenName == resource.data.screenName
+        && request.resource.data.providerUid == resource.data.providerUid
+        && request.resource.data.createdAt == resource.data.createdAt
+      allow delete:if request.auth != null && request.auth.uid == userId;
+    }
+    match/images/{imageId}{
+    	allow read;
+      allow create;
     }
   }
 }

@@ -47,6 +47,10 @@ type UploadCardProps = {
   src: string;
   clickable: boolean;
   handleUpload: (accepterdImg: any) => Promise<void>;
+  title: string;
+  handleTitleChange: (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void;
 };
 
 const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
@@ -57,7 +61,9 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
     myFiles = [],
     src = '',
     clickable = false,
-    handleUpload = () => undefined
+    handleUpload = () => undefined,
+    title = '無題',
+    handleTitleChange = () => undefined
   } = props;
   return (
     <>
@@ -97,7 +103,8 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
               fullWidth
               id='title'
               type='text'
-              value={'無題'}
+              value={title}
+              onChange={handleTitleChange}
             />
           ) : null}
           <Button
