@@ -64,7 +64,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   const postUrl = async () => {
     const url = await storage.ref(`/images/${myFiles[0].name}`).getDownloadURL();
     if (url !== '' && user) {
-      db.collection('images').doc('image').set({
+      db.collection('images').doc().set({
         title: title,
         imageUrl: url,
         screenName: user.screenName,
