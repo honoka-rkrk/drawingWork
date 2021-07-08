@@ -76,6 +76,8 @@ const writeUser = async (
       description,
       photoUrl
     };
+    console.log(user);
+    console.log(firebase.firestore.FieldValue.serverTimestamp());
     batch.set(userDoc.ref, {
       ...user,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),

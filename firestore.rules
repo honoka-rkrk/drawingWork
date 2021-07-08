@@ -25,9 +25,7 @@ service cloud.firestore {
       && (user.description is string || user.description == null)
       && 'photoUrl' in user
       && (user.photoUrl is string || user.photoUrl == null)
-      && 'providerUid' in user && user.providerUid is string
-      && 'createAt' in user && user.createdAt is timestamp
-      && 'updatedAt' in user && user.updatedAt is timestamp;
+      && 'providerUid' in user && user.providerUid is string;
   }
   
   function isValidIconImage(iconImage){
@@ -72,7 +70,7 @@ service cloud.firestore {
     }
     match/users/{userId}{
       allow read;
-      allow create:if request.auth.uid != null && request.auth.uid == userId
+      allow create:if  request.auth != null && request.auth.uid == userId
         && isValidUser(request.resource.data)
         && isValidIconImage(request.resource.data.photoUrl)
         && request.resource.data.createdAt == request.time
