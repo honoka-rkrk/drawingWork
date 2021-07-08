@@ -18,16 +18,34 @@ const useStyles = makeStyles(() =>
     },
     media: {
       height: 0,
-      paddingTop: '86.25%'
+      paddingTop: '100%',
+      width: '100%',
+      objectFit: 'cover'
+    },
+    button: {
+      color: '#f50057'
+    },
+    iconButton: {
+      '&:hover': {
+        backgroundColor: '#ffb7db'
+      }
     }
   })
 );
 
 type DetailPictureProps = {
   image: Image;
+  handleFavClick: () => void;
+  isFav: boolean;
+  isDisabled: boolean;
 };
 const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) => {
-  const { image } = props;
+  const {
+    image,
+    handleFavClick = () => undefined,
+    isFav = false,
+    isDisabled = false
+  } = props;
   const styles = useStyles();
 
   return (
@@ -47,8 +65,13 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
       )}
       <CardMedia className={styles.media} image={image.imageUrl} />
       <CardActions>
-        <IconButton aria-label='add to favorites'>
-          <FavoriteIcon />
+        <IconButton
+          aria-label='add to favorites'
+          className={styles.iconButton}
+          onClick={handleFavClick}
+          disabled={isDisabled}
+        >
+          {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
         </IconButton>
       </CardActions>
     </Card>

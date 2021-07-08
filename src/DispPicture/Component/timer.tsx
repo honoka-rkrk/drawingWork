@@ -12,7 +12,8 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em'
+      fontSize: '1.5em',
+      padding: '1em'
     },
     clockStyleDanger: {
       display: 'flex',
@@ -21,6 +22,7 @@ const useStyle = makeStyles(() =>
       width: '100%',
       height: '100%',
       fontSize: '1.5em',
+      padding: '1em',
       color: '#ff1744'
     },
     exitfab: {

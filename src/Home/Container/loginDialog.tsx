@@ -25,6 +25,9 @@ const LoginDialog: React.FC<LoginProps> = (props: LoginProps) => {
       }
     ],
     callbacks: {
+      signInFailure: (error) => {
+        console.log(error);
+      },
       // ログインが成功した時に呼ばれるコールバック関数。authResultにCredential情報を、
       //redirectUrlにsignInSuccessUrlというURLﾊﾟﾗﾒｰﾀで設定されていたパスを渡されるようになっている。
       signInSuccessWithAuthResult: (authResult, redirectUrl) => {

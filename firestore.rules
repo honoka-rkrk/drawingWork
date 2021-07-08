@@ -84,12 +84,16 @@ service cloud.firestore {
         && request.resource.data.createdAt == resource.data.createdAt
       allow delete:if request.auth != null && request.auth.uid == userId;
     }
-    match/images/{imageId}{
-    	allow read;
-      allow create:if request.auth != null
-      	&& isValidImage(request.resource.data)
-        && isValidIconImage(request.resource.data.iconUrl)
-      	&& request.resource.data.createdAt == request.time
+    match/images/{imagesId}{
+        allow read;
+        allow create:if request.auth != null
+          && isValidImage(request.resource.data)
+          && isValidIconImage(request.resource.data.iconUrl)
+          && request.resource.data.createdAt == request.time;
+          match/favoriteUsers/{favoriteUserId}{
+          allow read;
+          allow create:if request.auth != null;
+          }
     }
   }
 }

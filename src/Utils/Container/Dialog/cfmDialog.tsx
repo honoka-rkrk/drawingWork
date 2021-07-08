@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 import CompCfmDialog from '../../Component/Dialog/cfmDialog';
 
@@ -19,11 +20,13 @@ const CfmDialog: React.FC<CfmDialogProps> = (props: CfmDialogProps) => {
   const msgElm = (_msg: string) => {
     const arrText = _msg.split('\n');
     return (
-      <Box>
+      <>
         {arrText.map((item, index) => (
-          <Box key={`msgElm_${index}`}>{item}</Box>
+          <Typography key={`msgElm_${index}`} component={'div'}>
+            {item}
+          </Typography>
         ))}
-      </Box>
+      </>
     );
   };
 

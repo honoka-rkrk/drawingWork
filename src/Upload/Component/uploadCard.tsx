@@ -28,7 +28,9 @@ const useStyle = makeStyles(() =>
       gridRow: 1,
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      width: 'auto',
+      height: '100%'
     },
     button: {
       width: '100%',
@@ -89,7 +91,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
               <Box className={styles.content}>
                 {myFiles.map((file: File) => (
                   <React.Fragment key={file.name}>
-                    {src && <img src={src} />}
+                    {src && <img src={src} className={styles.content} />}
                   </React.Fragment>
                 ))}
               </Box>

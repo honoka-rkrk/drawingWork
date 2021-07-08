@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 import CompInfDialog from '../../Component/Dialog/infDialog';
 
@@ -17,11 +18,13 @@ const InfDialog: React.FC<InfDialogProps> = (props: InfDialogProps) => {
   const msgElm = (_msg: string) => {
     const arrText = _msg.split('\n');
     return (
-      <Box>
+      <>
         {arrText.map((item, index) => (
-          <Box key={`msgElm_${index}`}>{item}</Box>
+          <Typography component={'span'} key={`msgElm_${index}`}>
+            {item}
+          </Typography>
         ))}
-      </Box>
+      </>
     );
   };
 

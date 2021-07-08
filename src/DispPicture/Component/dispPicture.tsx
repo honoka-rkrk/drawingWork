@@ -1,37 +1,41 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import { Image } from '../../Model/image';
 
-import DetailPicture from '../Container/detailPicture';
-import ExitBtn from '../Container/exitBtn';
+import AllPicture from '../Container/allPicture';
+import Timer from '../Container/timer';
 
 const useStyles = makeStyles(() =>
   createStyles({
-    common: {
-      marginTop: '30px'
+    root: {
+      display: 'grid',
+      gridTemplateRows: '3% 10% 3% 81% '
+    },
+    timer: {
+      margin: '1em'
+    },
+    dispPictureCommon: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      paddingTop: '0.5%',
+      paddingLeft: '0.5%',
+      paddingRight: '0.5%'
     }
   })
 );
 
-type DispPictureProps = {
-  images: Image[] | null;
-};
-
-const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
-  const { images = null } = props;
+const DispPicture: React.FC = () => {
   const styles = useStyles();
 
   return (
     <>
-      {images
-        ? [...Array(images.length)].map((_, index) => (
-            <Box className={styles.common} key={`images_${index}`}>
-              <DetailPicture image={images[index]} />
-            </Box>
-          ))
-        : null}
-      <ExitBtn />
+      <Box className={styles.timer}>
+        <Timer />
+      </Box>
+      <Box className={styles.dispPictureCommon}>
+        <AllPicture />
+      </Box>
     </>
   );
 };

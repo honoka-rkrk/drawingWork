@@ -16,7 +16,6 @@ const writeUser = async (
   let providerUid = '';
   let screenName = '';
   let description = '';
-  console.log(credential);
 
   if (credential.additionalUserInfo) {
     if (credential.additionalUserInfo.username) {
@@ -76,8 +75,6 @@ const writeUser = async (
       description,
       photoUrl
     };
-    console.log(user);
-    console.log(firebase.firestore.FieldValue.serverTimestamp());
     batch.set(userDoc.ref, {
       ...user,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),

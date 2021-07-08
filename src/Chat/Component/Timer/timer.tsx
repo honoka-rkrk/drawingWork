@@ -55,14 +55,12 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
           {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
         </Paper>
       )}
-      {isEnd ? (
-        <InfDialog
-          infOpen={isEnd}
-          title={'時間終了です'}
-          msg={'お疲れ様でした。次の画面で画像をアップロードしてください'}
-          clickOK={clickOK}
-        />
-      ) : null}
+      <InfDialog
+        infOpen={isEnd}
+        title={'時間終了です'}
+        msg={'お疲れ様でした。次の画面で画像をアップロードしてください'}
+        clickOK={clickOK}
+      />
     </>
   );
 };

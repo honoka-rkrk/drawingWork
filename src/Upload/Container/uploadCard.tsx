@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
-
 import firebase, { storage, db } from '../../firebase';
 import CompUploadCard from '../Component/uploadCard';
 import { UserContext } from '../../Context/contexts';
+import { collectionName } from '../../Functions/constants';
+import { doc } from 'prettier';
 
 type UploadCardProps = {
   setIsUpd: React.Dispatch<React.SetStateAction<boolean>>;
@@ -63,9 +64,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   const postUrl = async () => {
     const url = await storage.ref(`/images/${myFiles[0].name}`).getDownloadURL();
     if (url !== '' && user) {
-      console.log(user.photoUrl);
-      console.log(url);
-      db.collection('images').doc().set({
+      db.collection('images').doc('image').set({
         title: title,
         imageUrl: url,
         screenName: user.screenName,
@@ -73,7 +72,13 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
         iconUrl: user.photoUrl,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
+      console.log(url);
     }
+    console.log(title);
+    console.log(user?.screenName);
+    console.log(user?.displayName);
+    console.log(user?.photoUrl);
+    console.log(firebase.firestore.FieldValue.serverTimestamp());
   };
 
   const next = (snapshot: { bytesTransferred: number; totalBytes: number }) => {
