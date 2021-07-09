@@ -8,13 +8,17 @@ import Avatar from '@material-ui/core/Avatar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import MediaQuery from 'react-responsive';
 
 import { Image } from '../../Model/image';
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    rootPC: {
       minWidth: 345
+    },
+    rootPhone: {
+      minWidth: 70
     },
     media: {
       height: 0,
@@ -49,32 +53,64 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
   const styles = useStyles();
 
   return (
-    <Card className={styles.root}>
-      {image.iconUrl ? (
-        <CardHeader
-          avatar={<Avatar src={image.iconUrl} />}
-          title={image.title}
-          subheader={image.displayName}
-        />
-      ) : (
-        <CardHeader
-          avatar={<AccountCircle />}
-          title={image.title}
-          subheader={image.displayName}
-        />
-      )}
-      <CardMedia className={styles.media} image={image.imageUrl} />
-      <CardActions>
-        <IconButton
-          aria-label='add to favorites'
-          className={styles.iconButton}
-          onClick={handleFavClick}
-          disabled={isDisabled}
-        >
-          {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
-        </IconButton>
-      </CardActions>
-    </Card>
+    <>
+      <MediaQuery query='(min-width:767px)'>
+        <Card className={styles.rootPC}>
+          {image.iconUrl ? (
+            <CardHeader
+              avatar={<Avatar src={image.iconUrl} />}
+              title={image.title}
+              subheader={image.displayName}
+            />
+          ) : (
+            <CardHeader
+              avatar={<AccountCircle />}
+              title={image.title}
+              subheader={image.displayName}
+            />
+          )}
+          <CardMedia className={styles.media} image={image.imageUrl} />
+          <CardActions>
+            <IconButton
+              aria-label='add to favorites'
+              className={styles.iconButton}
+              onClick={handleFavClick}
+              disabled={isDisabled}
+            >
+              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
+            </IconButton>
+          </CardActions>
+        </Card>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <Card className={styles.rootPhone}>
+          {image.iconUrl ? (
+            <CardHeader
+              avatar={<Avatar src={image.iconUrl} />}
+              title={image.title}
+              subheader={image.displayName}
+            />
+          ) : (
+            <CardHeader
+              avatar={<AccountCircle />}
+              title={image.title}
+              subheader={image.displayName}
+            />
+          )}
+          <CardMedia className={styles.media} image={image.imageUrl} />
+          <CardActions>
+            <IconButton
+              aria-label='add to favorites'
+              className={styles.iconButton}
+              onClick={handleFavClick}
+              disabled={isDisabled}
+            >
+              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
+            </IconButton>
+          </CardActions>
+        </Card>
+      </MediaQuery>
+    </>
   );
 };
 

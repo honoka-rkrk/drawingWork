@@ -43,6 +43,16 @@ service cloud.firestore {
     && (image.iconUrl is string || image.iconUrl == null)
     && 'createdAt' in image && image.createdAt is timestamp;
   }
+  
+  function isValidFavoriteUsers(userName){
+  	return userName.size() == 1
+    	&& 'user' in userName && userName.user is string;
+  }
+  
+  function isValidFavoriteNum(num){
+  	return num.size() == 1
+    	&& 'count' in num && num.count is int;
+  }
 
   
   match /databases/{database}/documents {
@@ -91,8 +101,18 @@ service cloud.firestore {
           && isValidIconImage(request.resource.data.iconUrl)
           && request.resource.data.createdAt == request.time;
           match/favoriteUsers/{favoriteUserId}{
-          allow read;
-          allow create:if request.auth != null;
+            allow read;
+            allow create:if request.auth != null
+            	&& isValidFavoriteUsers(request.resource.data);
+            allow delete:if request.auth != null;
+          }
+          match/favoriteNum/{favoriteNumId}{
+          	allow read;
+            allow create:if request.auth != null
+            	&& isValidFavoriteNum(request.resource.data);
+            allow update:if request.auth != null
+              	&& isValidFavoriteNum(request.resource.data);
+            allow delete:if request.auth != null;
           }
     }
   }

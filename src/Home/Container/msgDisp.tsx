@@ -14,7 +14,7 @@ const MsgDisp: React.FC<MsgDispProps> = (props: MsgDispProps) => {
     if (isMax) {
       setMsg('上限人数に達しました。');
     } else {
-      setMsg('エントリーボタンを押すと参加できます。');
+      setMsg('ログインを行ってエントリーボタンを押すと参加できます。');
     }
   }, [setMsg, isMax]);
 

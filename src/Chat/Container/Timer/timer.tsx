@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import CompTimer from '../../Component/Timer/timer';
 
 const Timer: React.FC = () => {
-  const [clock, setClock] = useState<Moment | null>(null);
   const [end, setEnd] = useState<Moment | null>(null);
   const [tmMinutes, setTmMinutes] = useState<string>('');
   const [tmSeconds, setTmSeconds] = useState<string>('');
@@ -32,7 +31,6 @@ const Timer: React.FC = () => {
       if (Math.floor(timerDiff / 60) <= 5) {
         setDanger(true);
       }
-      setClock(dtNow);
     }
   }, [end]);
 

@@ -9,7 +9,7 @@ const useStyle = makeStyles(() =>
       display: 'grid',
       gridTemplateRows: '3% 10% 3% 70% 3% 10% 1%',
       gridTemplateColumns: '10% 80% 10%',
-      height: '100vh'
+      height: 'calc(100vh - 70px)'
     }
   })
 );

@@ -8,6 +8,8 @@ import Box from '@material-ui/core/Box';
 import CardActions from '@material-ui/core/CardActions';
 import TextField from '@material-ui/core/TextField';
 import { DropzoneRootProps, DropzoneInputProps } from 'react-dropzone';
+import MediaQuery from 'react-responsive';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyle = makeStyles(() =>
   createStyles({
@@ -31,6 +33,12 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: 'auto',
       height: '100%'
+    },
+    media: {
+      height: 0,
+      paddingTop: '100%',
+      width: '100%',
+      objectFit: 'cover'
     },
     button: {
       width: '100%',
@@ -73,56 +81,112 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   } = props;
   return (
     <>
-      <Card className={styles.cardCommon}>
-        <CardHeader className={styles.header} title={header} subheader={subHeader} />
-        <CardContent className={styles.contentCommon}>
-          <Box {...getRootProps()} className={styles.content}>
-            <input {...getInputProps()} />
-            {myFiles.length === 0 ? (
-              <Button
-                className={styles.button}
-                color='secondary'
+      <MediaQuery query='(min-width:767px)'>
+        <Card className={styles.cardCommon}>
+          <CardHeader
+            className={styles.header}
+            title={header}
+            subheader={subHeader}
+          />
+          <CardContent className={styles.contentCommon}>
+            <Box {...getRootProps()} className={styles.content}>
+              <input {...getInputProps()} />
+              {myFiles.length === 0 ? (
+                <Button
+                  className={styles.button}
+                  color='secondary'
+                  fullWidth
+                  autoFocus
+                >
+                  Drag&Drop your images here
+                </Button>
+              ) : (
+                <Box className={styles.content}>
+                  {myFiles.map((file: File) => (
+                    <React.Fragment key={file.name}>
+                      {src && <img src={src} className={styles.content} />}
+                    </React.Fragment>
+                  ))}
+                </Box>
+              )}
+            </Box>
+          </CardContent>
+          <CardActions className={styles.upload}>
+            {myFiles.length !== 0 ? (
+              <TextField
+                label='タイトル'
                 fullWidth
-                autoFocus
-              >
-                Drag&Drop your images here
-              </Button>
-            ) : (
-              <Box className={styles.content}>
-                {myFiles.map((file: File) => (
-                  <React.Fragment key={file.name}>
-                    {src && <img src={src} className={styles.content} />}
-                  </React.Fragment>
-                ))}
-              </Box>
-            )}
-          </Box>
-        </CardContent>
-        <CardActions className={styles.upload}>
-          {myFiles.length !== 0 ? (
-            <TextField
-              label='タイトル'
+                id='title'
+                type='text'
+                value={title}
+                onChange={handleTitleChange}
+              />
+            ) : null}
+            <Button
+              className={styles.button}
+              disabled={!clickable}
+              type='submit'
+              variant='contained'
+              color='secondary'
               fullWidth
-              id='title'
-              type='text'
-              value={title}
-              onChange={handleTitleChange}
-            />
-          ) : null}
-          <Button
-            className={styles.button}
-            disabled={!clickable}
-            type='submit'
-            variant='contained'
-            color='secondary'
-            fullWidth
-            style={{ marginTop: '16px' }}
-            onClick={() => handleUpload(myFiles)}
-          >
-            UPLOAD
-          </Button>
-        </CardActions>
-      </Card>
+              style={{ marginTop: '16px' }}
+              onClick={() => handleUpload(myFiles)}
+            >
+              UPLOAD
+            </Button>
+          </CardActions>
+        </Card>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <Card className={styles.cardCommon}>
+          <CardHeader
+            className={styles.header}
+            title={header}
+            subheader={subHeader}
+          />
+          <CardContent className={styles.contentCommon}>
+            <Box {...getRootProps()} className={styles.content}>
+              <input {...getInputProps()} />
+              {myFiles.length === 0 ? (
+                <Button
+                  className={styles.button}
+                  color='secondary'
+                  fullWidth
+                  autoFocus
+                >
+                  Drag&Drop your images here
+                </Button>
+              ) : (
+                <CardMedia image={src} className={styles.media} />
+              )}
+            </Box>
+          </CardContent>
+          <CardActions className={styles.upload}>
+            {myFiles.length !== 0 ? (
+              <TextField
+                label='タイトル'
+                fullWidth
+                id='title'
+                type='text'
+                value={title}
+                onChange={handleTitleChange}
+              />
+            ) : null}
+            <Button
+              className={styles.button}
+              disabled={!clickable}
+              type='submit'
+              variant='contained'
+              color='secondary'
+              fullWidth
+              style={{ marginTop: '5px' }}
+              onClick={() => handleUpload(myFiles)}
+            >
+              UPLOAD
+            </Button>
+          </CardActions>
+        </Card>
+      </MediaQuery>
     </>
   );
 };

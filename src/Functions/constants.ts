@@ -1,6 +1,7 @@
 export const collectionName = {
   users: 'users',
   docCounters: 'docCounters',
-  feedMemos: 'feedMemos',
-  favoriteUsers: 'favoriteUsers'
+  favoriteUsers: 'favoriteUsers',
+  favoriteNum: 'favoriteNum',
+  favCounters: 'favCounters'
 } as const;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
-const useStyle = makeStyles((theme: Theme) =>
+const useStyle = makeStyles(() =>
   createStyles({
     tableCellCommon: {
       lineHeight: 'lem',

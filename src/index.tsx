@@ -4,16 +4,30 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import FirebaseApp from './FirebaseApp';
-import { GreenTheme } from './Style/theme';
+import { PCTheme, PhoneTheme } from './Style/theme';
+import MediaQuery from 'react-responsive';
 
 ReactDOM.render(
-  <MuiThemeProvider theme={GreenTheme}>
-    <Router>
-      <FirebaseApp>
-        <App />
-      </FirebaseApp>
-    </Router>
-  </MuiThemeProvider>,
+  <>
+    <MediaQuery query='(min-width:767px)'>
+      <MuiThemeProvider theme={PCTheme}>
+        <Router>
+          <FirebaseApp>
+            <App />
+          </FirebaseApp>
+        </Router>
+      </MuiThemeProvider>
+    </MediaQuery>
+    <MediaQuery query='(max-width:767px)'>
+      <MuiThemeProvider theme={PhoneTheme}>
+        <Router>
+          <FirebaseApp>
+            <App />
+          </FirebaseApp>
+        </Router>
+      </MuiThemeProvider>
+    </MediaQuery>
+  </>,
   document.getElementById('root')
 );
 

@@ -10,7 +10,8 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em'
+      fontSize: '1.5em',
+      padding: '1.5rem'
     },
     msgStyleMax: {
       display: 'flex',

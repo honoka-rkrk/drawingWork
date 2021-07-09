@@ -18,6 +18,7 @@ type EntryBtnProps = {
   setInfOpen: React.Dispatch<React.SetStateAction<boolean>>;
   entryClick: () => void;
   isMax: boolean;
+  disabled: boolean;
 };
 
 const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
@@ -25,21 +26,24 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
     infOpen = false,
     setInfOpen = () => undefined,
     entryClick = () => undefined,
-    isMax = false
+    isMax = false,
+    disabled = true
   } = props;
   const styles = useStyle();
 
   return (
     <>
-      <Button
-        className={styles.button}
-        onClick={entryClick}
-        variant='outlined'
-        color='primary'
-        disabled={isMax}
-      >
-        {'エントリー'}
-      </Button>
+      {disabled ? null : (
+        <Button
+          className={styles.button}
+          onClick={entryClick}
+          variant='outlined'
+          color='primary'
+          disabled={isMax}
+        >
+          {'エントリー'}
+        </Button>
+      )}
       {infOpen ? (
         <InfDialog
           infOpen={infOpen}

@@ -3,8 +3,6 @@ import { useDropzone } from 'react-dropzone';
 import firebase, { storage, db } from '../../firebase';
 import CompUploadCard from '../Component/uploadCard';
 import { UserContext } from '../../Context/contexts';
-import { collectionName } from '../../Functions/constants';
-import { doc } from 'prettier';
 
 type UploadCardProps = {
   setIsUpd: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,13 +70,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
         iconUrl: user.photoUrl,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
-      console.log(url);
     }
-    console.log(title);
-    console.log(user?.screenName);
-    console.log(user?.displayName);
-    console.log(user?.photoUrl);
-    console.log(firebase.firestore.FieldValue.serverTimestamp());
   };
 
   const next = (snapshot: { bytesTransferred: number; totalBytes: number }) => {

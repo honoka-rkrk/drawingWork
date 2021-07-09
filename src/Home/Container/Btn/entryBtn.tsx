@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { db } from '../../../firebase';
+import firebase, { db } from '../../../firebase';
 
+import { UserContext } from '../../../Context/contexts';
 import CompEntryBtn from '../../Component/Btn/entryBtn';
 
 type EntryBtnProps = {
@@ -13,22 +14,37 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
   const { isMax, setIsMax } = props;
   const [infOpen, setInfOpen] = useState<boolean>(false);
   const history = useHistory();
+  const { user } = useContext(UserContext);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
-  const doneEntry = (numbers: number) => {
+  useEffect(() => {
+    if (user) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [user]);
+
+  const doneEntry = async (numbers: number) => {
     if (numbers === 20) {
-      db.collection('entryMembers')
+      await db
+        .collection('entryMembers')
         .doc('entryNumber')
         .set({
-          numbers: numbers + 1,
+          numbers: firebase.firestore.FieldValue.increment(1),
           maximum: true
         });
     } else {
-      db.collection('entryMembers')
+      await db
+        .collection('entryMembers')
         .doc('entryNumber')
-        .set({
-          numbers: numbers + 1,
-          maximum: false
-        });
+        .set(
+          {
+            numbers: firebase.firestore.FieldValue.increment(1),
+            maximum: false
+          },
+          { merge: true }
+        );
     }
   };
 
@@ -73,6 +89,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
       setInfOpen={setInfOpen}
       entryClick={entryClick}
       isMax={isMax}
+      disabled={disabled}
     />
   );
 };

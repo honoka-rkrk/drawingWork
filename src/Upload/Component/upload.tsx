@@ -15,7 +15,8 @@ const useStyle = makeStyles(() =>
     },
     uploadCommon: {
       gridRow: 4,
-      gridColumn: 2
+      gridColumn: 2,
+      height: '100%'
     }
   })
 );
