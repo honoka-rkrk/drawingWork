@@ -1,8 +1,13 @@
 rules_version = '2';
 service cloud.firestore {
 	function isValidMessages(message){
-  	return message.size() == 2
-    	&& 'messages' in message && message.messages is string
+  	return message.size() == 5
+    	&& 'message' in message && message.message is string
+      && 'displayName' in message 
+      && (message.displayName is string || message.displayName == null)
+      && 'screenName' in message && message.screenName is string
+      && 'photoUrl' in message 
+      && (message.photoUrl is string || message.photoUrl == null)
       && 'createdAt' in message && message.createdAt is timestamp;
   }
 	function isValidEntryMembers(entryMember){
@@ -58,7 +63,9 @@ service cloud.firestore {
   match /databases/{database}/documents {
   	match/messages/{messagesId}{
       allow read;
-      allow create: if isValidMessages(request.resourece.data);
+      allow create: if isValidMessages(request.resource.data)
+      	&& isValidIconImage(request.resource.data.photoUrl)
+        && request.resource.data.createdAt == request.time;
     }
     match/entryMembers/{entryMembersId}{
     	allow read;

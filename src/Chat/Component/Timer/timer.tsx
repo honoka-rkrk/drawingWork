@@ -12,7 +12,9 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em'
+      fontSize: '1.5em',
+      gridColumn: 3,
+      gridRow: 1
     },
     clockStyleDanger: {
       display: 'flex',
@@ -21,7 +23,9 @@ const useStyle = makeStyles(() =>
       width: '100%',
       height: '100%',
       fontSize: '1.5em',
-      color: '#ff1744'
+      color: '#ff1744',
+      gridColumn: 3,
+      gridRow: 1
     }
   })
 );

@@ -15,7 +15,7 @@ const Timer: React.FC = () => {
   useEffect(() => {
     const dtNow = moment().startOf('day');
     // const endTime = dtNow.add(18, 'hours');
-    const endTime = moment().add(5, 'seconds');
+    const endTime = moment().add(15, 'seconds');
     setEnd(endTime);
   }, [setEnd]);
 

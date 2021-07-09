@@ -1,13 +1,15 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { MessageTypes } from '../../Container/data';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import Avatar from '@material-ui/core/Avatar';
 
-import MsgHeader from '../../Container/Display/msgHeader';
+import DisplayCell from '../../Container/Display/displayCell';
+import { Message } from '../../../Model/message';
+
 const useStyle = makeStyles(() =>
   createStyles({
     tableContainer: {
@@ -25,7 +27,7 @@ const useStyle = makeStyles(() =>
   })
 );
 
-type DisplayProps = { messages: MessageTypes[] | null };
+type DisplayProps = { messages: Message[] | null };
 
 const Display: React.FC<DisplayProps> = (props: DisplayProps) => {
   const styles = useStyle();
@@ -35,13 +37,10 @@ const Display: React.FC<DisplayProps> = (props: DisplayProps) => {
     <>
       <TableContainer className={styles.tableContainer}>
         <Table className={styles.table} stickyHeader>
-          <MsgHeader />
           <TableBody className={styles.tableBody}>
             {messages
               ? [...Array(messages.length)].map((_, index) => (
-                  <TableRow key={`msg_${index}`} className={styles.tableRow}>
-                    <TableCell align='left'>{messages[index].messages}</TableCell>
-                  </TableRow>
+                  <DisplayCell key={`dispCell_${index}`} message={messages[index]} />
                 ))
               : null}
           </TableBody>

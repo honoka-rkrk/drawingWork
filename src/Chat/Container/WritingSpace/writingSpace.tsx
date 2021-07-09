@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import CompWritingSpace from '../../Component/WritingSpace/writingSpace';
 import firebase, { db } from '../../../firebase';
+import { UserContext } from '../../../Context/contexts';
 
 const WritingSpace: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [submitError, setSubmitError] = useState<boolean>(false);
+  const { user } = useContext(UserContext);
 
   const handleOnSubmit = () => {
-    if (message !== '') {
-      db.collection('message').doc().set({
-        messages: message,
+    if (message !== '' && user) {
+      db.collection('messages').doc().set({
+        message: message,
+        displayName: user.displayName,
+        screenName: user.screenName,
+        photoUrl: user.photoUrl,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       setMessage('');
