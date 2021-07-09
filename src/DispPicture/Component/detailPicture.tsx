@@ -9,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
+import Typography from '@material-ui/core/Typography';
 
 import { Image } from '../../Model/image';
 
@@ -42,15 +43,19 @@ type DetailPictureProps = {
   handleFavClick: () => void;
   isFav: boolean;
   isDisabled: boolean;
+  favCount: number;
 };
 const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) => {
   const {
     image,
     handleFavClick = () => undefined,
     isFav = false,
-    isDisabled = false
+    isDisabled = false,
+    favCount = 0
   } = props;
   const styles = useStyles();
+
+  console.log(favCount);
 
   return (
     <>
@@ -79,6 +84,7 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
             >
               {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
             </IconButton>
+            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
           </CardActions>
         </Card>
       </MediaQuery>
@@ -107,6 +113,7 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
             >
               {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
             </IconButton>
+            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
           </CardActions>
         </Card>
       </MediaQuery>

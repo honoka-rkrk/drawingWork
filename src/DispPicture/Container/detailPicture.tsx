@@ -15,6 +15,7 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
   const { image, favNum, setFavNum } = props;
   const [isFav, setIsFav] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [favCount, setFavCount] = useState<number>(0);
   const { user } = useContext(UserContext);
 
   //ボタンの状態変化
@@ -96,6 +97,45 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
   };
 
   useEffect(() => {
+    let id: number;
+    let unmounted = false;
+    const getFavCounts = async () => {
+      const favCountsRef = db
+        .collection('images')
+        .doc(image.id)
+        .collection(collectionName.favoriteNum)
+        .doc('favCounters');
+      await favCountsRef
+        .get()
+        .then((doc) => {
+          const getData: any = doc.data();
+          if (!unmounted) {
+            if (getData) {
+              setFavCount(getData.count);
+            } else {
+              setFavCount(0);
+            }
+          }
+        })
+        .catch((error) => {
+          console.log('Error getting document', error);
+        });
+    };
+    const timer = () => {
+      getFavCounts();
+      return window.setTimeout(() => {
+        id = timer();
+      }, 5000);
+    };
+    id = timer();
+    return () => {
+      unmounted = true;
+      clearTimeout(id);
+    };
+  }, [setFavCount]);
+
+  //いいねできる数の制限がきたら他のボタンを押せなくする
+  useEffect(() => {
     if (favNum <= 0 && !isFav) {
       setIsDisabled(true);
     } else {
@@ -109,6 +149,7 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
       handleFavClick={handleFavClick}
       isFav={isFav}
       isDisabled={isDisabled}
+      favCount={favCount}
     />
   );
 };

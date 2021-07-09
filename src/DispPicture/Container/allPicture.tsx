@@ -6,7 +6,7 @@ import CompAllPicture from '../Component/allPicture';
 
 const AllPicture: React.FC = () => {
   const [images, setImages] = useState<Array<Image> | null>(null);
-  const [favNum, setFavNum] = useState<number>(1);
+  const [favNum, setFavNum] = useState<number>(2);
 
   useEffect(() => {
     let unmounted = false;
