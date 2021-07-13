@@ -1,0 +1,126 @@
+rules_version = '2';
+service cloud.firestore {
+	function isValidMessages(message){
+  	return message.size() == 5
+    	&& 'message' in message && message.message is string
+      && 'displayName' in message 
+      && (message.displayName is string || message.displayName == null)
+      && 'screenName' in message && message.screenName is string
+      && 'photoUrl' in message 
+      && (message.photoUrl is string || message.photoUrl == null)
+      && 'createdAt' in message && message.createdAt is timestamp;
+  }
+	function isValidEntryMembers(entryMember){
+  	return entryMember.size() == 2
+    	&& 'numbers' in entryMember && entryMember.numbers is int
+      && 'maximum' in entryMember && entryMember.maximum is bool;
+  }
+	function isValidDocCounter(counter){
+  	return counter.size() == 2
+    	&& 'count' in counter && counter.count is int
+      && 'updatedAt' in counter && counter.updatedAt is timestamp;
+  }
+  
+  function isValidUser(user){
+  	return user.size() == 8
+    	&& 'screenName' in user && user.screenName is string
+      && 'displayName' in user
+      && (user.displayName is string || user.displayName == null)
+      && 'description' in user
+      && (user.description is string || user.description == null)
+      && 'photoUrl' in user
+      && (user.photoUrl is string || user.photoUrl == null)
+      && 'providerUid' in user && user.providerUid is string;
+  }
+  
+  function isValidIconImage(iconImage){
+  	return iconImage == null || iconImage.matches('^https?://.+[.](jpg|jpeg|gif|png)');
+  }
+  
+  function isValidImage(image){
+  return image.size() == 6
+  	&& 'title' in image && image.title is string
+    && 'imageUrl' in image && image.imageUrl is string
+    && 'screenName' in image && image.screenName is string
+    && 'displayName' in image 
+    && (image.displayName is string || image.displayName == null)
+    && 'iconUrl' in image 
+    && (image.iconUrl is string || image.iconUrl == null)
+    && 'createdAt' in image && image.createdAt is timestamp;
+  }
+  
+  function isValidFavoriteUsers(userName){
+  	return userName.size() == 1
+    	&& 'user' in userName && userName.user is string;
+  }
+  
+  function isValidFavoriteNum(num){
+  	return num.size() == 1
+    	&& 'count' in num && num.count is int;
+  }
+
+  
+  match /databases/{database}/documents {
+  	match/messages/{messagesId}{
+      allow read;
+      allow create: if isValidMessages(request.resource.data)
+      	&& isValidIconImage(request.resource.data.photoUrl)
+        && request.resource.data.createdAt == request.time;
+    }
+    match/entryMembers/{entryMembersId}{
+    	allow read;
+      allow create: if isValidEntryMembers(request.resource.data);
+      allow update: if isValidEntryMembers(request.resource.data)
+      	&& (request.resource.data.numbers == resource.data.numbers + 1
+        || request.resource.data.numbers == resource.data.numbers -1);
+    }
+    match/docCounters/{docCounterId}{
+      allow read;
+      allow create:if request.auth != null
+      	&& docCounterId == 'users'
+        && isValidDocCounter(request.resource.data);
+      allow update:if request.auth.uid != null
+      && docCounterId == 'users'
+      && isValidDocCounter(request.resource.data)
+      && (request.resource.data.count == resource.data.count + 1
+      || request.resource.data.count == resource.data.count -1);
+    }
+    match/users/{userId}{
+      allow read;
+      allow create:if  request.auth != null && request.auth.uid == userId
+        && isValidUser(request.resource.data)
+        && isValidIconImage(request.resource.data.photoUrl)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update:if request.auth != null && request.auth.uid == userId
+        && isValidUser(request.resource.data)
+        && isValidIconImage(request.resource.data.photoUrl)
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.screenName == resource.data.screenName
+        && request.resource.data.providerUid == resource.data.providerUid
+        && request.resource.data.createdAt == resource.data.createdAt
+      allow delete:if request.auth != null && request.auth.uid == userId;
+    }
+    match/images/{imagesId}{
+        allow read;
+        allow create:if request.auth != null
+          && isValidImage(request.resource.data)
+          && isValidIconImage(request.resource.data.iconUrl)
+          && request.resource.data.createdAt == request.time;
+          match/favoriteUsers/{favoriteUserId}{
+            allow read;
+            allow create:if request.auth != null
+            	&& isValidFavoriteUsers(request.resource.data);
+            allow delete:if request.auth != null;
+          }
+          match/favoriteNum/{favoriteNumId}{
+          	allow read;
+            allow create:if request.auth != null
+            	&& isValidFavoriteNum(request.resource.data);
+            allow update:if request.auth != null
+              	&& isValidFavoriteNum(request.resource.data);
+            allow delete:if request.auth != null;
+          }
+    }
+  }
+}
