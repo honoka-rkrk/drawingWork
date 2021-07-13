@@ -1,15 +1,15 @@
-import React from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import React from 'react';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-import InfDialog from "../../../Utils/Container/Dialog/infDialog";
+import InfDialog from '../../../Utils/Container/Dialog/infDialog';
 
 const useStyle = makeStyles(() =>
   createStyles({
     button: {
-      width: "70%",
-      height: "75%",
-    },
+      width: '70%',
+      height: '75%'
+    }
   })
 );
 
@@ -27,7 +27,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
     setInfOpen = () => undefined,
     entryClick = () => undefined,
     isMax = false,
-    disabled = true,
+    disabled = true
   } = props;
   const styles = useStyle();
 
@@ -37,18 +37,18 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
         <Button
           className={styles.button}
           onClick={entryClick}
-          variant="outlined"
-          color="primary"
+          variant='outlined'
+          color='primary'
           disabled={isMax}
         >
-          {"エントリー"}
+          {'エントリー'}
         </Button>
       )}
       {infOpen ? (
         <InfDialog
           infOpen={infOpen}
-          title={"上限人数に達しました"}
-          msg={"次回の開催までお待ちください"}
+          title={'上限人数に達しました'}
+          msg={'次回の開催までお待ちください'}
           clickOK={() => setInfOpen(false)}
         />
       ) : null}

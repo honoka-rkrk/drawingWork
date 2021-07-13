@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import firebase, { db } from "../../firebase";
-import { Image } from "../../Model/image";
+import React, { useState, useEffect, useRef } from 'react';
+import firebase, { db } from '../../firebase';
+import { Image } from '../../Model/image';
 
-import CompDispPicture from "../../Home/Component/dispPicture";
+import CompDispPicture from '../../Home/Component/dispPicture';
 
 const DispPicture: React.FC = () => {
   const [images, setImages] = useState<Array<Image> | null>(null);
@@ -14,16 +14,17 @@ const DispPicture: React.FC = () => {
   useEffect(() => {
     let unmounted = false;
     const getImages = async () => {
-      const imagesRef = db.collection("images");
+      const imagesRef = db.collection('images');
       await imagesRef
-        .orderBy("createdAt")
+        .orderBy('createdAt')
+
         .get()
         .then((snapshot: firebase.firestore.QuerySnapshot) => {
           const newImages: any[] = [];
           snapshot.forEach((doc) => {
             newImages.push({
               id: doc.id,
-              ...doc.data(),
+              ...doc.data()
             });
           });
           if (!unmounted && newImages) {
@@ -49,13 +50,11 @@ const DispPicture: React.FC = () => {
   const handleStepChange = (step: number) => {
     setActiveStep(step);
   };
-
   useEffect(() => {
     if (images) {
       setImage(images[activeStep]);
     }
   }, [images, activeStep]);
-
   return (
     <CompDispPicture
       images={images}
