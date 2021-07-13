@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
 import MsgDisp from '../Container/msgDisp';
+import DispPicture from '../Container/dispPicture';
 import EntryBtn from '../Container/Btn/entryBtn';
 import LoginBtn from '../Container/Btn/loginBtn';
 
@@ -10,6 +11,11 @@ const useStyle = makeStyles(() =>
   createStyles({
     msgDisp: {
       gridRow: 2,
+      gridColumn: 2,
+      height: '100%'
+    },
+    picDisp: {
+      gridRow: 4,
       gridColumn: 2,
       height: '100%'
     },
@@ -41,6 +47,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
     <>
       <Box className={styles.msgDisp}>
         <MsgDisp isMax={isMax} />
+      </Box>
+      <Box className={styles.picDisp}>
+        <DispPicture />
       </Box>
       <Box className={styles.buttonBox}>
         <Box className={styles.entry}>

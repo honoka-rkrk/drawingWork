@@ -19,10 +19,7 @@ const useStyle = makeStyles(() =>
     },
     table: {},
     tableBody: {
-      textAlign: 'right'
-    },
-    tableRow: {
-      height: 'calc(((100vh - 180px) * 0.95) / 28'
+      textAlign: 'left'
     }
   })
 );

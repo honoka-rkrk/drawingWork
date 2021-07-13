@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 import { Message } from '../../../Model/message';
 
@@ -25,14 +26,16 @@ const DisplayCell: React.FC<DisplayCellProps> = (props: DisplayCellProps) => {
     <>
       {message ? (
         <TableRow className={styles.tableRow}>
-          <TableCell align='left'>
+          <TableCell align='left' width={'100px'}>
             {message.photoUrl && message ? (
               <Avatar src={message.photoUrl} />
             ) : (
               <Avatar>N</Avatar>
             )}
           </TableCell>
-          <TableCell align='left'>{message.messages}</TableCell>
+          <TableCell align='left'>
+            <Typography>{message.message}</Typography>
+          </TableCell>
         </TableRow>
       ) : null}
     </>

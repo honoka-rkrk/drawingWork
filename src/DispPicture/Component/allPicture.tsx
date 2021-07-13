@@ -3,8 +3,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Fab from '@material-ui/core/Fab';
 import MediaQuery from 'react-responsive';
-import { Image } from '../../Model/image';
 
+import { Image } from '../../Model/image';
 import DetailPicture from '../Container/detailPicture';
 import ExitBtn from '../Container/exitBtn';
 

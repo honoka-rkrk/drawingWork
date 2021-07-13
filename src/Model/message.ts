@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 export type Message = {
   id?: string;
-  messages: string;
+  message: string;
   displayName: string | null;
   screenName: string;
   photoUrl: string | null;
@@ -10,7 +10,7 @@ export type Message = {
 };
 
 export const blankMessage: Message = {
-  messages: '',
+  message: '',
   displayName: null,
   screenName: '',
   photoUrl: null,
