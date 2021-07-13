@@ -1,0 +1,7 @@
+node_modules
+.firebase
+src/firebase.js
+firebase.json
+firestore.indexes.json
+
+
