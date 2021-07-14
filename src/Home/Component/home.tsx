@@ -1,67 +1,67 @@
-import React from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import MediaQuery from "react-responsive";
+import React from 'react';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import MediaQuery from 'react-responsive';
 
-import MsgDisp from "../Container/msgDisp";
-import DispPicture from "../Container/dispPicture";
-import EntryBtn from "../Container/Btn/entryBtn";
-import LoginBtn from "../Container/Btn/loginBtn";
+import MsgDisp from '../Container/msgDisp';
+import DispPicture from '../Container/dispPicture';
+import EntryBtn from '../Container/Btn/entryBtn';
+import LoginBtn from '../Container/Btn/loginBtn';
 
 const useStyle = makeStyles(() =>
   createStyles({
     msgDisp: {
       gridRow: 2,
       gridColumn: 2,
-      height: "100%",
+      height: '100%'
     },
     dispCommonPC: {
-      display: "grid",
-      gridTemplateColumns: "50% 50%",
-      gridTemplateRows: "100%",
+      display: 'grid',
+      gridTemplateColumns: '50% 50%',
+      gridTemplateRows: '100%',
       gridRow: 4,
-      gridColumn: 2,
+      gridColumn: 2
     },
     picDispPC: {
       gridRow: 1,
       gridColumn: 1,
-      height: "100%",
+      height: '100%'
     },
     picDispPhone: {
       gridRow: 4,
       gridColumn: 2,
-      height: "100%",
+      height: '100%'
     },
     buttonBoxPC: {
-      justifyContent: "center",
+      justifyContent: 'center',
       gridRow: 1,
       gridColumn: 2,
-      display: "grid",
-      width: "100%",
-      gridTemplateColumns: "100%",
-      gridTemplateRows: "12% 35% 6% 35% 12%",
+      display: 'grid',
+      width: '100%',
+      gridTemplateColumns: '100%',
+      gridTemplateRows: '12% 35% 6% 35% 12%'
     },
     buttonBoxPhone: {
-      justifyContent: "center",
+      justifyContent: 'center',
       gridRow: 6,
       gridColumn: 2,
-      display: "grid",
-      gridTemplateColumns: "40% 20% 40%",
+      display: 'grid',
+      gridTemplateColumns: '40% 20% 40%'
     },
     entryPC: {
       gridRow: 2,
-      width: "100%",
+      width: '100%'
     },
     entryPhone: {
-      gridColumn: 1,
+      gridColumn: 1
     },
     loginPC: {
       gridRow: 4,
-      width: "100%",
+      width: '100%'
     },
     loginPhone: {
-      gridColumn: 3,
-    },
+      gridColumn: 3
+    }
   })
 );
 
@@ -75,7 +75,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
   const styles = useStyle();
   return (
     <>
-      <MediaQuery query="(min-width:767px)">
+      <MediaQuery query='(min-width:767px)'>
         <Box className={styles.msgDisp}>
           <MsgDisp isMax={isMax} />
         </Box>
@@ -93,7 +93,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
           </Box>
         </Box>
       </MediaQuery>
-      <MediaQuery query="(max-width:767px)">
+      <MediaQuery query='(max-width:767px)'>
         <Box className={styles.msgDisp}>
           <MsgDisp isMax={isMax} />
         </Box>

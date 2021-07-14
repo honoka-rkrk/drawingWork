@@ -1,15 +1,14 @@
-import React from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import LoginDialog from "../../Container/loginDialog";
-
+import React from 'react';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import LoginDialog from '../../Container/loginDialog';
 
 const useStyle = makeStyles(() =>
   createStyles({
     button: {
-      width: "70%",
-      height: "75%",
-    },
+      width: '70%',
+      height: '75%'
+    }
   })
 );
 
@@ -25,7 +24,7 @@ const LoginBtn: React.FC<LoginBtnProps> = (props: LoginBtnProps) => {
     loginClick = () => undefined,
     open = false,
     onClose = () => undefined,
-    disabled = false,
+    disabled = false
   } = props;
   const styles = useStyle();
   return (
@@ -33,11 +32,11 @@ const LoginBtn: React.FC<LoginBtnProps> = (props: LoginBtnProps) => {
       <Button
         className={styles.button}
         onClick={loginClick}
-        variant="outlined"
-        color="primary"
+        variant='outlined'
+        color='primary'
         disabled={disabled}
       >
-        {disabled ? "ログイン済" : "ログイン"}
+        {disabled ? 'ログイン済' : 'ログイン'}
       </Button>
       <LoginDialog open={open} onClose={onClose} />
     </>

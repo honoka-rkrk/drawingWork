@@ -3,18 +3,22 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import LoginDialog from '../../Home/Container/loginDialog';
 import { User } from '../../Model/user';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1
+    },
+    menuButton: {
+      marginLeft: theme.spacing(2)
     }
   })
 );
@@ -84,6 +88,13 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
               <MenuItem onClick={loginClick}>ログイン</MenuItem>
             )}
           </Menu>
+          <IconButton
+            className={styles.menuButton}
+            color='inherit'
+            aria-label='menubutton'
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <LoginDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
