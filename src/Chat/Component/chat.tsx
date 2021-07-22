@@ -31,13 +31,19 @@ const useStyle = makeStyles((theme: Theme) =>
   })
 );
 
-const Chat: React.FC = () => {
+type ChatProps = {
+  isStart: boolean;
+  setIsStart: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Chat: React.FC<ChatProps> = (props: ChatProps) => {
+  const { isStart, setIsStart } = props;
   const styles = useStyle();
   return (
     <>
       <Box className={styles.timer}>
-        <Timer />
-        <DispTheme />
+        <Timer isStart={isStart} setIsStart={setIsStart} />
+        <DispTheme isStart={isStart} />
       </Box>
       <Box className={styles.display}>
         <Display />

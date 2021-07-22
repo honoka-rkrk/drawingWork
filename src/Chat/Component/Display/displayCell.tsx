@@ -11,6 +11,9 @@ const useStyle = makeStyles(() =>
   createStyles({
     tableRow: {
       height: 'calc(((100vh - 180px) * 0.95) / 28'
+    },
+    nameColor: {
+      color: '#000055'
     }
   })
 );
@@ -34,6 +37,9 @@ const DisplayCell: React.FC<DisplayCellProps> = (props: DisplayCellProps) => {
             )}
           </TableCell>
           <TableCell align='left'>
+            <Typography color='textSecondary' variant='caption'>
+              {message.displayName}
+            </Typography>
             <Typography>{message.message}</Typography>
           </TableCell>
         </TableRow>

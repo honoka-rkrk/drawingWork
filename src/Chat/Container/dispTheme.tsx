@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 
 import CompDispTheme from '../Component/dipTheme';
 
-const DispTheme: React.FC = () => {
+type DispThemeProps = {
+  isStart: boolean;
+};
+
+const DispTheme: React.FC<DispThemeProps> = (props: DispThemeProps) => {
+  const { isStart } = props;
   const [drawTheme, setDrawTheme] = useState<string>('');
 
   useEffect(() => {
-    setDrawTheme('準備中');
-  }, []);
+    if (!isStart) {
+      setDrawTheme('準備中');
+    } else {
+      setDrawTheme('夏と高校生');
+    }
+  }, [isStart]);
   return <CompDispTheme drawTheme={drawTheme} />;
 };
 

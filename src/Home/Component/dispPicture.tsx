@@ -27,7 +27,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     commonPC: {
-      width: 500,
+      width: '100%',
       height: '100%'
     },
     commonPhone: {
@@ -99,7 +99,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
             )}
             <CardContent>
               <AutoPlaySwipeableViews
-                axis={'x-reverse'}
+                axis={'x'}
                 index={activeStep}
                 onChangeIndex={handleStepChange}
                 enableMouseEvents

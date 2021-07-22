@@ -6,6 +6,7 @@ import Upload from './Upload/Component/main';
 import DispPicture from './DispPicture/Component/main';
 import Home from './Home/Component/main';
 import Header from './Header/Component/main';
+import Inquiry from './Utils/Component/inquiry';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path={'/chat'} exact component={Chat} />
         <Route path={'/upload'} exact component={Upload} />
         <Route path={'/dispPicture'} exact component={DispPicture} />
+        <Route path={'/inquiry'} exact component={Inquiry} />
         <Redirect to='/' />
       </Switch>
     </>

@@ -38,6 +38,7 @@ const useStyle = makeStyles(() =>
       gridColumn: 2,
       display: 'grid',
       width: '100%',
+      marginLeft: '3rem',
       gridTemplateColumns: '100%',
       gridTemplateRows: '12% 35% 6% 35% 12%'
     },
