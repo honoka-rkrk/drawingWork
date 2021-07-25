@@ -8,7 +8,7 @@ const useStyle = makeStyles(() =>
   createStyles({
     rootPC: {
       display: 'grid',
-      gridTemplateRows: '3% 7% 3% 84% 3%',
+      gridTemplateRows: '3% 7% 3% 3% 81% 3%',
       gridTemplateColumns: '10% 80% 10%',
       height: 'calc(100vh - 70px)'
     },

@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
       objectFit: 'cover'
     },
     imgPhone: {
-      maxHeight: 300,
+      maxHeight: '100%',
       display: 'block',
       width: '100%',
       objectFit: 'cover'

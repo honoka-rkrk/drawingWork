@@ -33,7 +33,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   useEffect(() => {
     if (!isStart) {
       const dtNow = moment().startOf('day');
-      const startTime = dtNow.add(20, 'hours');
+      const startTime = dtNow.add(21, 'hours');
       setStart(startTime);
     }
   }, [start]);
@@ -68,7 +68,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   useEffect(() => {
     if (isStart) {
       const dtNow = moment().startOf('day');
-      const endTime = dtNow.add(20, 'hours');
+      const endTime = dtNow.add(22, 'hours');
       setEnd(endTime);
     }
   }, [setEnd, isStart]);
@@ -77,6 +77,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
     if (isStart) {
       const dtNow = moment();
       if (end) {
+        console.log(end);
         const timerDiff = end.diff(dtNow, 'second');
         setTmMinutes(String(Math.floor(timerDiff / 60)));
         setTmSeconds(String(timerDiff % 60));

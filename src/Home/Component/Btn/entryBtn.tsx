@@ -19,6 +19,7 @@ type EntryBtnProps = {
   entryClick: () => void;
   isMax: boolean;
   disabled: boolean;
+  open: boolean;
 };
 
 const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
@@ -27,7 +28,8 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
     setInfOpen = () => undefined,
     entryClick = () => undefined,
     isMax = false,
-    disabled = true
+    disabled = true,
+    open = false
   } = props;
   const styles = useStyle();
 
@@ -39,7 +41,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
           onClick={entryClick}
           variant='outlined'
           color='primary'
-          disabled={isMax}
+          disabled={open && !isMax ? false : true}
         >
           {'エントリー'}
         </Button>

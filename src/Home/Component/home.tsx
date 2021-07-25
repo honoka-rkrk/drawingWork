@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
+import Typography from '@material-ui/core/Typography';
 
 import MsgDisp from '../Container/msgDisp';
 import DispPicture from '../Container/dispPicture';
@@ -19,6 +20,10 @@ const useStyle = makeStyles(() =>
       display: 'grid',
       gridTemplateColumns: '50% 50%',
       gridTemplateRows: '100%',
+      gridRow: 5,
+      gridColumn: 2
+    },
+    title: {
       gridRow: 4,
       gridColumn: 2
     },
@@ -79,6 +84,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
       <MediaQuery query='(min-width:767px)'>
         <Box className={styles.msgDisp}>
           <MsgDisp isMax={isMax} />
+        </Box>
+        <Box className={styles.title}>
+          <Typography color='primary'>前回のイラスト</Typography>
         </Box>
         <Box className={styles.dispCommonPC}>
           <Box className={styles.picDispPC}>

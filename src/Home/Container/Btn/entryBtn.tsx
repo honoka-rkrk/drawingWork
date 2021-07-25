@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import firebase, { db } from '../../../firebase';
+import moment from 'moment';
 
+import firebase, { db } from '../../../firebase';
 import { UserContext } from '../../../Context/contexts';
 import CompEntryBtn from '../../Component/Btn/entryBtn';
 
@@ -16,6 +17,20 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const [disabled, setDisabled] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const nowTime = moment();
+    const startTime = moment().startOf('day').add(20, 'hours').add(55, 'minutes');
+    const timerDiff = startTime.diff(nowTime, 'minutes');
+    if (timerDiff > 0) {
+      setOpen(false);
+    } else if (timerDiff < -15) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  }, [setOpen]);
 
   useEffect(() => {
     if (user) {
@@ -90,6 +105,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
       entryClick={entryClick}
       isMax={isMax}
       disabled={disabled}
+      open={open}
     />
   );
 };
