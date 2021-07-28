@@ -69,7 +69,9 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
         <InfDialog
           infOpen={isEnd}
           title={'閲覧時間の終了です'}
-          msg={'長い時間お疲れさまでした。結果発表画面に移動します。'}
+          msg={
+            '長い時間お疲れさまでした。またの参加をお待ちしてます！ 今回のイラストはTOP画面に表示されます。'
+          }
           clickOK={clickOK}
         />
       ) : null}
