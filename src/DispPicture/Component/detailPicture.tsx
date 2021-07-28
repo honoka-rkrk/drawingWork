@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 import { Image } from '../../Model/image';
 
@@ -19,13 +20,31 @@ const useStyles = makeStyles(() =>
       minWidth: 345
     },
     rootPhone: {
-      minWidth: 70
+      minWidth: 180
     },
-    media: {
-      height: 0,
-      paddingTop: '100%',
+    inner_outerPC: {
+      position: 'relative',
       width: '100%',
-      objectFit: 'cover'
+      height: '400px',
+      margin: '1em 0'
+    },
+    inner_outerPhone: {
+      position: 'relative',
+      width: '100%',
+      height: '200px',
+      margin: '1em 0'
+    },
+    inner_photo: {
+      position: 'absolute',
+      top: '0',
+      bottom: '0',
+      left: '0',
+      right: '0',
+      height: 'auto',
+      width: 'auto',
+      maxWidth: '100%',
+      maxHeight: '100%',
+      margin: 'auto'
     },
     button: {
       color: '#f50057'
@@ -72,7 +91,9 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
               subheader={image.displayName}
             />
           )}
-          <CardMedia className={styles.media} image={image.imageUrl} />
+          <div className={styles.inner_outerPC}>
+            <img className={styles.inner_photo} src={image.imageUrl} />
+          </div>
           <CardActions>
             <IconButton
               aria-label='add to favorites'
@@ -101,7 +122,9 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
               subheader={image.displayName}
             />
           )}
-          <CardMedia className={styles.media} image={image.imageUrl} />
+          <div className={styles.inner_outerPhone}>
+            <img className={styles.inner_photo} src={image.imageUrl} />
+          </div>
           <CardActions>
             <IconButton
               aria-label='add to favorites'
