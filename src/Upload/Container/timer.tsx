@@ -19,9 +19,8 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
 
   useEffect(() => {
     const dtNow = moment().startOf('day');
-    // const endHour = dtNow.add(18, 'hours');
-    // const endTime = endHour.add(3, 'minutes');
-    const endTime = moment().add(30, 'seconds');
+    const endHour = dtNow.add(22, 'hours');
+    const endTime = endHour.add(3, 'minutes');
     setEnd(endTime);
   }, [setEnd]);
 

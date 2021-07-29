@@ -27,7 +27,8 @@ type MenuProps = {
   handleClose: () => void;
   dialogOpen: boolean;
   setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onClick: () => void;
+  onInquiryClick: () => void;
+  onGalleryClick: () => void;
 };
 
 const Menu: React.FC<MenuProps> = (props: MenuProps) => {
@@ -38,7 +39,8 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     handleClose = () => undefined,
     dialogOpen = false,
     setDialogOpen = () => undefined,
-    onClick = () => undefined
+    onInquiryClick = () => undefined,
+    onGalleryClick = () => undefined
   } = props;
   const styles = useStyle();
   return (
@@ -66,7 +68,8 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         open={menuOpen}
         onClose={handleClose}
       >
-        <MenuItem onClick={onClick}>お問い合わせ</MenuItem>
+        <MenuItem onClick={onInquiryClick}>お問い合わせ</MenuItem>
+        <MenuItem onClick={onGalleryClick}>My Gallery</MenuItem>
       </MenuButton>
     </>
   );

@@ -17,8 +17,13 @@ const Menu: React.FC = () => {
     setAnchorEl(null);
   };
 
-  const onClick = () => {
+  const onInquiryClick = () => {
     history.push('/inquiry');
+    setAnchorEl(null);
+  };
+
+  const onGalleryClick = () => {
+    history.push('/gallery');
     setAnchorEl(null);
   };
 
@@ -30,7 +35,8 @@ const Menu: React.FC = () => {
       handleClose={handleClose}
       dialogOpen={dialogOpen}
       setDialogOpen={setDialogOpen}
-      onClick={onClick}
+      onInquiryClick={onInquiryClick}
+      onGalleryClick={onGalleryClick}
     />
   );
 };

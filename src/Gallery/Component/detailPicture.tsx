@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 import { Image } from '../../Model/image';
 
@@ -76,19 +77,7 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
     <>
       <MediaQuery query='(min-width:767px)'>
         <Card className={styles.rootPC}>
-          {image.iconUrl ? (
-            <CardHeader
-              avatar={<Avatar src={image.iconUrl} />}
-              title={image.title}
-              subheader={image.displayName}
-            />
-          ) : (
-            <CardHeader
-              avatar={<AccountCircle />}
-              title={image.title}
-              subheader={image.displayName}
-            />
-          )}
+          <CardHeader title={image.title} />
           <div className={styles.inner_outerPC}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
@@ -107,19 +96,7 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Card className={styles.rootPhone}>
-          {image.iconUrl ? (
-            <CardHeader
-              avatar={<Avatar src={image.iconUrl} />}
-              title={image.title}
-              subheader={image.displayName}
-            />
-          ) : (
-            <CardHeader
-              avatar={<AccountCircle />}
-              title={image.title}
-              subheader={image.displayName}
-            />
-          )}
+          <CardHeader title={image.title} />
           <div className={styles.inner_outerPhone}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
