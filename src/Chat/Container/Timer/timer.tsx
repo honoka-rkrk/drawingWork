@@ -36,7 +36,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
       const startTime = dtNow.add(21, 'hours');
       setStart(startTime);
     }
-  }, [start]);
+  }, [setStart]);
 
   const updateStartTime = useCallback(async () => {
     if (!isStart) {
@@ -54,7 +54,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
 
   useEffect(() => {
     if (!isStart) {
-      const updateTimeId = setInterval(updateTime, 500);
+      const updateTimeId = setInterval(updateStartTime, 500);
       updateStartTime();
       return () => {
         clearInterval(updateTimeId);
@@ -68,7 +68,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   useEffect(() => {
     if (isStart) {
       const dtNow = moment().startOf('day');
-      const endTime = dtNow.add(22, 'hours');
+      const endTime = dtNow.add(20, 'hours');
       setEnd(endTime);
     }
   }, [setEnd, isStart]);
@@ -77,7 +77,6 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
     if (isStart) {
       const dtNow = moment();
       if (end) {
-        console.log(end);
         const timerDiff = end.diff(dtNow, 'second');
         setTmMinutes(String(Math.floor(timerDiff / 60)));
         setTmSeconds(String(timerDiff % 60));

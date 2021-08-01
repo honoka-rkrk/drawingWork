@@ -16,6 +16,7 @@ const useStyle = makeStyles(() =>
 
 const Main: React.FC = () => {
   const styles = useStyle();
+  console.log('chat');
   return (
     <Box className={styles.root}>
       <Chat />

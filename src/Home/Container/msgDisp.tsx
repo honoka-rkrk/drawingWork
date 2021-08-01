@@ -16,7 +16,6 @@ const MsgDisp: React.FC<MsgDispProps> = (props: MsgDispProps) => {
     const nowTime = moment();
     const startTime = moment().startOf('day').add(20, 'hours').add(55, 'minutes');
     const timerDiff = startTime.diff(nowTime, 'minutes');
-    console.log(timerDiff);
     if (timerDiff > 0) {
       setMsg('開催は２１時からです。開催時刻までお待ちください。');
       setOpen(false);

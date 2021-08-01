@@ -5,6 +5,7 @@ import Display from '../Container/Display/display';
 import WritingSpace from '../Container/WritingSpace/writingSpace';
 import Timer from '../Container/Timer/timer';
 import DispTheme from '../Container/dispTheme';
+import ExitBtn from '../Container/exitBtn';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,6 +52,7 @@ const Chat: React.FC<ChatProps> = (props: ChatProps) => {
       <Box className={styles.writingSpace}>
         <WritingSpace />
       </Box>
+      <ExitBtn />
     </>
   );
 };

@@ -14,6 +14,7 @@ const AllPicture: React.FC = () => {
     const getImages = async () => {
       const imagesRef = db.collection('images');
       await imagesRef
+        .where('screenName', '==', 'yoake09724211')
         .orderBy('createdAt')
         .get()
         .then((snapshot: firebase.firestore.QuerySnapshot) => {
@@ -34,7 +35,6 @@ const AllPicture: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(images);
     if (images) {
       images.forEach((_, index) => {
         const getFav = async () => {
@@ -51,7 +51,6 @@ const AllPicture: React.FC = () => {
                   ...doc.data()
                 });
               });
-              console.log(newFavInfo);
             });
         };
         getFav();

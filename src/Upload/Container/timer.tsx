@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import moment, { Moment } from 'moment';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import CompTimer from '../Component/timer';
+import { setIsEntryInfo } from '../../Store/isEntry';
 
 type TimerProps = {
   setTimerEnd: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +18,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   const [danger, setDanger] = useState<boolean>(false);
   const [isEnd, setIsEnd] = useState<boolean>(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const dtNow = moment().startOf('day');
@@ -53,6 +56,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   }, [updateTime, isEnd]);
 
   const clickOK = useCallback(() => {
+    dispatch(setIsEntryInfo({ entryState: false }));
     history.push('/');
   }, []);
 

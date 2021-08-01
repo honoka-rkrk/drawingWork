@@ -6,27 +6,31 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import FirebaseApp from './FirebaseApp';
 import { PCTheme, PhoneTheme } from './Style/theme';
 import MediaQuery from 'react-responsive';
+import { Provider } from 'react-redux';
+import store from './Store/store';
 
 ReactDOM.render(
   <>
-    <MediaQuery query='(min-width:767px)'>
-      <MuiThemeProvider theme={PCTheme}>
-        <Router>
-          <FirebaseApp>
-            <App />
-          </FirebaseApp>
-        </Router>
-      </MuiThemeProvider>
-    </MediaQuery>
-    <MediaQuery query='(max-width:767px)'>
-      <MuiThemeProvider theme={PhoneTheme}>
-        <Router>
-          <FirebaseApp>
-            <App />
-          </FirebaseApp>
-        </Router>
-      </MuiThemeProvider>
-    </MediaQuery>
+    <Provider store={store}>
+      <MediaQuery query='(min-width:767px)'>
+        <MuiThemeProvider theme={PCTheme}>
+          <Router>
+            <FirebaseApp>
+              <App />
+            </FirebaseApp>
+          </Router>
+        </MuiThemeProvider>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <MuiThemeProvider theme={PhoneTheme}>
+          <Router>
+            <FirebaseApp>
+              <App />
+            </FirebaseApp>
+          </Router>
+        </MuiThemeProvider>
+      </MediaQuery>
+    </Provider>
   </>,
   document.getElementById('root')
 );

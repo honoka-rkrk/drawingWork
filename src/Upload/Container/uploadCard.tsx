@@ -61,8 +61,6 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
 
   const postUrl = async () => {
     const url = await storage.ref(`/images/${myFiles[0].name}`).getDownloadURL();
-    console.log(url);
-    console.log(myFiles[0].name);
     if (url !== '' && user) {
       db.collection('images').doc().set({
         title: title,
@@ -79,11 +77,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
     //進行中のsnapshotを得る
     //アップロードの進行度を表示
     const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log(percent + '% done');
-    console.log(snapshot);
     if (percent === 100) {
-      console.log('p');
-      console.log(percent);
       setTimeout(postUrl, 2000);
       setClickable(false);
       setIsUpd(true);

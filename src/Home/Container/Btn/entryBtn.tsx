@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
 
 import firebase, { db } from '../../../firebase';
 import { UserContext } from '../../../Context/contexts';
 import CompEntryBtn from '../../Component/Btn/entryBtn';
+import { setIsEntryInfo } from '../../../Store/isEntry';
 
 type EntryBtnProps = {
   isMax: boolean;
@@ -18,6 +20,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
   const { user } = useContext(UserContext);
   const [disabled, setDisabled] = useState<boolean>(true);
   const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const nowTime = moment();
@@ -72,6 +75,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
         if (doc.exists) {
           const getData: any = doc.data();
           if (!getData.maximum) {
+            dispatch(setIsEntryInfo({ entryState: true }));
             doneEntry(getData.numbers);
             history.push('/chat');
           } else {
@@ -81,6 +85,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
             }
           }
         } else {
+          dispatch(setIsEntryInfo({ entryState: true }));
           doneEntry(0);
           history.push('/chat');
         }

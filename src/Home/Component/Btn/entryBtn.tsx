@@ -41,7 +41,8 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
           onClick={entryClick}
           variant='outlined'
           color='primary'
-          disabled={open && !isMax ? false : true}
+          disabled={false}
+          // disabled={open && !isMax ? false : true}
         >
           {'エントリー'}
         </Button>

@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import CompMenu from '../Component/menu';
+import { RootState } from '../../Store/rootReducer';
 
 const Menu: React.FC = () => {
+  const isEntryInfo = useSelector((state: RootState) => state.isEntry.isEntryInfo);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const history = useHistory();
   const menuOpen = Boolean(anchorEl);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isEntryInfo) {
+      isEntryInfo.entryState ? setIsDisabled(true) : setIsDisabled(false);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [isEntryInfo?.entryState]);
 
   const handleMenu = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : e.currentTarget);
@@ -37,6 +49,7 @@ const Menu: React.FC = () => {
       setDialogOpen={setDialogOpen}
       onInquiryClick={onInquiryClick}
       onGalleryClick={onGalleryClick}
+      isDisabled={isDisabled}
     />
   );
 };

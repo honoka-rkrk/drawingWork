@@ -1,15 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import { UserContext, FirebaseContext } from '../../Context/contexts';
 import CompLoginOut from '../Component/loginout';
+import { RootState } from '../../Store/rootReducer';
 
 const LoginOut: React.FC = () => {
   const { auth } = useContext(FirebaseContext);
+  const isEntryInfo = useSelector((state: RootState) => state.isEntry.isEntryInfo);
   const { user } = useContext(UserContext);
   const [isLogined, setIsLogined] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const history = useHistory();
   const menuOpen = Boolean(anchorEl);
   const signOut =
@@ -20,6 +24,14 @@ const LoginOut: React.FC = () => {
           history.replace('/home');
         }
       : () => undefined;
+
+  useEffect(() => {
+    if (isEntryInfo) {
+      isEntryInfo.entryState ? setIsDisabled(true) : setIsDisabled(false);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [isEntryInfo?.entryState]);
 
   const handleMenu = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : e.currentTarget);
@@ -53,6 +65,7 @@ const LoginOut: React.FC = () => {
       dialogOpen={dialogOpen}
       setDialogOpen={setDialogOpen}
       loginClick={loginClick}
+      isDisabled={isDisabled}
     />
   );
 };

@@ -20,6 +20,7 @@ type LoginOutProps = {
   dialogOpen: boolean;
   setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   loginClick: () => void;
+  isDisabled: boolean;
 };
 
 const LoginOut: React.FC<LoginOutProps> = (props: LoginOutProps) => {
@@ -33,7 +34,8 @@ const LoginOut: React.FC<LoginOutProps> = (props: LoginOutProps) => {
     signOut = () => undefined,
     dialogOpen = false,
     setDialogOpen = () => undefined,
-    loginClick = () => undefined
+    loginClick = () => undefined,
+    isDisabled = false
   } = props;
   return (
     <>
@@ -66,7 +68,9 @@ const LoginOut: React.FC<LoginOutProps> = (props: LoginOutProps) => {
         onClose={handleClose}
       >
         {isLogined ? (
-          <MenuItem onClick={signOut}>ログアウト</MenuItem>
+          <MenuItem onClick={signOut} disabled={isDisabled}>
+            ログアウト
+          </MenuItem>
         ) : (
           <MenuItem onClick={loginClick}>ログイン</MenuItem>
         )}
