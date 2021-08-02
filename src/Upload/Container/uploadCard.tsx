@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
+import moment from 'moment';
+
 import firebase, { storage, db } from '../../firebase';
 import CompUploadCard from '../Component/uploadCard';
 import { UserContext } from '../../Context/contexts';
@@ -62,14 +64,18 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   const postUrl = async () => {
     const url = await storage.ref(`/images/${myFiles[0].name}`).getDownloadURL();
     if (url !== '' && user) {
-      db.collection('images').doc().set({
-        title: title,
-        imageUrl: url,
-        screenName: user.screenName,
-        displayName: user.displayName,
-        iconUrl: user.photoUrl,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
+      db.collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
+        .doc()
+        .set({
+          title: title,
+          imageUrl: url,
+          screenName: user.screenName,
+          displayName: user.displayName,
+          iconUrl: user.photoUrl,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
     }
   };
 

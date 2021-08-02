@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import moment from 'moment';
 import firebase, { db } from '../../firebase';
 
 import { collectionName } from '../../Functions/constants';
@@ -37,6 +38,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
     if (image.id && user) {
       const favoriteUsersDoc = db
         .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
         .doc(image.id)
         .collection(collectionName.favoriteUsers)
         .doc(user.screenName);
@@ -48,6 +51,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
       //全てのいいねの数をカウント
       const favoriteNumDoc = db
         .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
         .doc(image.id)
         .collection(collectionName.favoriteNum)
         .doc(collectionName.favCounters);
@@ -72,6 +77,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
       //ユーザーのスクリーン名とディスプレイネームを消去
       const favoriteUsersDoc = db
         .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
         .doc(image.id)
         .collection(collectionName.favoriteUsers)
         .doc(user.screenName);
@@ -79,6 +86,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
 
       const favoriteNumDoc = db
         .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
         .doc(image.id)
         .collection(collectionName.favoriteNum)
         .doc(collectionName.favCounters);
@@ -102,6 +111,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
     const getFavCounts = async () => {
       const favCountsRef = db
         .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
         .doc(image.id)
         .collection(collectionName.favoriteNum)
         .doc('favCounters');

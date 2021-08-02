@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase, { db } from '../../firebase';
 import { Image } from '../../Model/image';
+import moment from 'moment';
 
 import CompAllPicture from '../Component/allPicture';
 
@@ -11,7 +12,10 @@ const AllPicture: React.FC = () => {
   useEffect(() => {
     let unmounted = false;
     const getImages = async () => {
-      const imagesRef = db.collection('images');
+      const imagesRef = db
+        .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image');
       await imagesRef
         .orderBy('createdAt')
         .get()

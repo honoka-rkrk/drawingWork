@@ -26,7 +26,7 @@ const useStyle = makeStyles(() =>
       color: '#ff1744'
     },
     exitfab: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: '2rem',
       right: '2rem',
       '&:hover': {

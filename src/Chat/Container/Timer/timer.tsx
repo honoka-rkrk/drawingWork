@@ -68,7 +68,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   useEffect(() => {
     if (isStart) {
       const dtNow = moment().startOf('day');
-      const endTime = dtNow.add(20, 'hours');
+      const endTime = dtNow.add(22, 'hours');
       setEnd(endTime);
     }
   }, [setEnd, isStart]);
@@ -83,7 +83,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
         if (timerDiff === 0) {
           setIsEnd(true);
         }
-        if (Math.floor(timerDiff / 60) <= 5) {
+        if (Math.floor(timerDiff / 60) <= 4) {
           setDanger(true);
         }
       }

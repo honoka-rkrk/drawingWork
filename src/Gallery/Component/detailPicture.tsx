@@ -48,6 +48,9 @@ const useStyles = makeStyles(() =>
     button: {
       color: '#f50057'
     },
+    typo: {
+      margin: '1em'
+    },
     iconButton: {
       '&:hover': {
         backgroundColor: '#ffb7db'
@@ -77,7 +80,10 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
     <>
       <MediaQuery query='(min-width:767px)'>
         <Card className={styles.rootPC}>
-          <CardHeader title={image.title} />
+          <Box className={styles.typo}>
+            <Typography variant='h6'>{image.title}</Typography>
+          </Box>
+          {/* <CardHeader title={image.title} /> */}
           <div className={styles.inner_outerPC}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
@@ -96,7 +102,9 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Card className={styles.rootPhone}>
-          <CardHeader title={image.title} />
+          <Box className={styles.typo}>
+            <Typography variant='h6'>{image.title}</Typography>
+          </Box>
           <div className={styles.inner_outerPhone}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>

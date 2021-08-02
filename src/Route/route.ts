@@ -11,5 +11,5 @@ export interface RouteProps {
 export const routes: RouteProps[] = [
   { path: '/chat', exact: undefined, component: Chat },
   { path: '/upload', exact: undefined, component: Upload },
-  { path: '/disp', exact: undefined, component: DispPicture }
+  { path: '/dispPicture', exact: undefined, component: DispPicture }
 ];

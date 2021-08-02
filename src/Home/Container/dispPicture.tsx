@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import moment from 'moment';
 import firebase, { db } from '../../firebase';
 import { Image } from '../../Model/image';
 
@@ -14,24 +15,23 @@ const DispPicture: React.FC = () => {
   useEffect(() => {
     let unmounted = false;
     const getImages = async () => {
-      const imagesRef = db.collection('images');
-      await imagesRef
-        .orderBy('createdAt')
-
-        .get()
-        .then((snapshot: firebase.firestore.QuerySnapshot) => {
-          const newImages: any[] = [];
-          snapshot.forEach((doc) => {
-            newImages.push({
-              id: doc.id,
-              ...doc.data()
-            });
+      const imagesRef = db
+        .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image');
+      await imagesRef.get().then((snapshot: firebase.firestore.QuerySnapshot) => {
+        const newImages: any[] = [];
+        snapshot.forEach((doc) => {
+          newImages.push({
+            id: doc.id,
+            ...doc.data()
           });
-          if (!unmounted && newImages) {
-            setImages(newImages);
-            setMaxSteps(newImages.length);
-          }
         });
+        if (!unmounted && newImages) {
+          setImages(newImages);
+          setMaxSteps(newImages.length);
+        }
+      });
     };
     getImages();
     return () => {

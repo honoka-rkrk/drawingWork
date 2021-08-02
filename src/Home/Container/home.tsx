@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+
 import { db } from '../../firebase';
 import CompHome from '../Component/home';
 
@@ -8,7 +10,9 @@ const Home: React.FC = () => {
   //firestoreから現在参加している人数を取得する
   const getMember = async () => {
     let unmounted = false;
-    const entoryMembersRef = db.collection('entryMembers').doc('entryNumber');
+    const entoryMembersRef = db
+      .collection('entryMembers')
+      .doc(moment().format('YYYYMMDD'));
     await entoryMembersRef
       .get()
       .then((doc) => {

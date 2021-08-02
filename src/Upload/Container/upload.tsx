@@ -10,7 +10,7 @@ const Upload: React.FC = () => {
 
   useEffect(() => {
     if (timerEnd && isUpd) {
-      history.push('dispPicture');
+      history.push('/dispPicture');
     }
   });
 

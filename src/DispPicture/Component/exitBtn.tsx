@@ -8,7 +8,7 @@ import CfmDialog from '../../Utils/Container/Dialog/cfmDialog';
 const useStyle = makeStyles(() =>
   createStyles({
     exitfab: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: '2rem',
       right: '2rem',
       '&:hover': {

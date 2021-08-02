@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export type IsEntryInfo = {
-  entryState: 'boolean';
+  entryState: boolean;
 };
 
 type State = {
@@ -9,7 +9,7 @@ type State = {
 };
 
 const initialState: State = {
-  isEntryInfo: null
+  isEntryInfo: { entryState: true }
 };
 
 const slice = createSlice({

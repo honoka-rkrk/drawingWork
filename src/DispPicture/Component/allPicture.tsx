@@ -17,7 +17,7 @@ const useStyles = makeStyles(() =>
       marginTop: '5px'
     },
     countfab: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: '2rem',
       left: '2rem'
     }

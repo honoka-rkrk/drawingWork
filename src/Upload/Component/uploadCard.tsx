@@ -120,6 +120,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
                 type='text'
                 value={title}
                 onChange={handleTitleChange}
+                disabled={!clickable}
               />
             ) : null}
             <Button
@@ -170,6 +171,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
                 type='text'
                 value={title}
                 onChange={handleTitleChange}
+                disabled={!clickable}
               />
             ) : null}
             <Button
