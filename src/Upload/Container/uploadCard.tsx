@@ -64,18 +64,36 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   const postUrl = async () => {
     const url = await storage.ref(`/images/${myFiles[0].name}`).getDownloadURL();
     if (url !== '' && user) {
-      db.collection('images')
+      const batch = db.batch();
+      //日付ごとのイメージフォルダに入れる
+      const dayImages = db
+        .collection('images')
         .doc(moment().format('YYYYMMDD'))
         .collection('image')
-        .doc()
-        .set({
-          title: title,
-          imageUrl: url,
-          screenName: user.screenName,
-          displayName: user.displayName,
-          iconUrl: user.photoUrl,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        .doc();
+
+      batch.set(dayImages, {
+        title: title,
+        imageUrl: url,
+        screenName: user.screenName,
+        displayName: user.displayName,
+        iconUrl: user.photoUrl,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      //ユーザのイメージフォルダに入れる
+      const userImages = db
+        .collection('users')
+        .doc(user.id)
+        .collection('images')
+        .doc();
+
+      batch.set(userImages, {
+        title: title,
+        imageUrl: url,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      await batch.commit();
     }
   };
 

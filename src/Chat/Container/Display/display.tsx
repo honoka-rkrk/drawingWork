@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { db } from '../../../firebase';
 import firebase from 'firebase';
 import { Message } from '../../../Model/message';
@@ -12,7 +13,10 @@ const Display: React.FC = () => {
     let id: number;
     let unmounted = false;
     const getMessage = async () => {
-      const messagesRef = db.collection('messages');
+      const messagesRef = db
+        .collection('messages')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('dayMessages');
       await messagesRef
         .orderBy('createdAt', 'desc')
         .limit(15)

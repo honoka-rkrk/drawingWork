@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react';
+import moment from 'moment';
+
 import CompWritingSpace from '../../Component/WritingSpace/writingSpace';
 import firebase, { db } from '../../../firebase';
 import { UserContext } from '../../../Context/contexts';
@@ -10,13 +12,17 @@ const WritingSpace: React.FC = () => {
 
   const handleOnSubmit = () => {
     if (message !== '' && user) {
-      db.collection('messages').doc().set({
-        message: message,
-        displayName: user.displayName,
-        screenName: user.screenName,
-        photoUrl: user.photoUrl,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
+      db.collection('messages')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('dayMessages')
+        .doc()
+        .set({
+          message: message,
+          displayName: user.displayName,
+          screenName: user.screenName,
+          photoUrl: user.photoUrl,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
       setMessage('');
     } else {
       setSubmitError(true);

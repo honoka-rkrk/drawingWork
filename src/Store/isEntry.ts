@@ -9,7 +9,8 @@ type State = {
 };
 
 const initialState: State = {
-  isEntryInfo: { entryState: true }
+  // isEntryInfo: { entryState: true }
+  isEntryInfo: null
 };
 
 const slice = createSlice({
