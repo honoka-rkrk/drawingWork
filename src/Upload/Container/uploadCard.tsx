@@ -45,6 +45,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   };
 
   const { getRootProps, getInputProps } = useDropzone({
+    accept: ['image/Jpeg', 'image/Jpg', 'image/Png'],
     onDrop,
     onDropRejected
   });
@@ -54,6 +55,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
       //アップロード処理
       const storageRef = storage.ref(`/images/${myFiles[0].name}`);
       const uploadTask: any = storageRef.put(myFiles[0]);
+      setClickable(false);
 
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, next, error);
     } catch (error) {
@@ -70,11 +72,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
         .collection('images')
         .doc(moment().format('YYYYMMDD'))
         .collection('image')
-        .doc();
-
-      console.log(user.photoUrl);
-      console.log(url);
-
+        .doc(user.screenName);
       batch.set(dayImages, {
         title: title,
         imageUrl: url,
@@ -94,7 +92,7 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
       batch.set(userImages, {
         title: title,
         imageUrl: url,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        date: moment().format('YYYYMMDD')
       });
       await batch.commit();
     }

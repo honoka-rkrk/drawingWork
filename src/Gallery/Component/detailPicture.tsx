@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import { Image } from '../../Model/image';
+import { UserImage } from '../../Model/userImage';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -60,20 +61,11 @@ const useStyles = makeStyles(() =>
 );
 
 type DetailPictureProps = {
-  image: Image;
-  handleFavClick: () => void;
-  isFav: boolean;
-  isDisabled: boolean;
-  favCount: number;
+  image: UserImage;
+  favNum: number;
 };
 const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) => {
-  const {
-    image,
-    handleFavClick = () => undefined,
-    isFav = false,
-    isDisabled = false,
-    favCount = 0
-  } = props;
+  const { image, favNum = 0 } = props;
   const styles = useStyles();
 
   return (
@@ -88,15 +80,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
           <CardActions>
-            <IconButton
-              aria-label='add to favorites'
-              className={styles.iconButton}
-              onClick={handleFavClick}
-              disabled={isDisabled}
-            >
-              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
-            </IconButton>
-            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
+            <FavoriteIcon className={styles.button} />
+            {favNum === 0 ? null : <Typography>{favNum}</Typography>}
           </CardActions>
         </Card>
       </MediaQuery>
@@ -109,15 +94,8 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
           <CardActions>
-            <IconButton
-              aria-label='add to favorites'
-              className={styles.iconButton}
-              onClick={handleFavClick}
-              disabled={isDisabled}
-            >
-              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
-            </IconButton>
-            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
+            <FavoriteIcon className={styles.button} />
+            {favNum === 0 ? null : <Typography>{favNum}</Typography>}
           </CardActions>
         </Card>
       </MediaQuery>

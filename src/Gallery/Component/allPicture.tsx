@@ -4,6 +4,8 @@ import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 
 import { Image } from '../../Model/image';
+import { UserImage } from '../../Model/userImage';
+import { FavoriteNum } from '../../Model/favoriteNum';
 import DetailPicture from '../Container/detailPicture';
 import ExitBtn from '../Container/exitBtn';
 
@@ -24,13 +26,12 @@ const useStyles = makeStyles(() =>
 );
 
 type AllPictureProps = {
-  images: Image[] | null;
-  favNum: number;
-  setFavNum: React.Dispatch<React.SetStateAction<number>>;
+  images: UserImage[] | null;
+  favNum: FavoriteNum[] | null;
 };
 
 const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
-  const { images = null, favNum = 0, setFavNum = () => undefined } = props;
+  const { images = null, favNum = null } = props;
   const styles = useStyles();
 
   return (
@@ -41,8 +42,7 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
               <Box className={styles.commonPC} key={`images_${index}`}>
                 <DetailPicture
                   image={images[index]}
-                  favNum={favNum}
-                  setFavNum={setFavNum}
+                  favNum={favNum ? favNum[index].count : 0}
                 />
               </Box>
             ))
@@ -54,8 +54,7 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
               <Box className={styles.commonPhone} key={`images_${index}`}>
                 <DetailPicture
                   image={images[index]}
-                  favNum={favNum}
-                  setFavNum={setFavNum}
+                  favNum={favNum ? favNum[index].count : 0}
                 />
               </Box>
             ))
