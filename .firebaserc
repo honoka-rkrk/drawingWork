@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "drawing-b8a00"
+  },
+  "targets": {
+    "drawing-b8a00": {
+      "hosting": {
+        "user-site": [
+          "drawing-b8a00"
+        ]
+      }
+    }
   }
 }

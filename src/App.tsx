@@ -3,14 +3,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Home from './Home/Component/main';
-import Header from './Header/Component/main';
-import Inquiry from './Utils/Component/inquiry';
-import Gallery from './Gallery/Component/main';
-import { RootState } from './Store/rootReducer';
-import { routes, RouteProps } from './Route/route';
+import Home from './View/Body/Home/Component/main';
+import Header from './View/Header/Component/main';
+import Inquiry from './Other/Utils/Component/inquiry';
+import Gallery from './View/Body/Gallery/Component/main';
+import { RootState } from './Other/Store/rootReducer';
+import { routes, RouteProps } from './Other/Route/route';
 
-import Upload from './Upload/Component/main';
+import Upload from './View/Body/Upload/Component/main';
 
 const App: React.FC = () => {
   const isEntryInfo = useSelector((state: RootState) => state.isEntry.isEntryInfo);

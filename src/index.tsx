@@ -4,10 +4,10 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import FirebaseApp from './FirebaseApp';
-import { PCTheme, PhoneTheme } from './Style/theme';
+import { PCTheme, PhoneTheme } from './Other/Style/theme';
 import MediaQuery from 'react-responsive';
 import { Provider } from 'react-redux';
-import store from './Store/store';
+import store from './Other/Store/store';
 
 ReactDOM.render(
   <>
