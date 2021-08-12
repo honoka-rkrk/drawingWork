@@ -15,8 +15,10 @@ const AllPicture: React.FC = () => {
     let unmounted = false;
     const getImages = async () => {
       if (user) {
-        const imagesRef = db.collection('users').doc(user.id).collection('images');
+        //const imagesRef = db.collection('users').doc(user.id).collection('images');
+        const imagesRef = db.collection('image');
         await imagesRef
+          .where('screenName', '==', user.screenName)
           .orderBy('createdAt')
           .get()
           .then((snapshot: firebase.firestore.QuerySnapshot) => {

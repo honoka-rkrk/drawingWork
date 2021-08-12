@@ -72,6 +72,9 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
         .collection('image')
         .doc();
 
+      console.log(user.photoUrl);
+      console.log(url);
+
       batch.set(dayImages, {
         title: title,
         imageUrl: url,
