@@ -5,6 +5,11 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+// import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+// import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// import TimePicker from '@material-ui/lab/TimePicker';
 
 const useStyle = makeStyles(() =>
   createStyles({
@@ -42,53 +47,71 @@ const useStyle = makeStyles(() =>
   })
 );
 
-const Operation: React.FC = () => {
+type OperationProps = {
+  odaiDate: Date;
+  handleDeadlineChange: (date: any) => void;
+};
+
+const Operation: React.FC<OperationProps> = (props: OperationProps) => {
+  const { odaiDate = -1, handleDeadlineChange = () => undefined } = props;
   const styles = useStyle();
 
   return (
     <>
-      <Card className={styles.card}>
-        <CardHeader title='設定' />
-        <CardContent className={styles.cardContent}>
-          <TextField
-            id='outlined-odai-input'
-            label='お題'
-            type='text'
-            autoComplete='current-password'
-            variant='outlined'
-            color='primary'
-            className={styles.odai_title}
-          />
-          <TextField
-            id='outlined-odai-input'
-            label='日付'
-            type='text'
-            autoComplete='current-password'
-            variant='outlined'
-            color='primary'
-            className={styles.odai_date}
-          />
-          <Button className={styles.button_odai} variant='outlined' color='primary'>
-            設定
-          </Button>
-          <TextField
-            id='outlined-odai-input'
-            label='お題'
-            type='text'
-            autoComplete='current-password'
-            variant='outlined'
-            color='primary'
-            className={styles.start_time}
-          />
-          <Button
-            className={styles.button_startTime}
-            variant='outlined'
-            color='primary'
-          >
-            設定
-          </Button>
-        </CardContent>
-      </Card>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Card className={styles.card}>
+          <CardHeader title='設定' />
+          <CardContent className={styles.cardContent}>
+            <TextField
+              id='outlined-odai-input'
+              label='お題'
+              type='text'
+              autoComplete='current-password'
+              variant='outlined'
+              color='primary'
+              className={styles.odai_title}
+            />
+            <KeyboardDatePicker
+              disableToolbar
+              className={styles.odai_date}
+              variant='inline'
+              format='yyyy/MM/dd'
+              minDate={new Date()}
+              margin='normal'
+              id='date-picker-inline'
+              label='日付'
+              value={odaiDate}
+              onChange={(date: any) => handleDeadlineChange(date)}
+              invalidDateMessage='無効な形式です'
+              minDateMessage='昨日以前の日付を指定することはできません'
+            />
+            <Button
+              className={styles.button_odai}
+              variant='outlined'
+              color='primary'
+            >
+              設定
+            </Button>
+            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <TimePicker
+                label='Basic example'
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider> */}
+            <Button
+              className={styles.button_startTime}
+              variant='outlined'
+              color='primary'
+            >
+              設定
+            </Button>
+          </CardContent>
+        </Card>
+      </MuiPickersUtilsProvider>
     </>
   );
 };
