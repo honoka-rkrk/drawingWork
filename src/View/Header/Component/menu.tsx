@@ -29,7 +29,9 @@ type MenuProps = {
   setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onInquiryClick: () => void;
   onGalleryClick: () => void;
+  onSettingsClick: () => void;
   isDisabled: boolean;
+  isAuthor: boolean;
 };
 
 const Menu: React.FC<MenuProps> = (props: MenuProps) => {
@@ -42,7 +44,9 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     setDialogOpen = () => undefined,
     onInquiryClick = () => undefined,
     onGalleryClick = () => undefined,
-    isDisabled = false
+    onSettingsClick = () => undefined,
+    isDisabled = false,
+    isAuthor = false
   } = props;
   const styles = useStyle();
   return (
@@ -76,6 +80,7 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         <MenuItem onClick={onGalleryClick} disabled={isDisabled}>
           My Gallery
         </MenuItem>
+        {isAuthor ? <MenuItem onClick={onSettingsClick}>設定</MenuItem> : null}
       </MenuButton>
     </>
   );

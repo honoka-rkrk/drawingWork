@@ -9,8 +9,10 @@ import Inquiry from './Other/Utils/Component/inquiry';
 import Gallery from './View/Body/Gallery/Component/main';
 import { RootState } from './Other/Store/rootReducer';
 import { routes, RouteProps } from './Other/Route/route';
-
 import Upload from './View/Body/Upload/Component/main';
+import Settings from './Settings/Login/Component/main';
+
+import Operation from './Settings/Operation/Component/main';
 
 const App: React.FC = () => {
   const isEntryInfo = useSelector((state: RootState) => state.isEntry.isEntryInfo);
@@ -25,7 +27,6 @@ const App: React.FC = () => {
 };
 
 const EntryRoute: React.FC = () => {
-  console.log('entry');
   return (
     <Switch>
       {routes.map((config: RouteProps) => (
@@ -36,14 +37,26 @@ const EntryRoute: React.FC = () => {
 };
 
 const NotEntryRoute: React.FC = () => {
+  const isAuthorInfo = useSelector(
+    (state: RootState) => state.isAuthor.isAuthorInfo
+  );
   return (
-    <Switch>
-      <Route path={['/', '/home']} exact component={Home} />
-      <Route path={'/upload'} component={Upload} />
-      <Route path={'/gallery'} component={Gallery} />
-      <Route path={'/inquiry'} component={Inquiry} />
-      <Redirect to='/' />
-    </Switch>
+    <>
+      {isAuthorInfo && isAuthorInfo.authorState ? (
+        <Switch>
+          <Route path={'/operation'} component={Operation} />
+        </Switch>
+      ) : (
+        <Switch>
+          <Route path={['/', '/home']} exact component={Home} />
+          <Route path={'/upload'} component={Upload} />
+          <Route path={'/gallery'} component={Gallery} />
+          <Route path={'/inquiry'} component={Inquiry} />
+          <Route path={'/settings'} component={Settings} />
+          <Redirect to='/' />
+        </Switch>
+      )}
+    </>
   );
 };
 export default App;
