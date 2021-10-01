@@ -1,14 +1,23 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import InfDialog from '../../../../../Other/Utils/Container/Dialog/infDialog';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-      width: '70%',
-      height: '75%'
+      width: '50%',
+      height: '30%',
+      backgroundColor: theme.palette.primary.main,
+      color: '#FFFFFF',
+      borderRadius: '12px',
+      '&:hover': {
+        backgroundColor: '#D4F5E9'
+      },
+      '&:disabled': {
+        backgroundColor: '#D4F5E9'
+      }
     }
   })
 );

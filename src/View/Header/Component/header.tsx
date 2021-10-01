@@ -10,6 +10,9 @@ const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1
+    },
+    appBar: {
+      backgroundColor: '#22323C'
     }
   })
 );
@@ -18,7 +21,7 @@ const Header: React.FC = () => {
   const styles = useStyle();
   return (
     <div className={styles.root}>
-      <AppBar position='static'>
+      <AppBar position='static' className={styles.appBar}>
         <Toolbar>
           <LoginOut />
           <MenuCon />
