@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './Other/Style/theme';
 import FirebaseApp from './FirebaseApp';
-import { PCTheme, PhoneTheme } from './Other/Style/theme';
 import MediaQuery from 'react-responsive';
 import { Provider } from 'react-redux';
 import store from './Other/Store/store';
@@ -13,7 +13,7 @@ ReactDOM.render(
   <>
     <Provider store={store}>
       <MediaQuery query='(min-width:767px)'>
-        <MuiThemeProvider theme={PCTheme}>
+        <MuiThemeProvider theme={theme}>
           <Router>
             <FirebaseApp>
               <App />
@@ -22,7 +22,7 @@ ReactDOM.render(
         </MuiThemeProvider>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
-        <MuiThemeProvider theme={PhoneTheme}>
+        <MuiThemeProvider theme={theme}>
           <Router>
             <FirebaseApp>
               <App />

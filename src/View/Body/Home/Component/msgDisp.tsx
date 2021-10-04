@@ -1,8 +1,9 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     msgStyle: {
       display: 'flex',
@@ -10,7 +11,7 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em',
+      borderRadius: '25px',
       padding: '1.5rem'
     },
     msgStyleMax: {
@@ -19,8 +20,16 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em',
-      color: '#ff1744'
+      borderRadius: '25px',
+      padding: '1.5rem'
+    },
+    textStyle: {
+      color: theme.palette.darkGreen.main,
+      fontSize: '14px'
+    },
+    textStyleMax: {
+      color: theme.palette.red.main,
+      fontSize: '14px'
     }
   })
 );
@@ -37,9 +46,13 @@ const MsgDisp: React.FC<MsgDispProps> = (props: MsgDispProps) => {
   return (
     <>
       {isMax ? (
-        <Paper className={styles.msgStyleMax}>{msg}</Paper>
+        <Paper className={styles.msgStyleMax}>
+          <Typography className={styles.textStyleMax}>{msg}</Typography>
+        </Paper>
       ) : (
-        <Paper className={styles.msgStyle}>{msg}</Paper>
+        <Paper className={styles.msgStyle}>
+          <Typography className={styles.textStyle}>{msg}</Typography>
+        </Paper>
       )}
     </>
   );
