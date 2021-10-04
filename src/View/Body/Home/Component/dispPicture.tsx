@@ -11,6 +11,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Typography from '@material-ui/core/Typography';
 import MediaQuery from 'react-responsive';
 
 import { Image } from '../../../../Other/Model/image';
@@ -21,12 +22,19 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     commonPC: {
       width: '80%',
-      height: '100%'
+      height: '100%',
+      backgroundColor: '#30444E',
+      color: '#ffffff'
+    },
+    subHeaderColor: {
+      color: '#96A7AF'
     },
     commonPhone: {
       width: '100%',
       height: '100%',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: '#30444E',
+      color: '#ffffff'
     },
     imgBoxPC: {
       display: 'flex',
@@ -58,6 +66,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     button: {
       width: '100%'
+    },
+    mobileStepper: {
+      backgroundColor: '#152127',
+      color: '#96A7AF'
     }
   })
 );
@@ -93,17 +105,26 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               <CardHeader
                 avatar={<Avatar src={image.iconUrl} />}
                 title={image.title}
-                subheader={image.displayName}
+                subheader={
+                  <Typography className={styles.subHeaderColor}>
+                    {image.displayName}
+                  </Typography>
+                }
               />
             ) : (
               <CardHeader
                 avatar={<AccountCircle />}
                 title={image.title}
-                subheader={image.displayName}
+                subheader={
+                  <Typography className={styles.subHeaderColor}>
+                    {image.displayName}
+                  </Typography>
+                }
               />
             )}
             <CardContent>
               <MobileStepper
+                className={styles.mobileStepper}
                 steps={maxSteps}
                 position='static'
                 variant='text'
@@ -154,13 +175,21 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               <CardHeader
                 avatar={<Avatar src={image.iconUrl} />}
                 title={image.title}
-                subheader={image.displayName}
+                subheader={
+                  <Typography className={styles.subHeaderColor}>
+                    {image.displayName}
+                  </Typography>
+                }
               />
             ) : (
               <CardHeader
                 avatar={<AccountCircle />}
                 title={image.title}
-                subheader={image.displayName}
+                subheader={
+                  <Typography className={styles.subHeaderColor}>
+                    {image.displayName}
+                  </Typography>
+                }
               />
             )}
             <CardContent>

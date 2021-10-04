@@ -3,10 +3,10 @@ import { createTheme } from '@material-ui/core/styles';
 export const PCTheme = createTheme({
   palette: {
     primary: {
-      main: '#009688'
+      main: '#25C685'
     },
     secondary: {
-      main: '#ff3d00'
+      main: '#FF464F'
     }
   }
 });
@@ -14,10 +14,10 @@ export const PCTheme = createTheme({
 export const PhoneTheme = createTheme({
   palette: {
     primary: {
-      main: '#009688'
+      main: '#25C685'
     },
     secondary: {
-      main: '#ff3d00'
+      main: '#FF464F'
     }
   },
   typography: {
