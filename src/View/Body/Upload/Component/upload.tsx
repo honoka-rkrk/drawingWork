@@ -13,7 +13,7 @@ const useStyle = makeStyles(() =>
   createStyles({
     timerDispPC: {
       gridRow: 2,
-      gridColumn: 2,
+      gridColumn: '2 / span 4',
       height: '100%'
     },
     timerDispPhone: {
@@ -22,7 +22,7 @@ const useStyle = makeStyles(() =>
       height: '100%'
     },
     uploadCommonPC: {
-      gridRow: 4,
+      gridRow: '4 / span 5',
       gridColumn: 2,
       height: '100%'
     },
@@ -85,6 +85,17 @@ const Upload: React.FC<UploadProps> = (props: UploadProps) => {
             subHeader={subHeader}
           />
         </Box>
+        <InpTitle
+          myFiles={myFiles}
+          clickable={clickable}
+          title={title}
+          handleTitleChange={handleTitleChange}
+        />
+        <SendBtn
+          myFiles={myFiles}
+          clickable={clickable}
+          handleUpload={handleUpload}
+        />
         <ExitBtn />
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>

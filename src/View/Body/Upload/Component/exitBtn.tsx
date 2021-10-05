@@ -1,18 +1,20 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 
 import CfmDialog from '../../../../Other/Utils/Container/Dialog/cfmDialog';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     exitfab: {
       position: 'absolute',
       bottom: '2rem',
       right: '2rem',
+      backgroundColor: theme.palette.orange.main,
+      color: theme.palette.white.main,
       '&:hover': {
-        backgroundColor: '#6666ff'
+        backgroundColor: theme.palette.orange.disabled
       }
     }
   })

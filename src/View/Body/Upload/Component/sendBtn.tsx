@@ -6,6 +6,20 @@ import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
+    sendBtnPC: {
+      gridRow: 7,
+      gridColumn: 4,
+      borderRadius: '4px',
+      backgroundColor: theme.palette.green.main,
+      color: theme.palette.white.main,
+      '&:hover': {
+        backgroundColor: theme.palette.green.second
+      },
+      '&:disabled': {
+        backgroundColor: theme.palette.green.disabled,
+        color: theme.palette.green.main
+      }
+    },
     sendBtnPhone: {
       gridRow: 1,
       gridColumn: 4,
@@ -19,6 +33,10 @@ const useStyle = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.green.disabled,
         color: theme.palette.green.main
       }
+    },
+    textBtnPC: {
+      fontSize: '36px',
+      fontFamily: 'Josefin Sans'
     },
     textBtnPhone: {
       fontSize: '24px',
@@ -40,7 +58,7 @@ const SendBtn: React.FC<SendBtnProps> = (props: SendBtnProps) => {
     <>
       <MediaQuery query='(min-width:767px)'>
         <Button
-          className={styles.sendBtnPhone}
+          className={styles.sendBtnPC}
           disabled={!clickable}
           type='submit'
           variant='contained'
@@ -48,7 +66,7 @@ const SendBtn: React.FC<SendBtnProps> = (props: SendBtnProps) => {
           style={{ marginTop: '5px' }}
           onClick={() => handleUpload(myFiles)}
         >
-          <Typography className={styles.textBtnPhone}>UPLOAD</Typography>
+          <Typography className={styles.textBtnPC}>UPLOAD</Typography>
         </Button>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>

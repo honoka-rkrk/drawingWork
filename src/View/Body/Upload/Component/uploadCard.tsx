@@ -5,8 +5,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Box from '@material-ui/core/Box';
-import CardActions from '@material-ui/core/CardActions';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { DropzoneRootProps, DropzoneInputProps } from 'react-dropzone';
 import MediaQuery from 'react-responsive';
@@ -14,28 +12,42 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    cardCommon: {
+    cardCommonPC: {
       height: '100%',
       display: 'grid',
-      gridTemplateRows: '3% 10% 3% 68% 3% 10% 3%',
+      gridTemplateRows: '3.3% 14.28% 2.2% 75.56% 4.66%',
+      gridTemplateColumns: '100%',
       backgroundColor: theme.palette.red.second
     },
     cardCommonPhone: {
       height: '100%',
       display: 'grid',
       gridTemplateRows: '6.3% 14.28% 4.2% 65.56% 9.66%',
+      gridTemplateColumns: '100%',
       backgroundColor: theme.palette.red.second
     },
     header: {
-      gridRow: 2
+      gridRow: 2,
+      gridColumn: 1
     },
-    headerColor: {
+    headerColorPC: {
+      fontWeight: 'bold',
+      color: theme.palette.white.main,
+      fontSize: '24px',
+      fontFamily: 'Mplus'
+    },
+    headerColorPhone: {
       fontWeight: 'bold',
       color: theme.palette.white.main,
       fontSize: '16px',
       fontFamily: 'Mplus'
     },
-    subHeaderColor: {
+    subHeaderColorPC: {
+      color: theme.palette.white.main,
+      fontSize: '15px',
+      fontFamily: 'Mplus'
+    },
+    subHeaderColorPhone: {
       color: theme.palette.white.main,
       fontSize: '14px',
       fontFamily: 'Mplus'
@@ -63,7 +75,10 @@ const useStyle = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.white.main,
       borderRadius: '10px',
       width: '100%',
-      height: '100%'
+      height: '100%',
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      }
     },
     upload: {
       gridRow: 6
@@ -125,11 +140,17 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
-        <Card className={styles.cardCommon}>
+        <Card className={styles.cardCommonPC}>
           <CardHeader
             className={styles.header}
-            title={header}
-            subheader={subHeader}
+            title={
+              <Typography className={styles.headerColorPC}>{header}</Typography>
+            }
+            subheader={
+              <Typography className={styles.subHeaderColorPC}>
+                {subHeader}
+              </Typography>
+            }
           />
           <CardContent className={styles.contentCommon}>
             <Box {...getRootProps()} className={styles.content}>
@@ -162,9 +183,13 @@ const UploadCard: React.FC<UploadCardProps> = (props: UploadCardProps) => {
         <Card className={styles.cardCommonPhone}>
           <CardHeader
             className={styles.header}
-            title={<Typography className={styles.headerColor}>{header}</Typography>}
+            title={
+              <Typography className={styles.headerColorPhone}>{header}</Typography>
+            }
             subheader={
-              <Typography className={styles.subHeaderColor}>{subHeader}</Typography>
+              <Typography className={styles.subHeaderColorPhone}>
+                {subHeader}
+              </Typography>
             }
           />
           <CardContent className={styles.contentCommon}>
