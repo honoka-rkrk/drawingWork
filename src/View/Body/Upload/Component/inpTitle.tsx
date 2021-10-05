@@ -5,6 +5,10 @@ import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
+    titlePC: {
+      gridRow: 5,
+      gridColumn: 4
+    },
     titlePhone: {
       gridRow: 1,
       gridColumn: 2
@@ -34,7 +38,7 @@ const InpTitle: React.FC<InpTitleProps> = (props: InpTitleProps) => {
       <MediaQuery query='(min-width:767px)'>
         {myFiles.length !== 0 ? (
           <TextField
-            className={styles.titlePhone}
+            className={styles.titlePC}
             label='タイトル'
             fullWidth
             id='title'
