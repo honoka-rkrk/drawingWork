@@ -5,13 +5,15 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import Fab from '@material-ui/core/Fab';
+import Typography from '@material-ui/core/Typography';
 import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     inputPC: {
-      gridRow: 2,
-      gridColumn: 2
+      gridRow: 5,
+      gridColumn: '6 / span 3',
+      color: theme.palette.white.main
     },
     inputPhone: {
       display: 'flex',
@@ -25,8 +27,8 @@ const useStyle = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      gridRow: 2,
-      gridColumn: 3
+      gridRow: 5,
+      gridColumn: 10
     },
     buttonBoxPhone: {
       display: 'flex',
@@ -35,8 +37,17 @@ const useStyle = makeStyles((theme: Theme) =>
       gridRow: 1,
       gridColumn: 4
     },
+    fabPC: {
+      backgroundColor: theme.palette.red.second,
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      }
+    },
     fabPhone: {
-      backgroundColor: theme.palette.green.main
+      backgroundColor: theme.palette.green.second,
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      }
     },
     button: {
       width: '50%',
@@ -46,6 +57,9 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     sendIcon: {
       color: theme.palette.white.main
+    },
+    text: {
+      fontSize: '24px'
     }
   })
 );
@@ -75,11 +89,13 @@ const WritingSpace: React.FC<WritingSpaceProps> = (props: WritingSpaceProps) => 
             className={styles.inputPC}
             onChange={handleContentChange}
             margin='dense'
+            color='secondary'
             id='message'
-            label='内容'
+            label='Message'
             fullWidth
             autoFocus
             multiline
+            variant='outlined'
             rows={3}
             value={message}
             error
@@ -90,24 +106,21 @@ const WritingSpace: React.FC<WritingSpaceProps> = (props: WritingSpaceProps) => 
             className={styles.inputPC}
             onChange={handleContentChange}
             margin='dense'
+            color='secondary'
             id='message'
-            label='内容'
+            label='Message'
             fullWidth
             autoFocus
             multiline
+            variant='outlined'
             rows={3}
             value={message}
           />
         )}
         <Box className={styles.buttonBoxPC}>
-          <Button
-            onClick={handleOnSubmit}
-            className={styles.button}
-            variant='outlined'
-            color='primary'
-          >
-            {'送信'}
-          </Button>
+          <Fab className={styles.fabPC}>
+            <SendIcon onClick={handleOnSubmit} className={styles.sendIcon} />
+          </Fab>
         </Box>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>

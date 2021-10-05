@@ -10,27 +10,34 @@ import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    timer: {
+    themePC: {
+      gridRow: 2,
+      gridColumn: '2 / span 3',
+      gridTemplateRows: '100%'
+    },
+    timerPC: {
+      gridRow: 2,
+      gridColumn: 7,
+      gridTemplateRows: '100%'
+    },
+    timerPhone: {
       gridRow: 2,
       gridColumn: 2,
       display: 'grid',
       gridTemplateColumns: '65.35% 3.85% 30.8%',
       gridTemplateRows: '100%'
     },
-    display: {
+    displayPC: {
+      gridRow: '4 / span 3',
+      gridColumn: 3,
+      backgroundColor: theme.palette.white.main,
+      borderRadius: '10px'
+    },
+    displayPhone: {
       gridRow: 4,
       gridColumn: 2,
       backgroundColor: theme.palette.white.main,
       borderRadius: '10px'
-    },
-    writingSpacePC: {
-      display: 'grid',
-      gridTemplateRows: '2% 96% 2%',
-      gridTemplateColumns: '2% 68% 28% 2%',
-      width: '100%',
-      gridRow: 6,
-      gridColumn: 2,
-      borderColor: `${theme.palette.primary}`
     },
     writingSpacePhone: {
       display: 'grid',
@@ -54,24 +61,24 @@ const Chat: React.FC<ChatProps> = (props: ChatProps) => {
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
-        <Box className={styles.timer}>
-          <Timer isStart={isStart} setIsStart={setIsStart} />
+        <Box className={styles.themePC}>
           <DispTheme isStart={isStart} />
         </Box>
-        <Box className={styles.display}>
+        <Box className={styles.timerPC}>
+          <Timer isStart={isStart} setIsStart={setIsStart} />
+        </Box>
+        <Box className={styles.displayPC}>
           <Display />
         </Box>
-        <Box className={styles.writingSpacePC}>
-          <WritingSpace />
-        </Box>
+        <WritingSpace />
         <ExitBtn />
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
-        <Box className={styles.timer}>
+        <Box className={styles.timerPhone}>
           <Timer isStart={isStart} setIsStart={setIsStart} />
           <DispTheme isStart={isStart} />
         </Box>
-        <Box className={styles.display}>
+        <Box className={styles.displayPhone}>
           <Display />
         </Box>
         <Box className={styles.writingSpacePhone}>

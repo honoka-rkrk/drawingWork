@@ -27,10 +27,12 @@ declare module '@material-ui/core/styles/createPalette' {
     main: string;
     second?: string;
     disabled?: string;
+    dark?: string;
   }
   interface CstmPaletteColor {
     main: string;
     second?: string;
     disabled?: string;
+    dark?: string;
   }
 }

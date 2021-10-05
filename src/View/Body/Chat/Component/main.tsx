@@ -8,8 +8,9 @@ const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
       display: 'grid',
-      gridTemplateRows: '3% 10% 3% 70% 3% 10% 1%',
-      gridTemplateColumns: '10% 80% 10%',
+      gridTemplateRows: '2.1% 8.4% 3.36% 48.72% 10.08% 21.44% 5.9%',
+      gridTemplateColumns:
+        '11.2% 2.24% 43.56% 2.24% 2.24% 2.52% 24.8% 1.4% 1.4% 5.6% 2.8%',
       height: 'calc(100vh - 70px)'
     },
     rootPhone: {
@@ -18,7 +19,12 @@ const useStyle = makeStyles((theme: Theme) =>
       gridTemplateColumns: '2% 96% 2%',
       height: 'calc(100vh - 70px)'
     },
-    background: {
+    backgroundPC: {
+      backgroundColor: theme.palette.green.main,
+      height: '710px',
+      width: '100%'
+    },
+    backgroundPhone: {
       backgroundColor: theme.palette.green.main,
       marginTop: '10px',
       height: '610px',
@@ -31,18 +37,20 @@ const Main: React.FC = () => {
   const styles = useStyle();
   return (
     <>
-      <Box className={styles.background}>
-        <MediaQuery query='(min-width:767px)'>
+      <MediaQuery query='(min-width:767px)'>
+        <Box className={styles.backgroundPC}>
           <Box className={styles.rootPC}>
             <Chat />
           </Box>
-        </MediaQuery>
-        <MediaQuery query='(max-width:767px)'>
+        </Box>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <Box className={styles.backgroundPhone}>
           <Box className={styles.rootPhone}>
             <Chat />
           </Box>
-        </MediaQuery>
-      </Box>
+        </Box>
+      </MediaQuery>
     </>
   );
 };

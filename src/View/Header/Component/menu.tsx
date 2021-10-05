@@ -15,7 +15,8 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     menuButton: {
       position: 'absolute',
-      right: '2rem'
+      right: '2rem',
+      color: theme.palette.white.main
     }
   })
 );

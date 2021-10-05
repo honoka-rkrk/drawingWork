@@ -23,14 +23,11 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     commonPC: {
-      width: '80%',
+      width: '100%',
       height: '100%',
+      alignItems: 'center',
       backgroundColor: theme.palette.white.main,
       color: theme.palette.darkGreen.main
-    },
-    subHeaderColor: {
-      color: theme.palette.darkGreen.second,
-      fontSize: '14px'
     },
     commonPhone: {
       width: '100%',
@@ -40,6 +37,19 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.darkGreen.main,
       fontSize: '20px'
     },
+    header: {
+      color: theme.palette.darkGreen.main,
+      fontFamily: 'Mplus',
+      fontSize: '24px'
+    },
+    subHeaderColorPC: {
+      color: theme.palette.darkGreen.second,
+      fontSize: '18px'
+    },
+    subHeaderColorPhone: {
+      color: theme.palette.darkGreen.second,
+      fontSize: '14px'
+    },
     imgBoxPC: {
       display: 'flex',
       alignItems: 'center'
@@ -47,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
     inner_outerPC: {
       position: 'relative',
       width: '100%',
-      height: '400px',
+      height: '500px',
       margin: '1em 0'
     },
     inner_outerPhone: {
@@ -68,7 +78,14 @@ const useStyles = makeStyles((theme: Theme) =>
       maxHeight: '100%',
       margin: 'auto'
     },
-    stepper: {
+    stepperPC: {
+      width: '100%',
+      backgroundColor: theme.palette.yellow.main,
+      color: theme.palette.white.main,
+      borderRadius: '10px',
+      fontSize: '24px'
+    },
+    stepperPhone: {
       width: '100%',
       backgroundColor: theme.palette.yellow.main,
       color: theme.palette.white.main,
@@ -78,7 +95,15 @@ const useStyles = makeStyles((theme: Theme) =>
     moveButton: {
       color: theme.palette.white.main
     },
-    fab: {
+    fabPC: {
+      backgroundColor: theme.palette.red.second,
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      },
+      marginTop: '10px',
+      marginLeft: '30px'
+    },
+    fabPhone: {
       backgroundColor: theme.palette.red.second,
       '&:hover': {
         backgroundColor: theme.palette.red.disabled
@@ -120,10 +145,18 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
           <Card className={styles.commonPC}>
             {image.iconUrl ? (
               <CardHeader
+                className={styles.header}
                 avatar={<Avatar src={image.iconUrl} />}
-                title={image.title}
+                action={
+                  <Fab className={styles.fabPC}>
+                    <FavoriteIcon className={styles.favIcon} />
+                  </Fab>
+                }
+                title={
+                  <Typography className={styles.header}>{image.title}</Typography>
+                }
                 subheader={
-                  <Typography className={styles.subHeaderColor}>
+                  <Typography className={styles.subHeaderColorPC}>
                     {image.displayName}
                   </Typography>
                 }
@@ -133,7 +166,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 avatar={<AccountCircle />}
                 title={image.title}
                 subheader={
-                  <Typography className={styles.subHeaderColor}>
+                  <Typography className={styles.subHeaderColorPC}>
                     {image.displayName}
                   </Typography>
                 }
@@ -155,7 +188,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 ))}
               </AutoPlaySwipeableViews>
               <MobileStepper
-                className={styles.stepper}
+                className={styles.stepperPC}
                 steps={maxSteps}
                 position='static'
                 variant='text'
@@ -191,13 +224,13 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               <CardHeader
                 avatar={<Avatar src={image.iconUrl} />}
                 action={
-                  <Fab className={styles.fab}>
+                  <Fab className={styles.fabPhone}>
                     <FavoriteIcon className={styles.favIcon} />
                   </Fab>
                 }
                 title={image.title}
                 subheader={
-                  <Typography className={styles.subHeaderColor}>
+                  <Typography className={styles.subHeaderColorPhone}>
                     {image.displayName}
                   </Typography>
                 }
@@ -207,7 +240,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 avatar={<AccountCircle />}
                 title={image.title}
                 subheader={
-                  <Typography className={styles.subHeaderColor}>
+                  <Typography className={styles.subHeaderColorPhone}>
                     {image.displayName}
                   </Typography>
                 }
@@ -229,7 +262,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 ))}
               </AutoPlaySwipeableViews>
               <MobileStepper
-                className={styles.stepper}
+                className={styles.stepperPhone}
                 steps={maxSteps}
                 position='static'
                 variant='text'

@@ -18,9 +18,9 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     dispCommonPC: {
       display: 'grid',
-      gridTemplateColumns: '50% 50%',
+      gridTemplateColumns: '50.1% 11.15% 36% 2.75%',
       gridTemplateRows: '100%',
-      gridRow: 5,
+      gridRow: 4,
       gridColumn: 2
     },
     title: {
@@ -40,12 +40,11 @@ const useStyle = makeStyles((theme: Theme) =>
     buttonBoxPC: {
       justifyContent: 'center',
       gridRow: 1,
-      gridColumn: 2,
+      gridColumn: 3,
       display: 'grid',
       width: '100%',
-      marginLeft: '3rem',
       gridTemplateColumns: '100%',
-      gridTemplateRows: '12% 35% 6% 35% 12%'
+      gridTemplateRows: '18.3% 12.78% 33.92% 12.78% 22.22%'
     },
     entryPC: {
       gridRow: 2,
@@ -91,9 +90,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
       <MediaQuery query='(min-width:767px)'>
         <Box className={styles.msgDisp}>
           <MsgDisp isMax={isMax} />
-        </Box>
-        <Box className={styles.title}>
-          <Typography color='primary'>前回のイラスト</Typography>
         </Box>
         <Box className={styles.dispCommonPC}>
           <Box className={styles.picDispPC}>

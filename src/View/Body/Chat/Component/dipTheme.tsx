@@ -2,23 +2,37 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    dispTheme: {
+    dispThemePC: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '100%',
+      borderRadius: '40px'
+    },
+    dispThemePhone: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
       height: '100%',
       borderRadius: '25px',
-      fontSize: '1em',
       gridColumn: 1,
       gridRow: 1
     },
-    text: {
+    textPC: {
       color: theme.palette.darkGreen.main,
-      fontFamily: 'Mplus'
+      fontFamily: 'Mplus',
+      fontSize: '24px'
+    },
+    textPhone: {
+      color: theme.palette.darkGreen.main,
+      fontFamily: 'Mplus',
+      fontSize: '1em'
     }
   })
 );
@@ -32,9 +46,18 @@ const DispTheme: React.FC<DispThemeProps> = (props: DispThemeProps) => {
   const styles = useStyle();
 
   return (
-    <Paper className={styles.dispTheme}>
-      <Typography className={styles.text}>{drawTheme}</Typography>
-    </Paper>
+    <>
+      <MediaQuery query='(min-width:767px)'>
+        <Paper className={styles.dispThemePC}>
+          <Typography className={styles.textPC}>{drawTheme}</Typography>
+        </Paper>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <Paper className={styles.dispThemePhone}>
+          <Typography className={styles.textPhone}>{drawTheme}</Typography>
+        </Paper>
+      </MediaQuery>
+    </>
   );
 };
 
