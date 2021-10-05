@@ -22,7 +22,7 @@ const useStyle = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.green.main,
       marginTop: '10px',
       height: '610px',
-      width: '375px'
+      width: '100%'
     }
   })
 );

@@ -14,6 +14,9 @@ const useStyle = makeStyles(() =>
     },
     nameColor: {
       color: '#000055'
+    },
+    textStyle: {
+      fontFamily: 'Mplus'
     }
   })
 );
@@ -37,10 +40,14 @@ const DisplayCell: React.FC<DisplayCellProps> = (props: DisplayCellProps) => {
             )}
           </TableCell>
           <TableCell align='left'>
-            <Typography color='textSecondary' variant='caption'>
+            <Typography
+              color='textSecondary'
+              variant='caption'
+              className={styles.textStyle}
+            >
               {message.displayName}
             </Typography>
-            <Typography>{message.message}</Typography>
+            <Typography className={styles.textStyle}>{message.message}</Typography>
           </TableCell>
         </TableRow>
       ) : null}
