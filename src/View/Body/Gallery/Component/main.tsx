@@ -1,8 +1,26 @@
 import React from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Gallery from '../Container/gallery';
 
+const useStyle = makeStyles((theme: Theme) =>
+  createStyles({
+    background: {
+      backgroundColor: theme.palette.green.main,
+      marginTop: '10px',
+      width: '100%',
+      height: '100vh'
+    }
+  })
+);
+
 const Main: React.FC = () => {
-  return <Gallery />;
+  const styles = useStyle();
+  return (
+    <Box className={styles.background}>
+      <Gallery />
+    </Box>
+  );
 };
 
 export default Main;

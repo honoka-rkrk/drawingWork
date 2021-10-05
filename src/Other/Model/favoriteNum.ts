@@ -6,4 +6,3 @@ export type FavoriteNum = {
 export const blankFavoriteNum: FavoriteNum = {
   count: 0
 };
-

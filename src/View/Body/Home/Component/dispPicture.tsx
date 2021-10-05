@@ -96,21 +96,20 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.white.main
     },
     fabPC: {
-      backgroundColor: theme.palette.red.second,
+      backgroundColor: theme.palette.red.disabled,
       '&:hover': {
-        backgroundColor: theme.palette.red.disabled
+        backgroundColor: theme.palette.red.second
       },
       marginTop: '10px',
       marginLeft: '30px'
     },
     fabPhone: {
-      backgroundColor: theme.palette.red.second,
+      backgroundColor: theme.palette.red.disabled,
       '&:hover': {
-        backgroundColor: theme.palette.red.disabled
+        backgroundColor: theme.palette.red.second
       }
     },
     favIcon: {
-      backgroundColor: theme.palette.red.second,
       color: theme.palette.white.main
     }
   })
