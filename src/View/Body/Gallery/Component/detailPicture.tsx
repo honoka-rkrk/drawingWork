@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,11 +10,11 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
+import Fab from '@material-ui/core/Fab';
 import { Image } from '../../../../Other/Model/image';
 import { UserImage } from '../../../../Other/Model/userImage';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
       minWidth: 345
@@ -50,12 +50,42 @@ const useStyles = makeStyles(() =>
       color: '#f50057'
     },
     typo: {
-      margin: '1em'
+      margin: '0.5em'
+    },
+    titlePC: {
+      fontSize: '18pt',
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
+    },
+    titlePhone: {
+      fontSize: '14pt',
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
     },
     iconButton: {
       '&:hover': {
         backgroundColor: '#ffb7db'
       }
+    },
+    headerPC: {
+      padding: '7px',
+      marginLeft: '15px',
+      marginRight: '15px'
+    },
+    headerPhone: {
+      padding: '1px',
+      marginLeft: '15px',
+      marginRight: '15px'
+    },
+    fabPhone: {
+      backgroundColor: theme.palette.red.second,
+      '&:hover': {
+        backgroundColor: theme.palette.red.second
+      },
+      marginTop: '10px'
+    },
+    favIcon: {
+      color: theme.palette.white.main
     }
   })
 );
@@ -72,31 +102,34 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
     <>
       <MediaQuery query='(min-width:767px)'>
         <Card className={styles.rootPC}>
-          <Box className={styles.typo}>
-            <Typography variant='h6'>{image.title}</Typography>
-          </Box>
-          {/* <CardHeader title={image.title} /> */}
+          <CardHeader
+            className={styles.headerPC}
+            action={
+              <Fab className={styles.fabPhone} size='small'>
+                <FavoriteIcon className={styles.favIcon} />
+              </Fab>
+            }
+            title={<Typography className={styles.titlePC}>{image.title}</Typography>}
+          />
           <div className={styles.inner_outerPC}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
-          <CardActions>
-            <FavoriteIcon className={styles.button} />
-            {favNum === 0 ? null : <Typography>{favNum}</Typography>}
-          </CardActions>
         </Card>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Card className={styles.rootPhone}>
-          <Box className={styles.typo}>
-            <Typography variant='h6'>{image.title}</Typography>
-          </Box>
+          <CardHeader
+            className={styles.headerPhone}
+            action={
+              <Fab className={styles.fabPhone} size='small'>
+                <FavoriteIcon className={styles.favIcon} />
+              </Fab>
+            }
+            title={<Typography>{image.title}</Typography>}
+          />
           <div className={styles.inner_outerPhone}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
-          <CardActions>
-            <FavoriteIcon className={styles.button} />
-            {favNum === 0 ? null : <Typography>{favNum}</Typography>}
-          </CardActions>
         </Card>
       </MediaQuery>
     </>

@@ -34,27 +34,28 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
   const { images = null, favNum = null } = props;
   const styles = useStyles();
 
+  console.log(favNum);
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
-        {images
+        {images && favNum
           ? [...Array(images.length)].map((_, index) => (
               <Box className={styles.commonPC} key={`images_${index}`}>
                 <DetailPicture
                   image={images[index]}
-                  favNum={favNum ? favNum[index].count : 0}
+                  favNum={favNum.length > 0 ? favNum[index].count : 0}
                 />
               </Box>
             ))
           : null}
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
-        {images
+        {images && favNum
           ? [...Array(images.length)].map((_, index) => (
               <Box className={styles.commonPhone} key={`images_${index}`}>
                 <DetailPicture
                   image={images[index]}
-                  favNum={favNum ? favNum[index].count : 0}
+                  favNum={favNum.length > 0 ? favNum[index].count : 0}
                 />
               </Box>
             ))
