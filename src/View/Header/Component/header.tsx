@@ -12,7 +12,7 @@ const useStyle = makeStyles((theme: Theme) =>
       flexGrow: 1
     },
     appBar: {
-      backgroundColor: '#22323C'
+      backgroundColor: theme.palette.darkBlue.main
     }
   })
 );

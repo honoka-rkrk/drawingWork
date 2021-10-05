@@ -12,6 +12,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
 
 import { Image } from '../../../../Other/Model/image';
@@ -23,18 +25,20 @@ const useStyles = makeStyles((theme: Theme) =>
     commonPC: {
       width: '80%',
       height: '100%',
-      backgroundColor: '#30444E',
-      color: '#ffffff'
+      backgroundColor: theme.palette.white.main,
+      color: theme.palette.darkGreen.main
     },
     subHeaderColor: {
-      color: '#96A7AF'
+      color: theme.palette.darkGreen.second,
+      fontSize: '14px'
     },
     commonPhone: {
       width: '100%',
       height: '100%',
       alignItems: 'center',
-      backgroundColor: '#30444E',
-      color: '#ffffff'
+      backgroundColor: theme.palette.white.main,
+      color: theme.palette.darkGreen.main,
+      fontSize: '20px'
     },
     imgBoxPC: {
       display: 'flex',
@@ -64,12 +68,25 @@ const useStyles = makeStyles((theme: Theme) =>
       maxHeight: '100%',
       margin: 'auto'
     },
-    button: {
-      width: '100%'
+    stepper: {
+      width: '100%',
+      backgroundColor: theme.palette.yellow.main,
+      color: theme.palette.white.main,
+      borderRadius: '10px',
+      fontSize: '14px'
     },
-    mobileStepper: {
-      backgroundColor: '#152127',
-      color: '#96A7AF'
+    moveButton: {
+      color: theme.palette.white.main
+    },
+    fab: {
+      backgroundColor: theme.palette.red.second,
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      }
+    },
+    favIcon: {
+      backgroundColor: theme.palette.red.second,
+      color: theme.palette.white.main
     }
   })
 );
@@ -123,33 +140,6 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               />
             )}
             <CardContent>
-              <MobileStepper
-                className={styles.mobileStepper}
-                steps={maxSteps}
-                position='static'
-                variant='text'
-                activeStep={activeStep}
-                nextButton={
-                  <Button
-                    size='small'
-                    onClick={handleNext}
-                    disabled={activeStep === maxSteps - 1}
-                  >
-                    Next
-                    <KeyboardArrowRight />
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    size='small'
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                  >
-                    <KeyboardArrowLeft />
-                    Back
-                  </Button>
-                }
-              />
               <AutoPlaySwipeableViews
                 axis={'x'}
                 index={activeStep}
@@ -164,6 +154,32 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                   </div>
                 ))}
               </AutoPlaySwipeableViews>
+              <MobileStepper
+                className={styles.stepper}
+                steps={maxSteps}
+                position='static'
+                variant='text'
+                activeStep={activeStep}
+                nextButton={
+                  <Button
+                    size='small'
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                  >
+                    <KeyboardArrowRight className={styles.moveButton} />
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    className={styles.moveButton}
+                    size='small'
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                  >
+                    <KeyboardArrowLeft className={styles.moveButton} />
+                  </Button>
+                }
+              />
             </CardContent>
           </Card>
         ) : null}
@@ -174,6 +190,11 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
             {image.iconUrl ? (
               <CardHeader
                 avatar={<Avatar src={image.iconUrl} />}
+                action={
+                  <Fab className={styles.fab}>
+                    <FavoriteIcon className={styles.favIcon} />
+                  </Fab>
+                }
                 title={image.title}
                 subheader={
                   <Typography className={styles.subHeaderColor}>
@@ -193,33 +214,6 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               />
             )}
             <CardContent>
-              <MobileStepper
-                className={styles.button}
-                steps={maxSteps}
-                position='static'
-                variant='text'
-                activeStep={activeStep}
-                nextButton={
-                  <Button
-                    size='small'
-                    onClick={handleNext}
-                    disabled={activeStep === maxSteps - 1}
-                  >
-                    Next
-                    <KeyboardArrowRight />
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    size='small'
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                  >
-                    <KeyboardArrowLeft />
-                    Back
-                  </Button>
-                }
-              />
               <AutoPlaySwipeableViews
                 axis={'x-reverse'}
                 index={activeStep}
@@ -234,6 +228,33 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                   </div>
                 ))}
               </AutoPlaySwipeableViews>
+              <MobileStepper
+                className={styles.stepper}
+                steps={maxSteps}
+                position='static'
+                variant='text'
+                activeStep={activeStep}
+                nextButton={
+                  <Button
+                    className={styles.moveButton}
+                    size='small'
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                  >
+                    <KeyboardArrowRight className={styles.moveButton} />
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    className={styles.moveButton}
+                    size='small'
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                  >
+                    <KeyboardArrowLeft className={styles.moveButton} />
+                  </Button>
+                }
+              />
             </CardContent>
           </Card>
         ) : null}

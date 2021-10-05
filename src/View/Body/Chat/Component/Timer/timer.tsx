@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 import InfDialog from '../../../../../Other/Utils/Container/Dialog/infDialog';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     clockStyle: {
       display: 'flex',
@@ -12,9 +12,13 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em',
+      borderRadius: '25px',
+      fontSize: '1em',
       gridColumn: 3,
-      gridRow: 1
+      gridRow: 1,
+      backgroundColor: theme.palette.blue.second,
+      color: theme.palette.white.main,
+      fontFamily: 'Mplus'
     },
     clockStyleDanger: {
       display: 'flex',
@@ -22,10 +26,13 @@ const useStyle = makeStyles(() =>
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      fontSize: '1.5em',
-      color: '#ff1744',
+      fontSize: '1em',
+      borderRadius: '25px',
       gridColumn: 3,
-      gridRow: 1
+      gridRow: 1,
+      backgroundColor: theme.palette.red.second,
+      color: theme.palette.white.main,
+      fontFamily: 'Mplus'
     }
   })
 );

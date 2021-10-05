@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +9,7 @@ import DispPicture from '../Container/dispPicture';
 import EntryBtn from '../Container/Btn/entryBtn';
 import LoginBtn from '../Container/Btn/loginBtn';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     msgDisp: {
       gridRow: 2,
@@ -47,26 +47,33 @@ const useStyle = makeStyles(() =>
       gridTemplateColumns: '100%',
       gridTemplateRows: '12% 35% 6% 35% 12%'
     },
-    buttonBoxPhone: {
-      justifyContent: 'center',
-      gridRow: 6,
-      gridColumn: 2,
-      display: 'grid',
-      gridTemplateColumns: '40% 20% 40%'
-    },
     entryPC: {
       gridRow: 2,
       width: '100%'
     },
     entryPhone: {
-      gridColumn: 1
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gridRow: 7,
+      gridColumn: 2,
+      width: '100%',
+      height: '100%'
     },
     loginPC: {
       gridRow: 4,
       width: '100%'
     },
     loginPhone: {
-      gridColumn: 3
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      width: '100%',
+      height: '100%',
+      gridRow: 9,
+      gridColumn: 2
     }
   })
 );
@@ -109,13 +116,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
         <Box className={styles.picDispPhone}>
           <DispPicture />
         </Box>
-        <Box className={styles.buttonBoxPhone}>
-          <Box className={styles.entryPhone}>
-            <EntryBtn isMax={isMax} setIsMax={setIsMax} />
-          </Box>
-          <Box className={styles.loginPhone}>
-            <LoginBtn />
-          </Box>
+        <Box className={styles.entryPhone}>
+          <EntryBtn isMax={isMax} setIsMax={setIsMax} />
+        </Box>
+        <Box className={styles.loginPhone}>
+          <LoginBtn />
         </Box>
       </MediaQuery>
     </>

@@ -1,23 +1,29 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 import InfDialog from '../../../../../Other/Utils/Container/Dialog/infDialog';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-      width: '50%',
-      height: '30%',
-      backgroundColor: theme.palette.primary.main,
-      color: '#FFFFFF',
-      borderRadius: '12px',
+      width: '80%',
+      height: '100%',
+      backgroundColor: theme.palette.green.main,
+      borderRadius: '4px',
+      color: theme.palette.white.main,
       '&:hover': {
-        backgroundColor: '#D4F5E9'
+        backgroundColor: theme.palette.green.second
       },
       '&:disabled': {
-        backgroundColor: '#D4F5E9'
+        backgroundColor: theme.palette.green.disabled,
+        color: theme.palette.green.main
       }
+    },
+    text: {
+      fontSize: '24px',
+      fontFamily: 'Josefin Sans'
     }
   })
 );
@@ -48,12 +54,10 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
         <Button
           className={styles.button}
           onClick={entryClick}
-          variant='outlined'
-          color='primary'
           disabled={false}
           // disabled={open && !isMax ? false : true}
         >
-          {'エントリー'}
+          <Typography className={styles.text}>{'ENTRY'}</Typography>
         </Button>
       )}
       {infOpen ? (
