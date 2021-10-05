@@ -8,8 +8,8 @@ const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
       display: 'grid',
-      gridTemplateRows: '3% 7% 3% 3% 81% 3%',
-      gridTemplateColumns: '10% 80% 10%',
+      gridTemplateRows: '3.36% 8.4% 5.04% 80.1% 3.1%',
+      gridTemplateColumns: '10.8% 78.4% 10.8%',
       height: 'calc(100vh - 70px)'
     },
     rootPhone: {
@@ -18,7 +18,13 @@ const useStyle = makeStyles((theme: Theme) =>
       gridTemplateColumns: '2% 96% 2%',
       height: 'calc(100vh - 70px)'
     },
-    background: {
+    backgroundPC: {
+      backgroundColor: theme.palette.green.main,
+      marginTop: '10px',
+      height: '718px',
+      width: '100%'
+    },
+    backgroundPhone: {
       backgroundColor: theme.palette.green.main,
       marginTop: '10px',
       height: '610px',
@@ -31,18 +37,20 @@ const Main: React.FC = () => {
   const styles = useStyle();
   return (
     <>
-      <Box className={styles.background}>
-        <MediaQuery query='(min-width:767px)'>
+      <MediaQuery query='(min-width:767px)'>
+        <Box className={styles.backgroundPC}>
           <Box className={styles.rootPC}>
             <Home />
           </Box>
-        </MediaQuery>
-        <MediaQuery query='(max-width:767px)'>
+        </Box>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <Box className={styles.backgroundPhone}>
           <Box className={styles.rootPhone}>
             <Home />
           </Box>
-        </MediaQuery>
-      </Box>
+        </Box>
+      </MediaQuery>
     </>
   );
 };
