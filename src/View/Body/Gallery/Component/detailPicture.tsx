@@ -52,6 +52,11 @@ const useStyles = makeStyles((theme: Theme) =>
     typo: {
       margin: '0.5em'
     },
+    titlePC: {
+      fontSize: '18pt',
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
+    },
     titlePhone: {
       fontSize: '14pt',
       fontFamily: 'Mplus',
@@ -62,9 +67,15 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: '#ffb7db'
       }
     },
-    headerPhone: {
+    headerPC: {
       padding: '7px',
-      margin: '5px'
+      marginLeft: '15px',
+      marginRight: '15px'
+    },
+    headerPhone: {
+      padding: '1px',
+      marginLeft: '15px',
+      marginRight: '15px'
     },
     fabPhone: {
       backgroundColor: theme.palette.red.second,
@@ -91,20 +102,18 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
     <>
       <MediaQuery query='(min-width:767px)'>
         <Card className={styles.rootPC}>
-          <Box className={styles.typo}>
-            <Typography variant='h6'>{image.title}</Typography>
-          </Box>
-          <Fab>
-            <FavoriteIcon />
-          </Fab>
-          {/* <CardHeader title={image.title} /> */}
+          <CardHeader
+            className={styles.headerPC}
+            action={
+              <Fab className={styles.fabPhone} size='small'>
+                <FavoriteIcon className={styles.favIcon} />
+              </Fab>
+            }
+            title={<Typography className={styles.titlePC}>{image.title}</Typography>}
+          />
           <div className={styles.inner_outerPC}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
-          <CardActions>
-            <FavoriteIcon className={styles.button} />
-            {favNum === 0 ? null : <Typography>{favNum}</Typography>}
-          </CardActions>
         </Card>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
