@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,10 +9,11 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
 
 import { Image } from '../../../../Other/Model/image';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
       minWidth: 345
@@ -24,13 +25,13 @@ const useStyles = makeStyles(() =>
       position: 'relative',
       width: '100%',
       height: '400px',
-      margin: '1em 0'
+      margin: '0.5em 0'
     },
     inner_outerPhone: {
       position: 'relative',
       width: '100%',
       height: '200px',
-      margin: '1em 0'
+      margin: '0.5em 0'
     },
     inner_photo: {
       position: 'absolute',
@@ -45,12 +46,66 @@ const useStyles = makeStyles(() =>
       margin: 'auto'
     },
     button: {
-      color: '#f50057'
+      backgroundColor: theme.palette.white.main,
+      color: theme.palette.white.main
     },
     iconButton: {
       '&:hover': {
         backgroundColor: '#ffb7db'
       }
+    },
+    title: {
+      color: theme.palette.darkGreen.main,
+      fontFamily: 'Mplus',
+      fontSize: '13px'
+    },
+    headerPC: {
+      padding: '1px',
+      marginTop: '5px',
+      marginLeft: '15px',
+      marginRight: '15px'
+    },
+    headerPhone: {
+      padding: '1px',
+      marginTop: '5px'
+    },
+    subHeaderColorPC: {
+      color: theme.palette.darkGreen.second,
+      fontSize: '18px',
+      fontFamily: 'Mplus'
+    },
+    subHeaderColorPhone: {
+      color: theme.palette.darkGreen.second,
+      fontSize: '11px',
+      fontFamily: 'Mplus'
+    },
+    actionPhone: {
+      padding: '1px'
+    },
+    fabPC: {
+      backgroundColor: theme.palette.red.disabled,
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      },
+      marginTop: '10px'
+    },
+    fabPhone: {
+      backgroundColor: theme.palette.red.disabled,
+      '&:hover': {
+        backgroundColor: theme.palette.red.disabled
+      },
+      marginTop: '10px'
+    },
+    favIcon: {
+      color: theme.palette.white.main
+    },
+    favIconClicked: {
+      color: theme.palette.red.second
+    },
+    countText: {
+      fontSize: '13px',
+      fontFamily: 'Mplus',
+      marginTop: '10px'
     }
   })
 );
@@ -78,12 +133,14 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
         <Card className={styles.rootPC}>
           {image.iconUrl ? (
             <CardHeader
+              className={styles.headerPC}
               avatar={<Avatar src={image.iconUrl} />}
               title={image.title}
               subheader={image.displayName}
             />
           ) : (
             <CardHeader
+              className={styles.headerPC}
               avatar={<AccountCircle />}
               title={image.title}
               subheader={image.displayName}
@@ -93,15 +150,22 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
           <CardActions>
-            <IconButton
-              aria-label='add to favorites'
-              className={styles.iconButton}
+            <Fab
+              className={styles.fabPC}
+              size='small'
               onClick={handleFavClick}
               disabled={isDisabled}
+              aria-label='add to favorites'
             >
-              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
-            </IconButton>
-            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
+              {isFav ? (
+                <FavoriteIcon className={styles.favIconClicked} />
+              ) : (
+                <FavoriteIcon className={styles.favIcon} />
+              )}
+            </Fab>
+            {favCount === 0 ? null : (
+              <Typography className={styles.countText}>{favCount}</Typography>
+            )}
           </CardActions>
         </Card>
       </MediaQuery>
@@ -109,9 +173,14 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
         <Card className={styles.rootPhone}>
           {image.iconUrl ? (
             <CardHeader
+              className={styles.headerPhone}
               avatar={<Avatar src={image.iconUrl} />}
-              title={image.title}
-              subheader={image.displayName}
+              title={<Typography className={styles.title}>{image.title}</Typography>}
+              subheader={
+                <Typography className={styles.subHeaderColorPhone}>
+                  {image.displayName}
+                </Typography>
+              }
             />
           ) : (
             <CardHeader
@@ -123,16 +192,23 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
           <div className={styles.inner_outerPhone}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
-          <CardActions>
-            <IconButton
-              aria-label='add to favorites'
-              className={styles.iconButton}
+          <CardActions className={styles.actionPhone}>
+            <Fab
+              className={styles.fabPhone}
+              size='small'
               onClick={handleFavClick}
               disabled={isDisabled}
+              aria-label='add to favorites'
             >
-              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
-            </IconButton>
-            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
+              {isFav ? (
+                <FavoriteIcon className={styles.favIconClicked} />
+              ) : (
+                <FavoriteIcon className={styles.favIcon} />
+              )}
+            </Fab>
+            {favCount === 0 ? null : (
+              <Typography className={styles.countText}>{favCount}</Typography>
+            )}
           </CardActions>
         </Card>
       </MediaQuery>

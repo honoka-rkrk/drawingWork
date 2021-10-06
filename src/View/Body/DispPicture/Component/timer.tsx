@@ -1,37 +1,58 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import MediaQuery from 'react-responsive';
 
 import InfDialog from '../../../../Other/Utils/Container/Dialog/infDialog';
 
-const useStyle = makeStyles(() =>
+const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    clockStyle: {
+    clockStylePC: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '100%',
-      height: '100%',
-      fontSize: '1.5em',
-      padding: '1em'
-    },
-    clockStyleDanger: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+      borderRadius: '40px',
       width: '100%',
       height: '100%',
       fontSize: '1.5em',
       padding: '1em',
-      color: '#ff1744'
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
     },
-    exitfab: {
-      position: 'fixed',
-      bottom: '2rem',
-      right: '2rem',
-      '&:hover': {
-        backgroundColor: '#6666ff'
-      }
+    clockStylePhone: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '25px',
+      width: '100%',
+      height: '100%',
+      padding: '1em',
+      fontSize: '1em',
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
+    },
+    clockStyleDangerPC: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '40px',
+      width: '100%',
+      height: '100%',
+      fontSize: '1.5em',
+      padding: '1em',
+      fontFamily: 'Mplus',
+      color: theme.palette.red.main
+    },
+    clockStyleDangerPhone: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '25px',
+      width: '100%',
+      height: '100%',
+      fontSize: '1em',
+      padding: '1em',
+      color: theme.palette.red.main
     }
   })
 );
@@ -56,15 +77,28 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
 
   return (
     <>
-      {danger ? (
-        <Paper className={styles.clockStyleDanger}>
-          {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
-        </Paper>
-      ) : (
-        <Paper className={styles.clockStyle}>
-          {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
-        </Paper>
-      )}
+      <MediaQuery query='(min-width:767px)'>
+        {danger ? (
+          <Paper className={styles.clockStyleDangerPC}>
+            {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
+          </Paper>
+        ) : (
+          <Paper className={styles.clockStylePC}>
+            {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
+          </Paper>
+        )}
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        {danger ? (
+          <Paper className={styles.clockStyleDangerPhone}>
+            {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
+          </Paper>
+        ) : (
+          <Paper className={styles.clockStylePhone}>
+            {tmMinutes && tmSeconds ? tmMinutes + '分' + tmSeconds + '秒' : null}
+          </Paper>
+        )}
+      </MediaQuery>
       {isEnd ? (
         <InfDialog
           infOpen={isEnd}
