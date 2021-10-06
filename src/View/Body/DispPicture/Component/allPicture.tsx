@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Fab from '@material-ui/core/Fab';
 import MediaQuery from 'react-responsive';
@@ -8,7 +8,7 @@ import { Image } from '../../../../Other/Model/image';
 import DetailPicture from '../Container/detailPicture';
 import ExitBtn from '../Container/exitBtn';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     commonPC: {
       marginTop: '30px'
@@ -19,7 +19,16 @@ const useStyles = makeStyles(() =>
     countfab: {
       position: 'fixed',
       bottom: '2rem',
-      left: '2rem'
+      left: '2rem',
+      backgroundColor: theme.palette.purple.second,
+      color: theme.palette.white.main,
+      '&:hover': {
+        backgroundColor: theme.palette.purple.second
+      },
+      '&:disabled': {
+        backgroundColor: theme.palette.darkGreen.disabled,
+        color: theme.palette.green.main
+      }
     }
   })
 );
@@ -65,7 +74,6 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
       <ExitBtn />
       <Fab
         className={styles.countfab}
-        color='secondary'
         aria-label='count'
         disabled={favNum === 0 ? true : false}
       >

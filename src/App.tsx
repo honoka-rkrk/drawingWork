@@ -11,6 +11,7 @@ import { RootState } from './Other/Store/rootReducer';
 import { routes, RouteProps } from './Other/Route/route';
 import Upload from './View/Body/Upload/Component/main';
 import Settings from './Settings/Login/Component/main';
+import DispPicture from './View/Body/DispPicture/Component/main';
 
 import Operation from './Settings/Operation/Component/main';
 
@@ -49,10 +50,11 @@ const NotEntryRoute: React.FC = () => {
       ) : (
         <Switch>
           <Route path={['/', '/home']} exact component={Home} />
-          <Route path={'/upload'} component={Upload} />
           <Route path={'/gallery'} component={Gallery} />
           <Route path={'/inquiry'} component={Inquiry} />
           <Route path={'/settings'} component={Settings} />
+          <Route path={'/upload'} component={Upload} />
+          <Route path={'/dispPicture'} component={DispPicture} />
           <Redirect to='/' />
         </Switch>
       )}
