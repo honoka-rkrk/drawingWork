@@ -12,11 +12,8 @@ const useStyle = makeStyles((theme: Theme) =>
     tableRow: {
       height: 'calc(((100vh - 180px) * 0.95) / 28'
     },
-    nameColor: {
-      color: '#000055'
-    },
     textStyle: {
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     }
   })
 );

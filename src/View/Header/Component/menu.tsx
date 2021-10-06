@@ -5,6 +5,7 @@ import MenuButton from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
+import Typography from '@material-ui/core/Typography';
 
 import LoginDialog from '../../Body/Home/Container/loginDialog';
 import { User } from '../../../Other/Model/user';
@@ -20,6 +21,10 @@ const useStyle = makeStyles((theme: Theme) =>
       position: 'absolute',
       right: '0.5rem',
       color: theme.palette.white.main
+    },
+    menuItemText: {
+      fontFamily: 'Kosugi Maru',
+      color: theme.palette.darkGreen.main
     }
   })
 );
@@ -93,10 +98,10 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         onClose={handleClose}
       >
         <MenuItem onClick={onInquiryClick} disabled={isInquiryDisabled}>
-          お問い合わせ
+          <Typography className={styles.menuItemText}>お問い合わせ</Typography>
         </MenuItem>
         <MenuItem onClick={onGalleryClick} disabled={isGalleryDisabled}>
-          My Gallery
+          <Typography className={styles.menuItemText}>My Gallery</Typography>
         </MenuItem>
         {isAuthor ? <MenuItem onClick={onSettingsClick}>設定</MenuItem> : null}
       </MenuButton>

@@ -34,23 +34,23 @@ const useStyle = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       color: theme.palette.white.main,
       fontSize: '24px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     headerColorPhone: {
       fontWeight: 'bold',
       color: theme.palette.white.main,
       fontSize: '16px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     subHeaderColorPC: {
       color: theme.palette.white.main,
       fontSize: '15px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     subHeaderColorPhone: {
       color: theme.palette.white.main,
       fontSize: '14px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     contentCommon: {
       display: 'grid',
@@ -113,7 +113,7 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     text: {
       color: theme.palette.red.second,
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     }
   })
 );

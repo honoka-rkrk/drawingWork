@@ -16,7 +16,7 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       fontSize: '1.5em',
       padding: '1em',
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       color: theme.palette.darkGreen.main
     },
     clockStylePhone: {
@@ -28,7 +28,7 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       padding: '1em',
       fontSize: '1em',
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       color: theme.palette.darkGreen.main
     },
     clockStyleDangerPC: {
@@ -40,7 +40,7 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       fontSize: '1.5em',
       padding: '1em',
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       color: theme.palette.red.main
     },
     clockStyleDangerPhone: {

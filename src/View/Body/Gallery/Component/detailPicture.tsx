@@ -46,26 +46,22 @@ const useStyles = makeStyles((theme: Theme) =>
       maxHeight: '100%',
       margin: 'auto'
     },
-    button: {
-      color: '#f50057'
-    },
     typo: {
       margin: '0.5em'
     },
     titlePC: {
-      fontSize: '18pt',
-      fontFamily: 'Mplus',
-      color: theme.palette.darkGreen.main
+      fontSize: '17px',
+      fontFamily: 'KosugiMaru',
+      color: theme.palette.darkGreen.main,
+      gridRow: 1,
+      gridColumn: 2
     },
     titlePhone: {
-      fontSize: '14pt',
-      fontFamily: 'Mplus',
-      color: theme.palette.darkGreen.main
-    },
-    iconButton: {
-      '&:hover': {
-        backgroundColor: '#ffb7db'
-      }
+      fontSize: '12px',
+      fontFamily: 'Kosugi Maru',
+      color: theme.palette.darkGreen.main,
+      gridRow: 1,
+      gridColumn: 1
     },
     headerPC: {
       padding: '7px',
@@ -77,15 +73,50 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: '15px',
       marginRight: '15px'
     },
+    fabPC: {
+      backgroundColor: theme.palette.red.second,
+      '&:hover': {
+        backgroundColor: theme.palette.red.second
+      },
+      '&:disabled': {
+        backgroundColor: theme.palette.red.second
+      },
+      gridRow: 1,
+      gridColumn: 3
+    },
     fabPhone: {
       backgroundColor: theme.palette.red.second,
       '&:hover': {
         backgroundColor: theme.palette.red.second
       },
-      marginTop: '10px'
+      '&:disabled': {
+        backgroundColor: theme.palette.red.second
+      },
+      gridRow: 1,
+      gridColumn: 2
+    },
+    countPC: {
+      gridRow: 1,
+      gridColumn: 4,
+      color: theme.palette.darkGreen.main
+    },
+    countPhone: {
+      gridRow: 1,
+      gridColumn: 3,
+      color: theme.palette.darkGreen.main
     },
     favIcon: {
       color: theme.palette.white.main
+    },
+    actionsPC: {
+      display: 'grid',
+      gridTemplateColumns: '10% 60% 15% 15%',
+      gridTemplateRows: '100%'
+    },
+    actionsPhone: {
+      display: 'grid',
+      gridTemplateColumns: '55% 30% 15%',
+      gridTemplateRows: '100%'
     }
   })
 );
@@ -98,38 +129,40 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
   const { image, favNum = 0 } = props;
   const styles = useStyles();
 
+  console.log(favNum);
+
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
         <Card className={styles.rootPC}>
-          <CardHeader
-            className={styles.headerPC}
-            action={
-              <Fab className={styles.fabPhone} size='small'>
-                <FavoriteIcon className={styles.favIcon} />
-              </Fab>
-            }
-            title={<Typography className={styles.titlePC}>{image.title}</Typography>}
-          />
           <div className={styles.inner_outerPC}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
+          <CardActions className={styles.actionsPC}>
+            <Typography className={styles.titlePC}>{image.title}</Typography>
+            <Fab className={styles.fabPC} size='small' disabled={true}>
+              <FavoriteIcon className={styles.favIcon} />
+            </Fab>
+            {favNum === 0 ? null : (
+              <Typography className={styles.countPC}>{favNum}</Typography>
+            )}
+          </CardActions>
         </Card>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Card className={styles.rootPhone}>
-          <CardHeader
-            className={styles.headerPhone}
-            action={
-              <Fab className={styles.fabPhone} size='small'>
-                <FavoriteIcon className={styles.favIcon} />
-              </Fab>
-            }
-            title={<Typography>{image.title}</Typography>}
-          />
           <div className={styles.inner_outerPhone}>
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
+          <CardActions className={styles.actionsPhone}>
+            <Typography className={styles.titlePhone}>{image.title}</Typography>
+            <Fab className={styles.fabPhone} size='small' disabled={true}>
+              <FavoriteIcon className={styles.favIcon} />
+            </Fab>
+            {favNum === 0 ? null : (
+              <Typography className={styles.countPhone}>{favNum}</Typography>
+            )}
+          </CardActions>
         </Card>
       </MediaQuery>
     </>

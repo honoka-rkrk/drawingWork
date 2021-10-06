@@ -15,7 +15,8 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       borderRadius: '40px',
       color: theme.palette.darkGreen.main,
-      fontSize: '24px'
+      fontSize: '24px',
+      fontFamily: 'Kosugi Maru'
     },
     clockStylePhone: {
       display: 'flex',
@@ -25,7 +26,8 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       borderRadius: '25px',
       color: theme.palette.darkGreen.main,
-      fontSize: '1em'
+      fontSize: '1em',
+      fontFamily: 'Kosugi Maru'
     },
     clockStyleDangerPC: {
       display: 'flex',
@@ -35,7 +37,8 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       fontSize: '24px',
       borderRadius: '40px',
-      color: theme.palette.red.main
+      color: theme.palette.red.main,
+      fontFamily: 'Kosugi Maru'
     },
     clockStyleDangerPhone: {
       display: 'flex',
@@ -45,7 +48,8 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       fontSize: '1em',
       borderRadius: '25px',
-      color: theme.palette.red.main
+      color: theme.palette.red.main,
+      fontFamily: 'Kosugi Maru'
     }
   })
 );
