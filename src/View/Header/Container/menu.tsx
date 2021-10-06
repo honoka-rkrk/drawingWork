@@ -9,7 +9,6 @@ import { UserContext } from '../../../Other/Context/contexts';
 const Menu: React.FC = () => {
   const isEntryInfo = useSelector((state: RootState) => state.isEntry.isEntryInfo);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const history = useHistory();
   const menuOpen = Boolean(anchorEl);
   const [isInquiryDisabled, setIsInquiryDisabled] = useState<boolean>(false);
@@ -70,8 +69,6 @@ const Menu: React.FC = () => {
       anchorEl={anchorEl}
       menuOpen={menuOpen}
       handleClose={handleClose}
-      dialogOpen={dialogOpen}
-      setDialogOpen={setDialogOpen}
       onInquiryClick={onInquiryClick}
       onGalleryClick={onGalleryClick}
       onSettingsClick={onSettingsClick}

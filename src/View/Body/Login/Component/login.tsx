@@ -9,6 +9,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 
 const useStyle = makeStyles(() =>
   createStyles({
@@ -23,24 +28,17 @@ const useStyle = makeStyles(() =>
 type LoginProps = {
   uiConfig: firebaseui.auth.Config;
   auth: firebase.auth.Auth | null;
-  open: boolean;
-  onClose: () => void;
 };
 
 const Login: React.FC<LoginProps> = (props: LoginProps) => {
-  const { uiConfig, auth = null, open = false, onClose = () => undefined } = props;
+  const { uiConfig, auth = null } = props;
   const styles = useStyle();
 
   return (
     <>
-      <Dialog
-        open={open}
-        onClose={onClose}
-        aria-labelledby='form-dialog-title'
-        fullWidth
-      >
-        <DialogTitle className={styles.title}>ログイン / 新規登録</DialogTitle>
-        <DialogContent>
+      <Card>
+        <CardHeader className={styles.title}>ログイン / 新規登録</CardHeader>
+        <CardContent>
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
           <DialogContentText>
             <Typography>{'エントリーするためにはログインが必要です。'}</Typography>
@@ -50,13 +48,11 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
               }
             </Typography>
           </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={onClose} color='primary'>
-            戻る
-          </Button>
-        </DialogActions>
-      </Dialog>
+        </CardContent>
+        <CardActions>
+          <Button color='primary'>戻る</Button>
+        </CardActions>
+      </Card>
     </>
   );
 };

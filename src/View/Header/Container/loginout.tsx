@@ -12,7 +12,6 @@ const LoginOut: React.FC = () => {
   const { user } = useContext(UserContext);
   const [isLogined, setIsLogined] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const history = useHistory();
   const menuOpen = Boolean(anchorEl);
@@ -43,7 +42,7 @@ const LoginOut: React.FC = () => {
 
   const loginClick = () => {
     setAnchorEl(null);
-    setDialogOpen(true);
+    history.push('/login');
   };
 
   useEffect(() => {
@@ -62,8 +61,6 @@ const LoginOut: React.FC = () => {
       menuOpen={menuOpen}
       handleClose={handleClose}
       signOut={signOut}
-      dialogOpen={dialogOpen}
-      setDialogOpen={setDialogOpen}
       loginClick={loginClick}
       isDisabled={isDisabled}
     />

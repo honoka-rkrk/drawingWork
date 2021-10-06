@@ -17,7 +17,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 
-import { FavoriteNum } from '../../../../Other/Model/favoriteNum';
 import { Image } from '../../../../Other/Model/image';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);

@@ -7,9 +7,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
 
-import LoginDialog from '../../Body/Home/Container/loginDialog';
-import { User } from '../../../Other/Model/user';
-
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     menuButtonPC: {
@@ -34,8 +31,6 @@ type MenuProps = {
   anchorEl: HTMLElement | null;
   menuOpen: boolean;
   handleClose: () => void;
-  dialogOpen: boolean;
-  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onInquiryClick: () => void;
   onGalleryClick: () => void;
   onSettingsClick: () => void;
@@ -50,8 +45,6 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     anchorEl = null,
     menuOpen = false,
     handleClose = () => undefined,
-    dialogOpen = false,
-    setDialogOpen = () => undefined,
     onInquiryClick = () => undefined,
     onGalleryClick = () => undefined,
     onSettingsClick = () => undefined,
