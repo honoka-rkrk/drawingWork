@@ -12,17 +12,25 @@ const Menu: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const history = useHistory();
   const menuOpen = Boolean(anchorEl);
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [isInquiryDisabled, setIsInquiryDisabled] = useState<boolean>(false);
+  const [isGalleryDisabled, setIsGalleryDisabled] = useState<boolean>(false);
   const [isAuthor, setIsAuthor] = useState<boolean>(false);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (isEntryInfo) {
-      isEntryInfo.entryState ? setIsDisabled(true) : setIsDisabled(false);
+      isEntryInfo.entryState
+        ? setIsInquiryDisabled(true)
+        : setIsInquiryDisabled(false);
+
+      isEntryInfo.entryState
+        ? setIsGalleryDisabled(true)
+        : setIsGalleryDisabled(false);
     } else {
-      setIsDisabled(false);
+      setIsInquiryDisabled(false);
+      user ? setIsGalleryDisabled(false) : setIsGalleryDisabled(true);
     }
-  }, [isEntryInfo?.entryState]);
+  }, [isEntryInfo?.entryState, user]);
 
   useEffect(() => {
     if (user) {
@@ -67,7 +75,8 @@ const Menu: React.FC = () => {
       onInquiryClick={onInquiryClick}
       onGalleryClick={onGalleryClick}
       onSettingsClick={onSettingsClick}
-      isDisabled={isDisabled}
+      isInquiryDisabled={isInquiryDisabled}
+      isGalleryDisabled={isGalleryDisabled}
       isAuthor={isAuthor}
     />
   );

@@ -6,7 +6,6 @@ import MediaQuery from 'react-responsive';
 
 import { Image } from '../../../../Other/Model/image';
 import DetailPicture from '../Container/detailPicture';
-import ExitBtn from '../Container/exitBtn';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -71,7 +70,6 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
             ))
           : null}
       </MediaQuery>
-      <ExitBtn />
       <Fab
         className={styles.countfab}
         aria-label='count'
