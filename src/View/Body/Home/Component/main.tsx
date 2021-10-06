@@ -27,7 +27,7 @@ const useStyle = makeStyles((theme: Theme) =>
     backgroundPhone: {
       backgroundColor: theme.palette.green.main,
       marginTop: '10px',
-      height: '580px',
+      height: '610px',
       width: '100%'
     }
   })
