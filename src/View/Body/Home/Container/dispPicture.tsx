@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
+
 import firebase, { db } from '../../../../firebase';
 import { Image } from '../../../../Other/Model/image';
-
+import { FavoriteNum } from '../../../../Other/Model/favoriteNum';
 import CompDispPicture from '../Component/dispPicture';
 
 const DispPicture: React.FC = () => {
@@ -10,6 +11,8 @@ const DispPicture: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [maxSteps, setMaxSteps] = useState<number>(0);
   const [image, setImage] = useState<Image | null>(null);
+  const [favNums, setFavNums] = useState<Array<FavoriteNum> | null>(null);
+  const [favNum, setFavNum] = useState<number>(0);
 
   //前回の画像を取得
   useEffect(() => {
@@ -39,6 +42,38 @@ const DispPicture: React.FC = () => {
     };
   }, []);
 
+  //favカウントを取得
+  useEffect(() => {
+    let unmounted = false;
+    if (images) {
+      images.forEach((_, index) => {
+        const getFav = async () => {
+          await db
+            .collection('images')
+            .doc(moment().format('YYYYMMDD'))
+            .collection('image')
+            .doc(images[index].screenName)
+            .collection('favoriteNum')
+            .get()
+            .then((snapshot: firebase.firestore.QuerySnapshot) => {
+              const newFavNum: any[] = [];
+              snapshot.forEach((doc) => {
+                newFavNum.push({
+                  id: doc.id,
+                  ...doc.data()
+                });
+              });
+              if (!unmounted) setFavNums(newFavNum);
+            });
+        };
+        getFav();
+      });
+      return () => {
+        unmounted = true;
+      };
+    }
+  }, [images]);
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -54,7 +89,10 @@ const DispPicture: React.FC = () => {
     if (images) {
       setImage(images[activeStep]);
     }
-  }, [images, activeStep]);
+    if (favNums) {
+      favNums[activeStep] ? setFavNum(favNums[activeStep].count) : setFavNum(0);
+    }
+  }, [images, activeStep, favNums]);
   return (
     <CompDispPicture
       images={images}
@@ -64,6 +102,7 @@ const DispPicture: React.FC = () => {
       handleBack={handleBack}
       handleStepChange={handleStepChange}
       image={image}
+      favNum={favNum}
     />
   );
 };

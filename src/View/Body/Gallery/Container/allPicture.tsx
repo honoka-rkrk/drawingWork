@@ -26,7 +26,6 @@ const AllPicture: React.FC = () => {
               ...doc.data()
             });
           });
-          console.log(newImages);
           if (!unmounted) setImages(newImages);
         });
       }
@@ -40,7 +39,6 @@ const AllPicture: React.FC = () => {
   useEffect(() => {
     let unmounted = false;
     if (images && user) {
-      console.log(images);
       images.forEach((_, index) => {
         const getFav = async () => {
           await db
@@ -58,7 +56,6 @@ const AllPicture: React.FC = () => {
                   ...doc.data()
                 });
               });
-              console.log(newFavNum);
               if (!unmounted) setFavNum(newFavNum);
             });
         };

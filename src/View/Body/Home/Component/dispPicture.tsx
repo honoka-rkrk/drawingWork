@@ -14,8 +14,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 
+import { FavoriteNum } from '../../../../Other/Model/favoriteNum';
 import { Image } from '../../../../Other/Model/image';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -112,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.white.main
     },
     fabPC: {
-      backgroundColor: theme.palette.red.disabled,
+      backgroundColor: theme.palette.red.second,
       '&:hover': {
         backgroundColor: theme.palette.red.second
       },
@@ -120,13 +122,23 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: '30px'
     },
     fabPhone: {
-      backgroundColor: theme.palette.red.disabled,
+      backgroundColor: theme.palette.red.second,
       '&:hover': {
         backgroundColor: theme.palette.red.second
       }
     },
     favIcon: {
       color: theme.palette.white.main
+    },
+    action: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    count: {
+      marginLeft: '20px',
+      marginTop: '10px',
+      marginRight: '10px',
+      color: theme.palette.darkGreen.main
     }
   })
 );
@@ -139,6 +151,7 @@ type DispPictureProps = {
   handleBack: () => void;
   handleStepChange: (step: number) => void;
   image: Image | null;
+  favNum: number;
 };
 
 const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
@@ -149,7 +162,8 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
     handleNext = () => undefined,
     handleBack = () => undefined,
     handleStepChange = () => undefined,
-    image = null
+    image = null,
+    favNum = 0
   } = props;
   const styles = useStyles();
 
@@ -163,9 +177,16 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 className={styles.headerPC}
                 avatar={<Avatar src={image.iconUrl} />}
                 action={
-                  <Fab className={styles.fabPC}>
-                    <FavoriteIcon className={styles.favIcon} />
-                  </Fab>
+                  <>
+                    <Box className={styles.action}>
+                      <Fab className={styles.fabPC}>
+                        <FavoriteIcon className={styles.favIcon} />
+                      </Fab>
+                      <Typography className={styles.count}>
+                        {favNum == 0 ? null : favNum}
+                      </Typography>
+                    </Box>
+                  </>
                 }
                 title={
                   <Typography className={styles.headerPC}>{image.title}</Typography>
@@ -179,7 +200,21 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
             ) : (
               <CardHeader
                 avatar={<AccountCircle />}
-                title={image.title}
+                action={
+                  <>
+                    <Box className={styles.action}>
+                      <Fab className={styles.fabPC}>
+                        <FavoriteIcon className={styles.favIcon} />
+                      </Fab>
+                      <Typography className={styles.count}>
+                        {favNum == 0 ? null : favNum}
+                      </Typography>
+                    </Box>
+                  </>
+                }
+                title={
+                  <Typography className={styles.headerPC}>{image.title}</Typography>
+                }
                 subheader={
                   <Typography className={styles.subHeaderColorPC}>
                     {image.displayName}
@@ -240,9 +275,14 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 className={styles.headerPhone}
                 avatar={<Avatar src={image.iconUrl} />}
                 action={
-                  <Fab className={styles.fabPhone}>
-                    <FavoriteIcon className={styles.favIcon} />
-                  </Fab>
+                  <Box className={styles.action}>
+                    <Fab className={styles.fabPhone}>
+                      <FavoriteIcon className={styles.favIcon} />
+                    </Fab>
+                    <Typography className={styles.count}>
+                      {favNum == 0 ? null : favNum}
+                    </Typography>
+                  </Box>
                 }
                 title={image.title}
                 subheader={
@@ -255,6 +295,16 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               <CardHeader
                 className={styles.headerPhone}
                 avatar={<AccountCircle />}
+                action={
+                  <Box className={styles.action}>
+                    <Fab className={styles.fabPhone}>
+                      <FavoriteIcon className={styles.favIcon} />
+                    </Fab>
+                    <Typography className={styles.count}>
+                      {favNum == 0 ? null : favNum}
+                    </Typography>
+                  </Box>
+                }
                 title={image.title}
                 subheader={
                   <Typography className={styles.subHeaderColorPhone}>
