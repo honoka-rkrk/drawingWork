@@ -1,13 +1,23 @@
 import React from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Avatar from '@material-ui/core/Avatar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
 import MenuCon from '../Container/menu';
 
-import LoginDialog from '../../Body/Home/Container/loginDialog';
 import { User } from '../../../Other/Model/user';
+
+const useStyle = makeStyles((theme: Theme) =>
+  createStyles({
+    menuItemText: {
+      fontFamily: 'Kosugi Maru',
+      color: theme.palette.darkGreen.main
+    }
+  })
+);
 
 type LoginOutProps = {
   user: User | null;
@@ -17,13 +27,12 @@ type LoginOutProps = {
   menuOpen: boolean;
   handleClose: () => void;
   signOut: () => void;
-  dialogOpen: boolean;
-  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   loginClick: () => void;
   isDisabled: boolean;
 };
 
 const LoginOut: React.FC<LoginOutProps> = (props: LoginOutProps) => {
+  const styles = useStyle();
   const {
     user = null,
     isLogined = false,
@@ -32,8 +41,6 @@ const LoginOut: React.FC<LoginOutProps> = (props: LoginOutProps) => {
     menuOpen = false,
     handleClose = () => undefined,
     signOut = () => undefined,
-    dialogOpen = false,
-    setDialogOpen = () => undefined,
     loginClick = () => undefined,
     isDisabled = false
   } = props;
@@ -69,14 +76,15 @@ const LoginOut: React.FC<LoginOutProps> = (props: LoginOutProps) => {
       >
         {isLogined ? (
           <MenuItem onClick={signOut} disabled={isDisabled}>
-            ログアウト
+            <Typography className={styles.menuItemText}>ログアウト</Typography>
           </MenuItem>
         ) : (
-          <MenuItem onClick={loginClick}>ログイン</MenuItem>
+          <MenuItem onClick={loginClick}>
+            <Typography className={styles.menuItemText}>ログイン</Typography>
+          </MenuItem>
         )}
       </Menu>
       <MenuCon />
-      <LoginDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
     </>
   );
 };

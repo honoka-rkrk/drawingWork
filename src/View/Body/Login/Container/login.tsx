@@ -2,15 +2,9 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import firebase from 'firebase/app';
 import { FirebaseContext, UserContext } from '../../../../Other/Context/contexts';
-import CompLoginDialog from '../Component/loginDialog';
+import CompLoginDialog from '../Component/login';
 
-type LoginProps = {
-  open: boolean;
-  onClose: () => void;
-};
-
-const LoginDialog: React.FC<LoginProps> = (props: LoginProps) => {
-  const { open, onClose } = props;
+const LoginDialog: React.FC = () => {
   const { auth } = useContext(FirebaseContext);
   const { setCredential } = useContext(UserContext);
   const history = useHistory();
@@ -42,9 +36,7 @@ const LoginDialog: React.FC<LoginProps> = (props: LoginProps) => {
       }
     }
   };
-  return (
-    <CompLoginDialog uiConfig={uiConfig} auth={auth} open={open} onClose={onClose} />
-  );
+  return <CompLoginDialog uiConfig={uiConfig} auth={auth} />;
 };
 
 export default LoginDialog;

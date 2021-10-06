@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import LoginDialog from '../../Container/loginDialog';
 import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
@@ -44,18 +43,11 @@ const useStyle = makeStyles((theme: Theme) =>
 
 type LoginBtnProps = {
   loginClick: () => void;
-  open: boolean;
-  onClose: () => void;
   disabled: boolean;
 };
 
 const LoginBtn: React.FC<LoginBtnProps> = (props: LoginBtnProps) => {
-  const {
-    loginClick = () => undefined,
-    open = false,
-    onClose = () => undefined,
-    disabled = false
-  } = props;
+  const { loginClick = () => undefined, disabled = false } = props;
   const styles = useStyle();
   return (
     <>
@@ -63,7 +55,6 @@ const LoginBtn: React.FC<LoginBtnProps> = (props: LoginBtnProps) => {
         <Button className={styles.buttonPC} onClick={loginClick} disabled={disabled}>
           <Typography className={styles.text}>{'LOGIN'}</Typography>
         </Button>
-        <LoginDialog open={open} onClose={onClose} />
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Button
@@ -73,7 +64,6 @@ const LoginBtn: React.FC<LoginBtnProps> = (props: LoginBtnProps) => {
         >
           <Typography className={styles.text}>{'LOGIN'}</Typography>
         </Button>
-        <LoginDialog open={open} onClose={onClose} />
       </MediaQuery>
     </>
   );

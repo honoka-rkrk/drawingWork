@@ -1,10 +1,11 @@
 import React, { useCallback, useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 import { UserContext } from '../../../../../Other/Context/contexts';
 import CompLoginBtn from '../../Component/Btn/loginBtn';
 
 const LoginBtn: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const history = useHistory();
   const [disabled, setDisabled] = useState<boolean>(false);
   const { user } = useContext(UserContext);
 
@@ -16,22 +17,11 @@ const LoginBtn: React.FC = () => {
     }
   }, [user]);
 
-  const onClose = () => {
-    setOpen(false);
-  };
-
   const loginClick = useCallback(() => {
-    setOpen(true);
+    history.push('/login');
   }, []);
 
-  return (
-    <CompLoginBtn
-      loginClick={loginClick}
-      open={open}
-      onClose={onClose}
-      disabled={disabled}
-    />
-  );
+  return <CompLoginBtn loginClick={loginClick} disabled={disabled} />;
 };
 
 export default LoginBtn;
