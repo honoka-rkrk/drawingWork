@@ -17,7 +17,7 @@ const useStyle = makeStyles((theme: Theme) =>
       fontSize: '24px',
       backgroundColor: theme.palette.blue.second,
       color: theme.palette.white.main,
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     clockStylePhone: {
       display: 'flex',
@@ -31,7 +31,7 @@ const useStyle = makeStyles((theme: Theme) =>
       gridRow: 1,
       backgroundColor: theme.palette.blue.second,
       color: theme.palette.white.main,
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     clockStyleDangerPC: {
       display: 'flex',
@@ -43,7 +43,7 @@ const useStyle = makeStyles((theme: Theme) =>
       borderRadius: '40px',
       backgroundColor: theme.palette.red.second,
       color: theme.palette.white.main,
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     clockStyleDangerPhone: {
       display: 'flex',
@@ -57,7 +57,7 @@ const useStyle = makeStyles((theme: Theme) =>
       gridRow: 1,
       backgroundColor: theme.palette.red.second,
       color: theme.palette.white.main,
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     }
   })
 );

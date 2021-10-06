@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     headerPC: {
       color: theme.palette.darkGreen.main,
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       fontSize: '24px'
     },
     headerPhone: {
@@ -50,11 +50,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     subHeaderColorPC: {
       color: theme.palette.darkGreen.second,
-      fontSize: '18px'
+      fontSize: '18px',
+      fontFamily: 'Kosugi Maru'
     },
     subHeaderColorPhone: {
       color: theme.palette.darkGreen.second,
-      fontSize: '14px'
+      fontSize: '14px',
+      fontFamily: 'Kosugi Maru'
     },
     contentPhone: {
       padding: '1px',
@@ -95,14 +97,16 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.yellow.main,
       color: theme.palette.white.main,
       borderRadius: '10px',
-      fontSize: '24px'
+      fontSize: '24px',
+      fontFamily: 'Kosugi Maru'
     },
     stepperPhone: {
       width: '100%',
       backgroundColor: theme.palette.yellow.main,
       color: theme.palette.white.main,
       borderRadius: '10px',
-      fontSize: '14px'
+      fontSize: '14px',
+      fontFamily: 'Kosugi Maru'
     },
     moveButton: {
       color: theme.palette.white.main

@@ -17,21 +17,23 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     textStylePC: {
       color: theme.palette.darkGreen.main,
-      fontSize: '24px'
+      fontSize: '24px',
+      fontFamily: 'Kosugi Maru'
     },
     textStylePhone: {
       color: theme.palette.darkGreen.main,
-      fontSize: '14px'
+      fontSize: '14px',
+      fontFamily: 'Kosugi Maru'
     },
     textStyleMaxPC: {
       color: theme.palette.red.main,
       fontSize: '24px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     textStyleMaxPhone: {
       color: theme.palette.red.main,
       fontSize: '14px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     }
   })
 );

@@ -57,13 +57,37 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: ['monospace', 'Robotto', 'Mplus 1p', 'Josefin Sans'].join(','),
+    fontFamily: [
+      'Robotto',
+      'monospace',
+      'Mplus1p',
+      'Kosugi Maru',
+      'Josefin Sans'
+    ].join(','),
     fontSize: 14
   },
   overrides: {
     MuiTableCell: {
       root: {
         borderBottom: `2px dashed rgb(37,198,133)`
+      }
+    },
+    MuiTypography: {
+      colorTextSecondary: {
+        fontFamily: 'Kosugi Maru'
+      },
+      body1: {
+        fontFamily: 'Kosugi Maru'
+      }
+    },
+    MuiInputBase: {
+      input: {
+        fontFamily: 'Kosugi Maru'
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        fontFamily: 'Kosugi Maru'
       }
     }
   }

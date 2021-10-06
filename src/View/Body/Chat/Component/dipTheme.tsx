@@ -26,12 +26,12 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     textPC: {
       color: theme.palette.darkGreen.main,
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       fontSize: '24px'
     },
     textPhone: {
       color: theme.palette.darkGreen.main,
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       fontSize: '1em'
     }
   })

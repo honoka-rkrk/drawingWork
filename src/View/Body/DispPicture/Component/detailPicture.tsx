@@ -44,18 +44,9 @@ const useStyles = makeStyles((theme: Theme) =>
       maxHeight: '100%',
       margin: 'auto'
     },
-    button: {
-      backgroundColor: theme.palette.white.main,
-      color: theme.palette.white.main
-    },
-    iconButton: {
-      '&:hover': {
-        backgroundColor: '#ffb7db'
-      }
-    },
     title: {
       color: theme.palette.darkGreen.main,
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       fontSize: '13px'
     },
     headerPC: {
@@ -71,12 +62,12 @@ const useStyles = makeStyles((theme: Theme) =>
     subHeaderColorPC: {
       color: theme.palette.darkGreen.second,
       fontSize: '18px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     subHeaderColorPhone: {
       color: theme.palette.darkGreen.second,
       fontSize: '11px',
-      fontFamily: 'Mplus'
+      fontFamily: 'Kosugi Maru'
     },
     actionPhone: {
       padding: '1px'
@@ -103,7 +94,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     countText: {
       fontSize: '13px',
-      fontFamily: 'Mplus',
+      fontFamily: 'Kosugi Maru',
       marginTop: '10px'
     }
   })

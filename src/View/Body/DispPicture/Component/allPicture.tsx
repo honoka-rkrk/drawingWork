@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
       '&:disabled': {
         backgroundColor: theme.palette.darkGreen.disabled,
         color: theme.palette.green.main
-      }
+      },
+      fontFamily: 'Kosugi Maru'
     }
   })
 );
