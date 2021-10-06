@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import firebase, { storage, db } from '../../../../firebase';
 import moment from 'moment';
 
+import { collectionName } from '../../../../Other/Functions/constants';
 import CompUpload from '../Component/upload';
 import { UserContext } from '../../../../Other/Context/contexts';
 
@@ -62,6 +63,18 @@ const Upload: React.FC = () => {
         displayName: user.displayName,
         iconUrl: user.photoUrl,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      //カウントをデフォルトで入れる
+      const dayImagesCount = db
+        .collection('images')
+        .doc(moment().format('YYYYMMDD'))
+        .collection('image')
+        .doc(user.screenName)
+        .collection(collectionName.favoriteNum)
+        .doc(collectionName.favCounters);
+      batch.set(dayImagesCount, {
+        count: 0
       });
 
       //ユーザのイメージフォルダに入れる
