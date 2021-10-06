@@ -33,8 +33,6 @@ type AllPictureProps = {
 const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
   const { images = null, favNum = null } = props;
   const styles = useStyles();
-
-  console.log(favNum);
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
