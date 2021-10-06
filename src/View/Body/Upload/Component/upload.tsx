@@ -4,7 +4,6 @@ import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 
 import Timer from '../Container/timer';
-import ExitBtn from '../Container/exitBtn';
 import UploadCard from '../Container/uploadCard';
 import InpTitle from '../Container/inpTitle';
 import SendBtn from '../Container/sendBtn';
@@ -96,7 +95,6 @@ const Upload: React.FC<UploadProps> = (props: UploadProps) => {
           clickable={clickable}
           handleUpload={handleUpload}
         />
-        <ExitBtn />
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Box className={styles.timerDispPhone}>

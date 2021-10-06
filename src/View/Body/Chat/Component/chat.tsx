@@ -5,7 +5,6 @@ import Display from '../Container/Display/display';
 import WritingSpace from '../Container/WritingSpace/writingSpace';
 import Timer from '../Container/Timer/timer';
 import DispTheme from '../Container/dispTheme';
-import ExitBtn from '../Container/exitBtn';
 import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>
@@ -71,7 +70,6 @@ const Chat: React.FC<ChatProps> = (props: ChatProps) => {
           <Display />
         </Box>
         <WritingSpace />
-        <ExitBtn />
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Box className={styles.timerPhone}>
