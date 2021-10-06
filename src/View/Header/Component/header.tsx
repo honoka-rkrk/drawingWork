@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MenuCon from '../Container/menu';
+
+import { RootState } from '../../../Other/Store/rootReducer';
+import MenuIcons from '../Container/menu';
 import LoginOut from '../Container/loginout';
+import Exit from '../Container/exit';
 import { User } from '../../../Other/Model/user';
 
 const useStyle = makeStyles((theme: Theme) =>
@@ -19,12 +23,14 @@ const useStyle = makeStyles((theme: Theme) =>
 
 const Header: React.FC = () => {
   const styles = useStyle();
+  const isEntryInfo = useSelector((state: RootState) => state.isEntry.isEntryInfo);
   return (
     <div className={styles.root}>
       <AppBar position='static' className={styles.appBar}>
         <Toolbar>
           <LoginOut />
-          <MenuCon />
+          <MenuIcons />
+          {isEntryInfo && isEntryInfo.entryState ? <Exit /> : null}
         </Toolbar>
       </AppBar>
     </div>

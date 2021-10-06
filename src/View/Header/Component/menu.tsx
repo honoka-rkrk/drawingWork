@@ -4,18 +4,21 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MenuButton from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
+import MediaQuery from 'react-responsive';
 
 import LoginDialog from '../../Body/Home/Container/loginDialog';
 import { User } from '../../../Other/Model/user';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      flexGrow: 1
-    },
-    menuButton: {
+    menuButtonPC: {
       position: 'absolute',
       right: '2rem',
+      color: theme.palette.white.main
+    },
+    menuButtonPhone: {
+      position: 'absolute',
+      right: '0.5rem',
       color: theme.palette.white.main
     }
   })
@@ -52,14 +55,26 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   const styles = useStyle();
   return (
     <>
-      <IconButton
-        className={styles.menuButton}
-        color='inherit'
-        aria-label='menubutton'
-        onClick={handleMenu}
-      >
-        <MenuIcon />
-      </IconButton>
+      <MediaQuery query='(min-width:767px)'>
+        <IconButton
+          className={styles.menuButtonPC}
+          color='inherit'
+          aria-label='menubutton'
+          onClick={handleMenu}
+        >
+          <MenuIcon />
+        </IconButton>
+      </MediaQuery>
+      <MediaQuery query='(max-width:767px)'>
+        <IconButton
+          className={styles.menuButtonPhone}
+          color='inherit'
+          aria-label='menubutton'
+          onClick={handleMenu}
+        >
+          <MenuIcon />
+        </IconButton>
+      </MediaQuery>
       <MenuButton
         id='menu-appbar'
         anchorEl={anchorEl}

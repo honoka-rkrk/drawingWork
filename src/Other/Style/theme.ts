@@ -59,6 +59,13 @@ const theme = createTheme({
   typography: {
     fontFamily: ['monospace', 'Robotto', 'Mplus 1p', 'Josefin Sans'].join(','),
     fontSize: 14
+  },
+  overrides: {
+    MuiTableCell: {
+      root: {
+        borderBottom: `2px dashed rgb(37,198,133)`
+      }
+    }
   }
 });
 
