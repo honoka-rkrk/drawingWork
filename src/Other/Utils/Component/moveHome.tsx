@@ -9,7 +9,8 @@ const useStyle = makeStyles((theme: Theme) =>
       position: 'absolute',
       bottom: '2rem',
       right: '2rem',
-      color: theme.palette.orange.main,
+      backgroundColor: theme.palette.orange.main,
+      color: theme.palette.white.main,
       '&:hover': {
         backgroundColor: theme.palette.orange.disabled
       }
