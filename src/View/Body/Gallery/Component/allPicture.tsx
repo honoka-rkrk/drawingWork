@@ -43,7 +43,7 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
               <Box className={styles.commonPC} key={`images_${index}`}>
                 <DetailPicture
                   image={images[index]}
-                  favNum={favNum.length > 0 ? favNum[index].count : 0}
+                  favNum={favNum[index] ? favNum[index].count : 0}
                 />
               </Box>
             ))
@@ -55,7 +55,7 @@ const AllPicture: React.FC<AllPictureProps> = (props: AllPictureProps) => {
               <Box className={styles.commonPhone} key={`images_${index}`}>
                 <DetailPicture
                   image={images[index]}
-                  favNum={favNum.length > 0 ? favNum[index].count : 0}
+                  favNum={favNum[index] ? favNum[index].count : 0}
                 />
               </Box>
             ))

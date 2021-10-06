@@ -8,8 +8,8 @@ const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
       display: 'grid',
-      gridTemplateRows: '3.36% 8.4% 5.04% 80.1% 3.1%',
-      gridTemplateColumns: '10.8% 78.4% 10.8%',
+      gridTemplateRows: '3.1% 8.4% 9.3% 79.2%',
+      gridTemplateColumns: '11.2% 77.6% 11.2%',
       height: 'calc(100vh - 70px)'
     },
     rootPhone: {
@@ -20,8 +20,7 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     backgroundPC: {
       backgroundColor: theme.palette.green.main,
-      marginTop: '10px',
-      height: '718px',
+      height: '100px',
       width: '100%'
     },
     backgroundPhone: {
@@ -38,7 +37,9 @@ const Main: React.FC = () => {
     <>
       <MediaQuery query='(min-width:767px)'>
         <Box className={styles.backgroundPC}>
-          <DispPicture />
+          <Box className={styles.rootPhone}>
+            <DispPicture />
+          </Box>
         </Box>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>

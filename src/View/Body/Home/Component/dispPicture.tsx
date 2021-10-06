@@ -37,10 +37,16 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.darkGreen.main,
       fontSize: '20px'
     },
-    header: {
+    headerPC: {
       color: theme.palette.darkGreen.main,
       fontFamily: 'Mplus',
       fontSize: '24px'
+    },
+    headerPhone: {
+      padding: '1px',
+      marginTop: '15px',
+      marginLeft: '15px',
+      marginRight: '15px'
     },
     subHeaderColorPC: {
       color: theme.palette.darkGreen.second,
@@ -50,6 +56,12 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.darkGreen.second,
       fontSize: '14px'
     },
+    contentPhone: {
+      padding: '1px',
+      marginTop: '5px',
+      marginLeft: '15px',
+      marginRight: '15px'
+    },
     imgBoxPC: {
       display: 'flex',
       alignItems: 'center'
@@ -57,13 +69,13 @@ const useStyles = makeStyles((theme: Theme) =>
     inner_outerPC: {
       position: 'relative',
       width: '100%',
-      height: '500px',
+      height: '420px',
       margin: '1em 0'
     },
     inner_outerPhone: {
       position: 'relative',
       width: '100%',
-      height: '300px',
+      height: '280px',
       margin: '1em 0'
     },
     inner_photo: {
@@ -144,7 +156,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
           <Card className={styles.commonPC}>
             {image.iconUrl ? (
               <CardHeader
-                className={styles.header}
+                className={styles.headerPC}
                 avatar={<Avatar src={image.iconUrl} />}
                 action={
                   <Fab className={styles.fabPC}>
@@ -152,7 +164,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                   </Fab>
                 }
                 title={
-                  <Typography className={styles.header}>{image.title}</Typography>
+                  <Typography className={styles.headerPC}>{image.title}</Typography>
                 }
                 subheader={
                   <Typography className={styles.subHeaderColorPC}>
@@ -221,6 +233,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
           <Card className={styles.commonPhone}>
             {image.iconUrl ? (
               <CardHeader
+                className={styles.headerPhone}
                 avatar={<Avatar src={image.iconUrl} />}
                 action={
                   <Fab className={styles.fabPhone}>
@@ -236,6 +249,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
               />
             ) : (
               <CardHeader
+                className={styles.headerPhone}
                 avatar={<AccountCircle />}
                 title={image.title}
                 subheader={
@@ -245,7 +259,7 @@ const DispPicture: React.FC<DispPictureProps> = (props: DispPictureProps) => {
                 }
               />
             )}
-            <CardContent>
+            <CardContent className={styles.contentPhone}>
               <AutoPlaySwipeableViews
                 axis={'x-reverse'}
                 index={activeStep}

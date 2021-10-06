@@ -16,8 +16,9 @@ const useStyles = makeStyles(() =>
       gridRow: 2,
       gridColumn: 2
     },
-    timer: {
-      marginTop: '1em'
+    timerPC: {
+      gridRow: 2,
+      gridColumn: 2
     },
     dispPictureCommon: {
       display: 'flex',
@@ -25,7 +26,9 @@ const useStyles = makeStyles(() =>
       justifyContent: 'space-around',
       paddingTop: '0.5%',
       paddingLeft: '0.5%',
-      paddingRight: '0.5%'
+      paddingRight: '0.5%',
+      gridRow: 4,
+      gridColumn: 2
     },
     dispPictureCommonPhone: {
       display: 'flex',
@@ -46,7 +49,7 @@ const DispPicture: React.FC = () => {
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
-        <Box className={styles.timer}>
+        <Box className={styles.timerPC}>
           <Timer />
         </Box>
         <Box className={styles.dispPictureCommon}>

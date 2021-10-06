@@ -11,11 +11,13 @@ const useStyle = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: '25px',
+      borderRadius: '40px',
       width: '100%',
       height: '100%',
       fontSize: '1.5em',
-      padding: '1em'
+      padding: '1em',
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
     },
     clockStylePhone: {
       display: 'flex',
@@ -26,17 +28,19 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       padding: '1em',
       fontSize: '1em',
-      fontFamily: 'Mplus'
+      fontFamily: 'Mplus',
+      color: theme.palette.darkGreen.main
     },
     clockStyleDangerPC: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: '25px',
+      borderRadius: '40px',
       width: '100%',
       height: '100%',
       fontSize: '1.5em',
       padding: '1em',
+      fontFamily: 'Mplus',
       color: theme.palette.red.main
     },
     clockStyleDangerPhone: {

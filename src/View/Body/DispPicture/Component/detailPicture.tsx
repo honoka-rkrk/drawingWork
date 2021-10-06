@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
       width: '100%',
       height: '400px',
-      margin: '1em 0'
+      margin: '0.5em 0'
     },
     inner_outerPhone: {
       position: 'relative',
@@ -60,7 +60,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '13px'
     },
     headerPC: {
-      padding: '7px',
+      padding: '1px',
+      marginTop: '5px',
       marginLeft: '15px',
       marginRight: '15px'
     },
@@ -84,10 +85,9 @@ const useStyles = makeStyles((theme: Theme) =>
     fabPC: {
       backgroundColor: theme.palette.red.disabled,
       '&:hover': {
-        backgroundColor: theme.palette.red.second
+        backgroundColor: theme.palette.red.disabled
       },
-      marginTop: '10px',
-      marginLeft: '30px'
+      marginTop: '10px'
     },
     fabPhone: {
       backgroundColor: theme.palette.red.disabled,
@@ -127,20 +127,20 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
   } = props;
   const styles = useStyles();
 
-  console.log(isFav);
-
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
         <Card className={styles.rootPC}>
           {image.iconUrl ? (
             <CardHeader
+              className={styles.headerPC}
               avatar={<Avatar src={image.iconUrl} />}
               title={image.title}
               subheader={image.displayName}
             />
           ) : (
             <CardHeader
+              className={styles.headerPC}
               avatar={<AccountCircle />}
               title={image.title}
               subheader={image.displayName}
@@ -150,15 +150,22 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
             <img className={styles.inner_photo} src={image.imageUrl} />
           </div>
           <CardActions>
-            <IconButton
-              aria-label='add to favorites'
-              className={styles.iconButton}
+            <Fab
+              className={styles.fabPC}
+              size='small'
               onClick={handleFavClick}
               disabled={isDisabled}
+              aria-label='add to favorites'
             >
-              {isFav ? <FavoriteIcon className={styles.button} /> : <FavoriteIcon />}
-            </IconButton>
-            {favCount === 0 ? null : <Typography>{favCount}</Typography>}
+              {isFav ? (
+                <FavoriteIcon className={styles.favIconClicked} />
+              ) : (
+                <FavoriteIcon className={styles.favIcon} />
+              )}
+            </Fab>
+            {favCount === 0 ? null : (
+              <Typography className={styles.countText}>{favCount}</Typography>
+            )}
           </CardActions>
         </Card>
       </MediaQuery>
