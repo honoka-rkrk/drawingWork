@@ -7,6 +7,9 @@ import firebase, { db } from '../../../../../firebase';
 import { UserContext } from '../../../../../Other/Context/contexts';
 import CompEntryBtn from '../../Component/Btn/entryBtn';
 import { setIsEntryInfo } from '../../../../../Other/Store/isEntry';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../../../../Other/Store/rootReducer';
 
 type EntryBtnProps = {
   isMax: boolean;
@@ -21,10 +24,17 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
   const [disabled, setDisabled] = useState<boolean>(true);
   const [open, setOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const openTimeInfo = useSelector(
+    (state: RootState) => state.openTime.openTimeInfo
+  );
 
   useEffect(() => {
     const nowTime = moment();
-    const startTime = moment().startOf('day').add(20, 'hours').add(55, 'minutes');
+    const startTime = moment()
+      .startOf('day')
+      .add(openTimeInfo.hour, 'hours')
+      .add(openTimeInfo.minutes, 'minutes')
+      .subtract(5, 'minutes');
     const timerDiff = startTime.diff(nowTime, 'minutes');
     if (timerDiff > 0) {
       setOpen(false);
