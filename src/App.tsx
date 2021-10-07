@@ -47,6 +47,14 @@ const NotEntryRoute: React.FC = () => {
       {isAuthorInfo && isAuthorInfo.authorState ? (
         <Switch>
           <Route path={'/operation'} component={Operation} />
+          <Route path={['/', '/home']} exact component={Home} />
+          <Route path={'/login'} component={Login} />
+          <Route path={'/gallery'} component={Gallery} />
+          <Route path={'/inquiry'} component={Inquiry} />
+          <Route path={'/settings'} component={Settings} />
+          <Route path={'/upload'} component={Upload} />
+          <Route path={'/dispPicture'} component={DispPicture} />
+          <Redirect to='/' />
         </Switch>
       ) : (
         <Switch>
