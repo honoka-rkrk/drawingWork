@@ -96,7 +96,12 @@ const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         <MenuItem onClick={onGalleryClick} disabled={isGalleryDisabled}>
           <Typography className={styles.menuItemText}>My Gallery</Typography>
         </MenuItem>
-        {isAuthor ? <MenuItem onClick={onSettingsClick}>設定</MenuItem> : null}
+        {isAuthor ? (
+          <MenuItem onClick={onSettingsClick}>
+            {' '}
+            <Typography className={styles.menuItemText}>設定</Typography>
+          </MenuItem>
+        ) : null}
       </MenuButton>
     </>
   );

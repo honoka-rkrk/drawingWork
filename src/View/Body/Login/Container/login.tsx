@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { useHistory } from 'react-router';
 import firebase from 'firebase/app';
 import { FirebaseContext, UserContext } from '../../../../Other/Context/contexts';
@@ -8,6 +8,10 @@ const LoginDialog: React.FC = () => {
   const { auth } = useContext(FirebaseContext);
   const { setCredential } = useContext(UserContext);
   const history = useHistory();
+
+  const backClick = useCallback(() => {
+    history.push('/');
+  }, []);
 
   //react-firebaseuiのパッケージを使用、signInOptionsでプロバイダを増やせばそれに対応してログインボタンも増える。
   const uiConfig: firebaseui.auth.Config = {
@@ -36,7 +40,7 @@ const LoginDialog: React.FC = () => {
       }
     }
   };
-  return <CompLoginDialog uiConfig={uiConfig} auth={auth} />;
+  return <CompLoginDialog uiConfig={uiConfig} auth={auth} backClick={backClick} />;
 };
 
 export default LoginDialog;

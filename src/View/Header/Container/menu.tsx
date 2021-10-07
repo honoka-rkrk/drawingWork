@@ -33,7 +33,7 @@ const Menu: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      if (user.screenName === 'yoake09724211') {
+      if (user.screenName === 'rakuraku2563no1') {
         setIsAuthor(true);
       } else {
         setIsAuthor(false);
