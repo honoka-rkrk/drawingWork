@@ -16,20 +16,19 @@ const DispTheme: React.FC<DispThemeProps> = (props: DispThemeProps) => {
   const [drawTheme, setDrawTheme] = useState<string>('');
 
   const getTheme = useCallback(async () => {
+    const unmounted = false;
     const drawThemeRef = db
       .collection('drawThemes')
-      .doc(moment().format('YYYYMMDD'))
-      .collection('drawTheme');
-    await drawThemeRef.get().then((snapshot: firebase.firestore.QuerySnapshot) => {
-      snapshot.forEach((doc) => {
+      .doc(moment().format('YYYYMMDD'));
+    await drawThemeRef.get().then((doc) => {
+      if (!unmounted) {
         if (doc.exists) {
           const getData: any = doc.data();
-          console.log(getData);
           setDrawTheme(getData.drawTheme);
         } else {
-          setDrawTheme('');
+          setDrawTheme('準備中');
         }
-      });
+      }
     });
   }, [db, setDrawTheme]);
 

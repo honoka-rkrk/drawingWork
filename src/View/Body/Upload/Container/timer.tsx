@@ -2,7 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import moment, { Moment } from 'moment';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '../../../../Other/Store/rootReducer';
 import CompTimer from '../Component/timer';
 import { setIsEntryInfo } from '../../../../Other/Store/isEntry';
 
@@ -19,10 +21,15 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   const [isEnd, setIsEnd] = useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
+  const openTimeInfo = useSelector(
+    (state: RootState) => state.openTime.openTimeInfo
+  );
 
   useEffect(() => {
     const dtNow = moment().startOf('day');
-    const endHour = dtNow.add(22, 'hours');
+    const endHour = dtNow
+      .add(openTimeInfo.hour + 1, 'hours')
+      .add(openTimeInfo.minutes, 'minutes');
     const endTime = endHour.add(3, 'minutes');
     setEnd(endTime);
   }, [setEnd]);

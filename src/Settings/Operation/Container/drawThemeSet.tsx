@@ -16,8 +16,6 @@ const DrawThemeSet: React.FC = () => {
       const day = ('0' + odaiDate.getDate()).slice(-2);
       db.collection('drawThemes')
         .doc(year + month + day)
-        .collection('drawTheme')
-        .doc('theme')
         .set({
           drawTheme: drawTheme,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()

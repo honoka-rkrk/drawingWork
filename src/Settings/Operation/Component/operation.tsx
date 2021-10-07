@@ -6,9 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import ExitBtn from '../Container/exitBtn';
 
+import ExitBtn from '../Container/exitBtn';
 import DrawThemeSet from '../Container/drawThemeSet';
+import OpenTimeSet from '../Container/openTimeSet';
 
 const useStyle = makeStyles(() =>
   createStyles({
@@ -44,13 +45,7 @@ const Operation: React.FC = () => {
           <CardHeader title='設定' />
           <CardContent className={styles.cardContent}>
             <DrawThemeSet />
-            <Button
-              className={styles.button_startTime}
-              variant='outlined'
-              color='primary'
-            >
-              設定
-            </Button>
+            <OpenTimeSet />
           </CardContent>
         </Card>
       </MuiPickersUtilsProvider>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import moment, { Moment } from 'moment';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '../../../../../Other/Store/rootReducer';
 import CompTimer from '../../Component/Timer/timer';
 
 type TimerProps = {
@@ -18,12 +20,17 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   const [isEnd, setIsEnd] = useState<boolean>(false);
   const [start, setStart] = useState<Moment | null>(null);
   const history = useHistory();
+  const openTimeInfo = useSelector(
+    (state: RootState) => state.openTime.openTimeInfo
+  );
 
   //初期設定
   useEffect(() => {
     const now = moment();
     const dtNow = moment().startOf('day');
-    const startTime = dtNow.add(21, 'hours');
+    const startTime = dtNow
+      .add(openTimeInfo.hour, 'hours')
+      .add(openTimeInfo.minutes, 'minutes');
     if (now > startTime) {
       setIsStart(true);
     }
@@ -33,7 +40,9 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   useEffect(() => {
     if (!isStart) {
       const dtNow = moment().startOf('day');
-      const startTime = dtNow.add(21, 'hours');
+      const startTime = dtNow
+        .add(openTimeInfo.hour, 'hours')
+        .add(openTimeInfo.minutes, 'minutes');
       setStart(startTime);
     }
   }, [setStart]);
@@ -68,7 +77,9 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   useEffect(() => {
     if (isStart) {
       const dtNow = moment().startOf('day');
-      const endTime = dtNow.add(22, 'hours');
+      const endTime = dtNow
+        .add(openTimeInfo.hour + 1, 'hours')
+        .add(openTimeInfo.minutes, 'minutes');
       setEnd(endTime);
     }
   }, [setEnd, isStart]);
