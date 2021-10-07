@@ -12,6 +12,16 @@ import CardActions from '@material-ui/core/CardActions';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
+    card: {
+      gridRow: 2,
+      gridColumn: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
     title: {
       display: 'flex',
       justifyContent: 'center',
@@ -19,15 +29,15 @@ const useStyle = makeStyles((theme: Theme) =>
       fontFamily: 'Kosugi Maru'
     },
     button: {
-      backgroundColor: theme.palette.green.main,
+      backgroundColor: theme.palette.red.second,
       borderRadius: '4px',
       color: theme.palette.white.main,
+      fontFamily: 'Kosugi Maru',
       '&:hover': {
-        backgroundColor: theme.palette.green.second
+        backgroundColor: theme.palette.red.disabled
       },
       '&:disabled': {
-        backgroundColor: theme.palette.green.disabled,
-        color: theme.palette.green.main
+        backgroundColor: theme.palette.red.disabled
       }
     }
   })
@@ -36,15 +46,16 @@ const useStyle = makeStyles((theme: Theme) =>
 type LoginProps = {
   uiConfig: firebaseui.auth.Config;
   auth: firebase.auth.Auth | null;
+  backClick: () => void;
 };
 
 const Login: React.FC<LoginProps> = (props: LoginProps) => {
-  const { uiConfig, auth = null } = props;
+  const { uiConfig, auth = null, backClick } = props;
   const styles = useStyle();
 
   return (
     <>
-      <Card>
+      <Card className={styles.card}>
         <CardHeader
           title={
             <Typography className={styles.title}>ログイン / 新規登録</Typography>
@@ -62,7 +73,9 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
           </DialogContentText>
         </CardContent>
         <CardActions>
-          <Button className={styles.button}>戻る</Button>
+          <Button className={styles.button} onClick={backClick}>
+            戻る
+          </Button>
         </CardActions>
       </Card>
     </>
