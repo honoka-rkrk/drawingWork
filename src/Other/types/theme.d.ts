@@ -11,6 +11,7 @@ declare module '@material-ui/core/styles/createPalette' {
     darkGreen?: CstmPaletteColorOptions;
     darkBlue?: CstmPaletteColorOptions;
     white?: CstmPaletteColorOptions;
+    settings?: CstmPaletteColorOptions;
   }
   interface Palette {
     red: CstmPaletteColor;
@@ -22,6 +23,7 @@ declare module '@material-ui/core/styles/createPalette' {
     darkGreen: CstmPaletteColor;
     darkBlue: CstmPaletteColor;
     white: CstmPaletteColor;
+    settings: CstmPaletteColor;
   }
   interface CstmPaletteColorOptions {
     main: string;

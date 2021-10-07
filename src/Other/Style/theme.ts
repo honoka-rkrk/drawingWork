@@ -1,4 +1,5 @@
 import { createTheme } from '@material-ui/core/styles';
+import { settings } from 'cluster';
 
 const theme = createTheme({
   palette: {
@@ -6,7 +7,7 @@ const theme = createTheme({
       main: '#25C685'
     },
     secondary: {
-      main: '#FFFFFF'
+      main: '#C4C4C4'
     },
     red: {
       main: '#FF464F',
@@ -54,6 +55,10 @@ const theme = createTheme({
     white: {
       main: '#FFFFFF',
       second: '#E4E9F3'
+    },
+    settings: {
+      main: '#22343C',
+      second: '#30444E'
     }
   },
   typography: {
