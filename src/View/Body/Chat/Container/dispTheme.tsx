@@ -16,18 +16,15 @@ const DispTheme: React.FC<DispThemeProps> = (props: DispThemeProps) => {
   const [drawTheme, setDrawTheme] = useState<string>('');
 
   const getTheme = useCallback(async () => {
-    const unmounted = false;
     const drawThemeRef = db
       .collection('drawThemes')
       .doc(moment().format('YYYYMMDD'));
     await drawThemeRef.get().then((doc) => {
-      if (!unmounted) {
-        if (doc.exists) {
-          const getData: any = doc.data();
-          setDrawTheme(getData.drawTheme);
-        } else {
-          setDrawTheme('準備中');
-        }
+      if (doc.exists) {
+        const getData: any = doc.data();
+        setDrawTheme(getData.drawTheme);
+      } else {
+        setDrawTheme('準備中');
       }
     });
   }, [db, setDrawTheme]);

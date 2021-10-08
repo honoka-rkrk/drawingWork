@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import firebase, { db } from '../../../firebase';
-import CompOpenTimeSet from '../Component/openTimeSet';
+import CompTimeLimist from '../Component/timeLimit';
 
-const OpenTimeSet: React.FC = () => {
-  const [openTimeDate, setOpenTimeDate] = useState<Date>(new Date());
+const TimeLimit: React.FC = () => {
   const [hour, setHour] = useState<string>('');
   const [minutes, setMinutes] = useState<string>('');
   const [hourItem, setHourItem] = useState<Array<string>>([]);
@@ -13,24 +12,14 @@ const OpenTimeSet: React.FC = () => {
 
   //DB登録処理
   const handleOnSubmit = () => {
-    if (
-      openTimeDate &&
-      (hour || Number(hour) == 0) &&
-      (minutes || Number(minutes) == 0)
-    ) {
-      const year = openTimeDate.getFullYear().toString();
-      const month = ('0' + (openTimeDate.getMonth() + 1)).slice(-2);
-      const day = ('0' + openTimeDate.getDate()).slice(-2);
-      db.collection('openTimes')
-        .doc(year + month + day)
-        .set({
-          hour: hour,
-          minutes: minutes,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
+    if ((hour || Number(hour) == 0) && (minutes || Number(minutes) == 0)) {
+      const calcMinutes = Number(hour) * 60 + Number(minutes);
+      db.collection('timeLimit').doc('timeLimitMinutes').set({
+        minutes: calcMinutes,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
       setHour('');
       setMinutes('');
-      setOpenTimeDate(new Date());
     } else {
       console.log('err');
       setSubmitError(true);
@@ -71,15 +60,8 @@ const OpenTimeSet: React.FC = () => {
     setMinutes(event.target.value as string);
   };
 
-  //開催時間の日付変更されたとき
-  const handleDateChange = (date: Date) => {
-    setOpenTimeDate(date);
-  };
-
   return (
-    <CompOpenTimeSet
-      openTimeDate={openTimeDate}
-      handleDateChange={handleDateChange}
+    <CompTimeLimist
       hour={hour}
       minutes={minutes}
       handleHourChange={handleHourChange}
@@ -92,4 +74,4 @@ const OpenTimeSet: React.FC = () => {
   );
 };
 
-export default OpenTimeSet;
+export default TimeLimit;

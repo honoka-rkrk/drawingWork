@@ -16,15 +16,19 @@ const Timer: React.FC = () => {
   const openTimeInfo = useSelector(
     (state: RootState) => state.openTime.openTimeInfo
   );
+  const timeLimitInfo = useSelector(
+    (state: RootState) => state.timeLimit.timeLimitInfo
+  );
 
   useEffect(() => {
     const dtNow = moment().startOf('day');
     const endHour = dtNow
-      .add(openTimeInfo.hour + 1, 'hours')
-      .add(openTimeInfo.minutes, 'minutes');
+      .add(openTimeInfo.hour, 'hours')
+      .add(openTimeInfo.minutes, 'minutes')
+      .add(timeLimitInfo.minutes);
     const endTime = endHour.add(6, 'minutes');
     setEnd(endTime);
-  }, [setEnd]);
+  }, [setEnd, openTimeInfo, timeLimitInfo]);
 
   const updateTime = useCallback(async () => {
     const dtNow = moment();
