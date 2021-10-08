@@ -5,6 +5,22 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+const useStyle = makeStyles((theme: Theme) =>
+  createStyles({
+    text: {
+      fontFamily: 'Kosugi Maru'
+    },
+    okButton: {
+      color: theme.palette.red.main
+    },
+    ngButton: {
+      color: theme.palette.green.main
+    }
+  })
+);
 
 type InfDialogProps = {
   infOpen: boolean;
@@ -15,6 +31,7 @@ type InfDialogProps = {
 };
 
 const InfDialog: React.FC<InfDialogProps> = (props: InfDialogProps) => {
+  const styles = useStyle();
   const {
     infOpen = false,
     title = '',
@@ -25,13 +42,15 @@ const InfDialog: React.FC<InfDialogProps> = (props: InfDialogProps) => {
 
   return (
     <Dialog open={infOpen}>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle>
+        {<Typography className={styles.text}>{title}</Typography>}
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText>{msgElm}</DialogContentText>
+        {<Typography className={styles.text}>{msgElm}</Typography>}
       </DialogContent>
       <DialogActions>
         <Button onClick={clickOK} color='primary' autoFocus>
-          {txtOK}
+          <Typography className={styles.text}>{txtOK}</Typography>
         </Button>
       </DialogActions>
     </Dialog>

@@ -5,6 +5,22 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+const useStyle = makeStyles((theme: Theme) =>
+  createStyles({
+    text: {
+      fontFamily: 'Kosugi Maru'
+    },
+    okButton: {
+      color: theme.palette.red.main
+    },
+    ngButton: {
+      color: theme.palette.green.main
+    }
+  })
+);
 
 type CfmDialogProps = {
   cfmOpen: boolean;
@@ -17,6 +33,7 @@ type CfmDialogProps = {
 };
 
 const CfmDialog: React.FC<CfmDialogProps> = (props: CfmDialogProps) => {
+  const styles = useStyle();
   const {
     cfmOpen = false,
     title = '',
@@ -29,16 +46,20 @@ const CfmDialog: React.FC<CfmDialogProps> = (props: CfmDialogProps) => {
 
   return (
     <Dialog open={cfmOpen}>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle className={styles.text}>
+        {<Typography className={styles.text}>{title}</Typography>}
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText>{msgElm}</DialogContentText>
+        <DialogContentText>
+          {<Typography className={styles.text}>{msgElm}</Typography>}
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={clickOK} color='primary' autoFocus>
-          {txtOK}
+        <Button onClick={clickOK} autoFocus className={styles.okButton}>
+          <Typography className={styles.text}>{txtOK}</Typography>
         </Button>
-        <Button onClick={clickNG} color='primary' autoFocus>
-          {txtNG}
+        <Button onClick={clickNG} autoFocus className={styles.ngButton}>
+          <Typography className={styles.text}>{txtNG}</Typography>
         </Button>
       </DialogActions>
     </Dialog>
