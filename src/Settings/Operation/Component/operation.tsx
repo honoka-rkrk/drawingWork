@@ -10,6 +10,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import ExitBtn from '../Container/exitBtn';
 import DrawThemeSet from '../Container/drawThemeSet';
 import OpenTimeSet from '../Container/openTimeSet';
+import TimeLimit from '../Container/timeLimit';
 
 const useStyle = makeStyles(() =>
   createStyles({
@@ -46,6 +47,7 @@ const Operation: React.FC = () => {
           <CardContent className={styles.cardContent}>
             <DrawThemeSet />
             <OpenTimeSet />
+            <TimeLimit />
           </CardContent>
         </Card>
       </MuiPickersUtilsProvider>

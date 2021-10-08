@@ -7,10 +7,12 @@ import CompMsgDisp from '../Component/msgDisp';
 
 type MsgDispProps = {
   isMax: boolean;
+  nextHour: number;
+  nextMinutes: number;
 };
 
 const MsgDisp: React.FC<MsgDispProps> = (props: MsgDispProps) => {
-  const { isMax } = props;
+  const { isMax, nextHour, nextMinutes } = props;
   const [msg, setMsg] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const openTimeInfo = useSelector(
@@ -26,15 +28,27 @@ const MsgDisp: React.FC<MsgDispProps> = (props: MsgDispProps) => {
       .subtract(5, 'minutes');
     const timerDiff = startTime.diff(nowTime, 'minutes');
     if (timerDiff > 0) {
-      setMsg('開催は２１時からです。開催時刻までお待ちください。');
+      setMsg(
+        '開催は' +
+          openTimeInfo.hour +
+          '時' +
+          openTimeInfo.minutes +
+          '分からです。開催時刻までお待ちください。'
+      );
       setOpen(false);
     } else if (timerDiff < -15) {
-      setMsg('本日の受付は終了しました。次の開催は明日の21時からです。');
+      setMsg(
+        '本日の受付は終了しました。次の開催は明日の' +
+          nextHour +
+          '時' +
+          nextMinutes +
+          '分からです。'
+      );
       setOpen(false);
     } else {
       setOpen(true);
     }
-  }, [setMsg, setOpen]);
+  }, [setMsg, setOpen, openTimeInfo, nextHour, nextMinutes]);
 
   useEffect(() => {
     if (open) {

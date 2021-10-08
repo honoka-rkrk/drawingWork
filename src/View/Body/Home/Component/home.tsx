@@ -79,16 +79,23 @@ const useStyle = makeStyles((theme: Theme) =>
 type HomeProps = {
   isMax: boolean;
   setIsMax: React.Dispatch<React.SetStateAction<boolean>>;
+  nextHour: number;
+  nextMinutes: number;
 };
 
 const Home: React.FC<HomeProps> = (props: HomeProps) => {
-  const { isMax = false, setIsMax = () => undefined } = props;
+  const {
+    isMax = false,
+    setIsMax = () => undefined,
+    nextHour = 0,
+    nextMinutes = 0
+  } = props;
   const styles = useStyle();
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
         <Box className={styles.msgDisp}>
-          <MsgDisp isMax={isMax} />
+          <MsgDisp isMax={isMax} nextHour={nextHour} nextMinutes={nextMinutes} />
         </Box>
         <Box className={styles.dispCommonPC}>
           <Box className={styles.picDispPC}>
@@ -106,7 +113,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Box className={styles.msgDisp}>
-          <MsgDisp isMax={isMax} />
+          <MsgDisp isMax={isMax} nextHour={nextHour} nextMinutes={nextMinutes} />
         </Box>
         <Box className={styles.picDispPhone}>
           <DispPicture />

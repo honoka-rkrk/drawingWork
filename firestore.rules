@@ -15,11 +15,16 @@ service cloud.firestore {
     	&& 'drawTheme' in drawTheme && drawTheme.drawTheme is string
       && 'createdAt' in drawTheme && drawTheme.createdAt is timestamp;
   }
-  function isValidOpenTime(openTime){
+   function isValidOpenTime(openTime){
   	return openTime.size() == 3
     	&& 'hour' in openTime && openTime.hour is int
       && 'minutes' in openTime && openTime.minutes is int
       && 'createdAt' in openTime && openTime.createdAt is timestamp;
+  }
+  function isValidTimeLimit(timeLimit){
+  	return timeLimit.size() == 2
+      && 'minutes' in timeLimit && timeLimit.minutes is int
+      && 'createdAt' in timeLimit && timeLimit.createdAt is timestamp;
   }
 	function isValidEntryMembers(entryMember){
   	return entryMember.size() == 2
@@ -98,6 +103,11 @@ service cloud.firestore {
       allow read;
       allow create: if isValidOpenTime(request.resource.data);
       allow update: if isValidOpenTime(request.resource.data);
+    }
+    match/timeLimit/{timeLimitId}{
+      allow read;
+      allow create: if isValidTimeLimit(request.resource.data);
+      allow update: if isValidTimeLimit(request.resource.data);
     }
     match/entryMembers/{entryMembersId}{
     	allow read;

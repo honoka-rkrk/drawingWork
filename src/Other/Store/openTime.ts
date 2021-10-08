@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Moment } from 'moment';
 
 export type openTimeInfo = {
   hour: number;

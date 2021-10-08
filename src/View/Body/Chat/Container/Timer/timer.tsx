@@ -23,6 +23,9 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
   const openTimeInfo = useSelector(
     (state: RootState) => state.openTime.openTimeInfo
   );
+  const timeLimitInfo = useSelector(
+    (state: RootState) => state.timeLimit.timeLimitInfo
+  );
 
   //初期設定
   useEffect(() => {
@@ -34,9 +37,9 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
     if (now > startTime) {
       setIsStart(true);
     }
-  }, []);
+  }, [openTimeInfo]);
 
-  //21時からのタイマー
+  //開始時刻になってからのタイマー
   useEffect(() => {
     if (!isStart) {
       const dtNow = moment().startOf('day');
@@ -45,7 +48,7 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
         .add(openTimeInfo.minutes, 'minutes');
       setStart(startTime);
     }
-  }, [setStart]);
+  }, [setStart, openTimeInfo]);
 
   const updateStartTime = useCallback(async () => {
     if (!isStart) {
@@ -73,16 +76,17 @@ const Timer: React.FC<TimerProps> = (props: TimerProps) => {
     }
   }, [updateStartTime, isStart]);
 
-  //21時からのタイマー
+  //開始時刻になってからのタイマー
   useEffect(() => {
     if (isStart) {
       const dtNow = moment().startOf('day');
       const endTime = dtNow
-        .add(openTimeInfo.hour + 1, 'hours')
-        .add(openTimeInfo.minutes, 'minutes');
+        .add(openTimeInfo.hour, 'hours')
+        .add(openTimeInfo.minutes, 'minutes')
+        .add(timeLimitInfo.minutes, 'minutes');
       setEnd(endTime);
     }
-  }, [setEnd, isStart]);
+  }, [setEnd, isStart, openTimeInfo, timeLimitInfo]);
 
   const updateTime = useCallback(async () => {
     if (isStart) {

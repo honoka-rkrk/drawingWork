@@ -43,7 +43,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
     } else {
       setOpen(true);
     }
-  }, [setOpen]);
+  }, [setOpen, openTimeInfo]);
 
   useEffect(() => {
     if (user) {
