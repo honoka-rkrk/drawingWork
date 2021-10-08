@@ -83,6 +83,12 @@ const theme = createTheme({
       },
       body1: {
         fontFamily: 'Kosugi Maru'
+      },
+      body2: {
+        fontFamily: 'Kosugi Maru'
+      },
+      caption: {
+        fontFamily: 'Kosugi Maru'
       }
     },
     MuiInputBase: {
@@ -91,6 +97,11 @@ const theme = createTheme({
       }
     },
     MuiFormLabel: {
+      root: {
+        fontFamily: 'Kosugi Maru'
+      }
+    },
+    MuiMenuItem: {
       root: {
         fontFamily: 'Kosugi Maru'
       }

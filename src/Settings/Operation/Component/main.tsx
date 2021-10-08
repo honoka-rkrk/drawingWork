@@ -14,14 +14,22 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     rootPhone: {
       display: 'grid',
-      gridTemplateRows: '10% 80% 10%',
-      gridTemplateColumns: '10% 80% 10%',
-      height: 'calc(100vh - 70px)'
+      gridTemplateRows: '5% 80% 10%',
+      gridTemplateColumns: '6% 88% 6%',
+      height: '919px'
     },
     background: {
       with: '100%',
-      height: '100vh',
+      height: '919px',
       backgroundColor: theme.palette.settings.main
+    },
+    background2: {
+      gridRow: '2',
+      gridColumn: '2',
+      backgroundColor: theme.palette.darkBlue.main,
+      borderRadius: '25px',
+      display: 'flex',
+      flexFlow: 'column'
     }
   })
 );
@@ -40,7 +48,9 @@ const Main: React.FC = () => {
       <MediaQuery query='(max-width:767px)'>
         <Box className={styles.background}>
           <Box className={styles.rootPhone}>
-            <Operation />
+            <Box className={styles.background2}>
+              <Operation />
+            </Box>
           </Box>
         </Box>
       </MediaQuery>
