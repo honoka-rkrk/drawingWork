@@ -13,42 +13,22 @@ import Typography from '@material-ui/core/Typography';
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     openTime_setDate: {
-      gridRow: '4',
-      gridColumn: '2',
-      display: 'grid',
-      gridTemplateRows: '100%',
-      gridTemplateColumns: '50% 50%'
-    },
-    openTime_setDatePhone: {
       display: 'grid',
       gridTemplateRows: '100%',
       gridTemplateColumns: '50% 50%'
     },
     openTime_selectHour: {
       gridRow: '1',
-      gridColumn: '1'
-    },
-    openTime_selectHourPhone: {
-      gridRow: '1',
       gridColumn: '1',
       marginRight: '15px'
     },
     openTime_selectMinutes: {
       gridRow: '1',
-      gridColumn: '2'
-    },
-    openTime_selectMinutesPhone: {
-      gridRow: '1',
       gridColumn: '2',
       marginLeft: '15px'
     },
-    openTime_date: {
-      gridRow: '4',
-      gridColumn: '4'
-    },
-    openTime_button: {
-      gridRow: '4',
-      gridColumn: '6'
+    datePicker: {
+      marginTop: '25px'
     },
     button: {
       marginLeft: '190px',
@@ -113,13 +93,16 @@ const OpenTimeSet: React.FC<OpenTimeSetProps> = (props: OpenTimeSetProps) => {
         <Box className={styles.openTime_setDate}>
           <Box className={styles.openTime_selectHour}>
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>時間</InputLabel>
+              <InputLabel id='demo-simple-select-label' color='secondary'>
+                時間
+              </InputLabel>
               <Select
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 value={hour}
                 label='Age'
                 onChange={handleHourChange}
+                color='secondary'
               >
                 {hourItem.map((item, index) => {
                   return (
@@ -133,18 +116,21 @@ const OpenTimeSet: React.FC<OpenTimeSetProps> = (props: OpenTimeSetProps) => {
           </Box>
           <Box className={styles.openTime_selectMinutes}>
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>分</InputLabel>
+              <InputLabel id='demo-simple-select-label' color='secondary'>
+                分
+              </InputLabel>
               <Select
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 value={minutes}
                 label='Age'
                 onChange={handleMinutesChange}
+                color='secondary'
               >
                 {minutesItem.map((item, index) => {
                   return (
                     <MenuItem value={index} key={`minutesItem_${index}`}>
-                      <Typography className={styles.text}>{item}</Typography>
+                      {item}
                     </MenuItem>
                   );
                 })}
@@ -153,8 +139,8 @@ const OpenTimeSet: React.FC<OpenTimeSetProps> = (props: OpenTimeSetProps) => {
           </Box>
         </Box>
         <KeyboardDatePicker
+          className={styles.datePicker}
           disableToolbar
-          className={styles.openTime_date}
           variant='inline'
           format='yyyy/MM/dd'
           minDate={new Date()}
@@ -163,21 +149,17 @@ const OpenTimeSet: React.FC<OpenTimeSetProps> = (props: OpenTimeSetProps) => {
           label='日付'
           value={openTimeDate}
           onChange={(date: any) => handleDateChange(date)}
+          color='secondary'
           invalidDateMessage='無効な形式です'
           minDateMessage='昨日以前の日付を指定することはできません'
         />
-        <Button
-          className={styles.openTime_button}
-          variant='outlined'
-          color='primary'
-          onClick={handleOnSubmit}
-        >
-          設定
+        <Button className={styles.button} onClick={handleOnSubmit}>
+          <Typography className={styles.text}> 設定</Typography>
         </Button>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
-        <Box className={styles.openTime_setDatePhone}>
-          <Box className={styles.openTime_selectHourPhone}>
+        <Box className={styles.openTime_setDate}>
+          <Box className={styles.openTime_selectHour}>
             <FormControl fullWidth>
               <InputLabel id='demo-simple-select-label' color='secondary'>
                 時間
@@ -200,7 +182,7 @@ const OpenTimeSet: React.FC<OpenTimeSetProps> = (props: OpenTimeSetProps) => {
               </Select>
             </FormControl>
           </Box>
-          <Box className={styles.openTime_selectMinutesPhone}>
+          <Box className={styles.openTime_selectMinutes}>
             <FormControl fullWidth>
               <InputLabel id='demo-simple-select-label' color='secondary'>
                 分
@@ -226,7 +208,6 @@ const OpenTimeSet: React.FC<OpenTimeSetProps> = (props: OpenTimeSetProps) => {
         </Box>
         <KeyboardDatePicker
           disableToolbar
-          className={styles.openTime_date}
           variant='inline'
           format='yyyy/MM/dd'
           minDate={new Date()}

@@ -8,18 +8,6 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    odai_title: {
-      gridRow: '2',
-      gridColumn: '2'
-    },
-    odai_date: {
-      gridRow: '2',
-      gridColumn: '4'
-    },
-    button_odai: {
-      gridRow: '2',
-      gridColumn: '6'
-    },
     button: {
       marginLeft: '190px',
       width: '20%',
@@ -71,8 +59,7 @@ const DrawThemeSet: React.FC<DrawThemeSetProps> = (props: DrawThemeSetProps) => 
             type='text'
             autoComplete='current-password'
             variant='outlined'
-            color='primary'
-            className={styles.odai_title}
+            color='secondary'
             onChange={handleContentChange}
             value={drawTheme}
             error
@@ -85,15 +72,14 @@ const DrawThemeSet: React.FC<DrawThemeSetProps> = (props: DrawThemeSetProps) => 
             type='text'
             autoComplete='current-password'
             variant='outlined'
-            color='primary'
-            className={styles.odai_title}
+            color='secondary'
             onChange={handleContentChange}
             value={drawTheme}
           />
         )}
         <KeyboardDatePicker
           disableToolbar
-          className={styles.odai_date}
+          color='secondary'
           variant='inline'
           format='yyyy/MM/dd'
           minDate={new Date()}
@@ -105,13 +91,8 @@ const DrawThemeSet: React.FC<DrawThemeSetProps> = (props: DrawThemeSetProps) => 
           invalidDateMessage='無効な形式です'
           minDateMessage='昨日以前の日付を指定することはできません'
         />
-        <Button
-          className={styles.button_odai}
-          variant='outlined'
-          color='primary'
-          onClick={handleOnSubmit}
-        >
-          設定
+        <Button className={styles.button} onClick={handleOnSubmit}>
+          <Typography className={styles.text}> 設定</Typography>
         </Button>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
@@ -142,7 +123,6 @@ const DrawThemeSet: React.FC<DrawThemeSetProps> = (props: DrawThemeSetProps) => 
         )}
         <KeyboardDatePicker
           disableToolbar
-          className={styles.odai_date}
           variant='inline'
           format='yyyy/MM/dd'
           minDate={new Date()}
