@@ -42,8 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.red.disabled
       },
       '&:disabled': {
-        backgroundColor: theme.palette.red.disabled,
-        color: theme.palette.white.main
+        backgroundColor: theme.palette.red.disabled
       }
     }
   })

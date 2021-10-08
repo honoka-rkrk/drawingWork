@@ -25,7 +25,7 @@ const Timer: React.FC = () => {
     const endHour = dtNow
       .add(openTimeInfo.hour, 'hours')
       .add(openTimeInfo.minutes, 'minutes')
-      .add(timeLimitInfo.minutes);
+      .add(timeLimitInfo.minutes, 'minutes');
     const endTime = endHour.add(6, 'minutes');
     setEnd(endTime);
   }, [setEnd, openTimeInfo, timeLimitInfo]);
