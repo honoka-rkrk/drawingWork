@@ -8,13 +8,13 @@ const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
       display: 'grid',
-      gridTemplateRows: '10% 80% 10%',
-      gridTemplateColumns: '10% 80% 10%',
+      gridTemplateRows: '4.3% 39.13% 56.57%',
+      gridTemplateColumns: '11.34% 77.32% 11.34%',
       height: 'calc(100vh - 70px)'
     },
     rootPhone: {
       display: 'grid',
-      gridTemplateRows: '5% 80% 10%',
+      gridTemplateRows: '5% 85% 10%',
       gridTemplateColumns: '6% 88% 6%',
       height: '919px'
     },
@@ -23,7 +23,15 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '919px',
       backgroundColor: theme.palette.settings.main
     },
-    background2: {
+    background2PC: {
+      gridRow: '2',
+      gridColumn: '2',
+      with: '100%',
+      backgroundColor: theme.palette.darkBlue.main,
+      borderRadius: '25px',
+      display: 'flex'
+    },
+    background2Phone: {
       gridRow: '2',
       gridColumn: '2',
       backgroundColor: theme.palette.darkBlue.main,
@@ -41,14 +49,16 @@ const Main: React.FC = () => {
       <MediaQuery query='(min-width:767px)'>
         <Box className={styles.background}>
           <Box className={styles.rootPC}>
-            <Operation />
+            <Box className={styles.background2PC}>
+              <Operation />
+            </Box>
           </Box>
         </Box>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
         <Box className={styles.background}>
           <Box className={styles.rootPhone}>
-            <Box className={styles.background2}>
+            <Box className={styles.background2Phone}>
               <Operation />
             </Box>
           </Box>

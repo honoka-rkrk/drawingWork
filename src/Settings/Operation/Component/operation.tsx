@@ -16,40 +16,61 @@ import TimeLimit from '../Container/timeLimit';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
-    card: {
-      gridRow: '2',
-      gridColumn: '2'
+    cardPCTheme: {
+      backgroundColor: theme.palette.yellow.main,
+      height: '80%',
+      width: '312px',
+      margin: 'auto',
+      borderRadius: '40px'
     },
     cardPhoneTheme: {
       width: '90%',
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      marginTop: '30px',
+      margin: 'auto',
       borderRadius: '40px',
       backgroundColor: theme.palette.yellow.main
     },
+    cardPCOpenHour: {
+      backgroundColor: theme.palette.green.second,
+      height: '80%',
+      width: '312px',
+      margin: 'auto',
+      borderRadius: '40px'
+    },
     cardPhoneOpenHour: {
       width: '90%',
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      marginTop: '30px',
+      margin: 'auto',
       borderRadius: '40px',
       backgroundColor: theme.palette.green.second
     },
+    cardPCTimeLimit: {
+      backgroundColor: theme.palette.red.main,
+      height: '80%',
+      width: '312px',
+      margin: 'auto',
+      borderRadius: '40px'
+    },
     cardPhoneTimeLimit: {
       width: '90%',
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      marginTop: '30px',
+      margin: 'auto',
       marginBottom: '30px',
       borderRadius: '40px',
       backgroundColor: theme.palette.red.main
+    },
+    headerPC: {
+      padding: '1px',
+      marginTop: '10px'
     },
     headerPhone: {
       padding: '1px',
       marginTop: '10px'
     },
-    title: {
+    titlePC: {
+      fontFamily: 'Kosugi Maru',
+      color: theme.palette.white.second,
+      textAlign: 'center',
+      fontSize: '20px'
+    },
+    titlePhone: {
       fontFamily: 'Kosugi Maru',
       color: theme.palette.white.second,
       textAlign: 'center'
@@ -60,6 +81,11 @@ const useStyle = makeStyles((theme: Theme) =>
       display: 'grid',
       gridTemplateColumns: '2% 30% 3% 30% 3% 30% 2%',
       gridTemplateRows: '2% 30% 3% 30% 3% 30% 2%'
+    },
+    cardContentPC: {
+      display: 'flex',
+      flexFlow: 'column',
+      padding: '20px'
     },
     cardContentPhone: {
       display: 'flex',
@@ -84,11 +110,30 @@ const Operation: React.FC = () => {
     <>
       <MediaQuery query='(min-width:767px)'>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Card className={styles.card}>
-            <CardHeader title='設定' />
-            <CardContent className={styles.cardContent}>
+          <Card className={styles.cardPCTheme}>
+            <CardHeader
+              className={styles.headerPC}
+              title={<Typography className={styles.titlePC}>お題</Typography>}
+            />
+            <CardContent className={styles.cardContentPC}>
               <DrawThemeSet />
+            </CardContent>
+          </Card>
+          <Card className={styles.cardPCOpenHour}>
+            <CardHeader
+              className={styles.headerPC}
+              title={<Typography className={styles.titlePC}>開始時間</Typography>}
+            />
+            <CardContent className={styles.cardContentPC}>
               <OpenTimeSet />
+            </CardContent>
+          </Card>
+          <Card className={styles.cardPCTimeLimit}>
+            <CardHeader
+              className={styles.headerPC}
+              title={<Typography className={styles.titlePC}>制限時間</Typography>}
+            />
+            <CardContent className={styles.cardContentPC}>
               <TimeLimit />
             </CardContent>
           </Card>
@@ -100,7 +145,7 @@ const Operation: React.FC = () => {
           <Card className={styles.cardPhoneTheme}>
             <CardHeader
               className={styles.headerPhone}
-              title={<Typography className={styles.title}>お題</Typography>}
+              title={<Typography className={styles.titlePhone}>お題</Typography>}
             />
             <CardContent className={styles.cardContentPhone}>
               <DrawThemeSet />
@@ -109,7 +154,7 @@ const Operation: React.FC = () => {
           <Card className={styles.cardPhoneOpenHour}>
             <CardHeader
               className={styles.headerPhone}
-              title={<Typography className={styles.title}>開始時刻</Typography>}
+              title={<Typography className={styles.titlePhone}>開始時刻</Typography>}
             />
             <CardContent className={styles.cardContentPhone}>
               <OpenTimeSet />
@@ -118,7 +163,7 @@ const Operation: React.FC = () => {
           <Card className={styles.cardPhoneTimeLimit}>
             <CardHeader
               className={styles.headerPhone}
-              title={<Typography className={styles.title}>制限時間</Typography>}
+              title={<Typography className={styles.titlePhone}>制限時間</Typography>}
             />
             <CardContent className={styles.cardContentPhone}>
               <TimeLimit />

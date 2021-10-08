@@ -12,8 +12,6 @@ import Typography from '@material-ui/core/Typography';
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     openTime_setDate: {
-      gridRow: '6',
-      gridColumn: '2',
       display: 'grid',
       gridTemplateRows: '100%',
       gridTemplateColumns: '50% 50%'
@@ -26,7 +24,8 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     openTime_selectHour: {
       gridRow: '1',
-      gridColumn: '1'
+      gridColumn: '1',
+      marginRight: '15px'
     },
     openTime_selectHourPhone: {
       gridRow: '1',
@@ -35,7 +34,9 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     openTime_selectMinutes: {
       gridRow: '1',
-      gridColumn: '2'
+      gridColumn: '2',
+      marginRight: '15px',
+      marginBottom: '80px'
     },
     openTime_selectMinutesPhone: {
       gridRow: '1',
@@ -105,13 +106,16 @@ const TimeLimit: React.FC<TimeLimitProps> = (props: TimeLimitProps) => {
         <Box className={styles.openTime_setDate}>
           <Box className={styles.openTime_selectHour}>
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>時間</InputLabel>
+              <InputLabel id='demo-simple-select-label' color='secondary'>
+                時間
+              </InputLabel>
               <Select
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 value={hour}
                 label='Age'
                 onChange={handleHourChange}
+                color='secondary'
               >
                 {hourItem.map((item, index) => {
                   return (
@@ -125,13 +129,16 @@ const TimeLimit: React.FC<TimeLimitProps> = (props: TimeLimitProps) => {
           </Box>
           <Box className={styles.openTime_selectMinutes}>
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>分</InputLabel>
+              <InputLabel id='demo-simple-select-label' color='secondary'>
+                分
+              </InputLabel>
               <Select
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 value={minutes}
                 label='Age'
                 onChange={handleMinutesChange}
+                color='secondary'
               >
                 {minutesItem.map((item, index) => {
                   return (
@@ -144,13 +151,8 @@ const TimeLimit: React.FC<TimeLimitProps> = (props: TimeLimitProps) => {
             </FormControl>
           </Box>
         </Box>
-        <Button
-          className={styles.openTime_button}
-          variant='outlined'
-          color='primary'
-          onClick={handleOnSubmit}
-        >
-          設定
+        <Button className={styles.button} onClick={handleOnSubmit}>
+          <Typography className={styles.text}> 設定</Typography>
         </Button>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
