@@ -16,11 +16,11 @@ const useStyle = makeStyles((theme: Theme) =>
       display: 'grid',
       gridTemplateRows: '5% 85% 10%',
       gridTemplateColumns: '6% 88% 6%',
-      height: '919px'
+      height: '1166px'
     },
     background: {
       with: '100%',
-      height: '919px',
+      height: '1166px',
       backgroundColor: theme.palette.settings.main
     },
     background2PC: {

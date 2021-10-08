@@ -81,6 +81,7 @@ type HomeProps = {
   setIsMax: React.Dispatch<React.SetStateAction<boolean>>;
   nextHour: number;
   nextMinutes: number;
+  peopleLimit: number;
 };
 
 const Home: React.FC<HomeProps> = (props: HomeProps) => {
@@ -88,7 +89,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
     isMax = false,
     setIsMax = () => undefined,
     nextHour = 0,
-    nextMinutes = 0
+    nextMinutes = 0,
+    peopleLimit = 0
   } = props;
   const styles = useStyle();
   return (
@@ -103,7 +105,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
           </Box>
           <Box className={styles.buttonBoxPC}>
             <Box className={styles.entryPC}>
-              <EntryBtn isMax={isMax} setIsMax={setIsMax} />
+              <EntryBtn
+                isMax={isMax}
+                setIsMax={setIsMax}
+                peopleLimit={peopleLimit}
+              />
             </Box>
             <Box className={styles.loginPC}>
               <LoginBtn />
@@ -119,7 +125,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
           <DispPicture />
         </Box>
         <Box className={styles.entryPhone}>
-          <EntryBtn isMax={isMax} setIsMax={setIsMax} />
+          <EntryBtn isMax={isMax} setIsMax={setIsMax} peopleLimit={peopleLimit} />
         </Box>
         <Box className={styles.loginPhone}>
           <LoginBtn />

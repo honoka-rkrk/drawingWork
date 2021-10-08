@@ -3,7 +3,6 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MediaQuery from 'react-responsive';
@@ -13,6 +12,7 @@ import ExitBtn from '../Container/exitBtn';
 import DrawThemeSet from '../Container/drawThemeSet';
 import OpenTimeSet from '../Container/openTimeSet';
 import TimeLimit from '../Container/timeLimit';
+import PeopleLimit from '../Container/peopleLimit';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,9 +52,21 @@ const useStyle = makeStyles((theme: Theme) =>
     cardPhoneTimeLimit: {
       width: '90%',
       margin: 'auto',
-      marginBottom: '30px',
       borderRadius: '40px',
       backgroundColor: theme.palette.red.main
+    },
+    cardPCPeopleLimit: {
+      backgroundColor: theme.palette.yellow.main,
+      height: '80%',
+      width: '312px',
+      margin: 'auto',
+      borderRadius: '40px'
+    },
+    cardPhonePeopleLimit: {
+      width: '90%',
+      margin: 'auto',
+      borderRadius: '40px',
+      backgroundColor: theme.palette.yellow.main
     },
     headerPC: {
       padding: '1px',
@@ -137,6 +149,15 @@ const Operation: React.FC = () => {
               <TimeLimit />
             </CardContent>
           </Card>
+          <Card className={styles.cardPCPeopleLimit}>
+            <CardHeader
+              className={styles.headerPC}
+              title={<Typography className={styles.titlePC}>制限人数</Typography>}
+            />
+            <CardContent className={styles.cardContentPC}>
+              <PeopleLimit />
+            </CardContent>
+          </Card>
         </MuiPickersUtilsProvider>
         <ExitBtn />
       </MediaQuery>
@@ -167,6 +188,15 @@ const Operation: React.FC = () => {
             />
             <CardContent className={styles.cardContentPhone}>
               <TimeLimit />
+            </CardContent>
+          </Card>
+          <Card className={styles.cardPhonePeopleLimit}>
+            <CardHeader
+              className={styles.headerPhone}
+              title={<Typography className={styles.titlePhone}>制限人数</Typography>}
+            />
+            <CardContent className={styles.cardContentPhone}>
+              <PeopleLimit />
             </CardContent>
           </Card>
         </MuiPickersUtilsProvider>

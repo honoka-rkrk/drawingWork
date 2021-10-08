@@ -26,6 +26,11 @@ service cloud.firestore {
       && 'minutes' in timeLimit && timeLimit.minutes is int
       && 'createdAt' in timeLimit && timeLimit.createdAt is timestamp;
   }
+  function isValidPeopleLimit(peopleLimit){
+  	return peopleLimit.size() == 2
+      && 'peopleLimit' in peopleLimit && peopleLimit.peopleLimit is int
+      && 'createdAt' in peopleLimit && peopleLimit.createdAt is timestamp;
+  }
 	function isValidEntryMembers(entryMember){
   	return entryMember.size() == 2
     	&& 'numbers' in entryMember && entryMember.numbers is int
@@ -109,12 +114,15 @@ service cloud.firestore {
       allow create: if isValidTimeLimit(request.resource.data);
       allow update: if isValidTimeLimit(request.resource.data);
     }
+    match/peopleLimits/{peopleLimitId}{
+      allow read;
+      allow create: if isValidPeopleLimit(request.resource.data);
+      allow update: if isValidPeopleLimit(request.resource.data);
+    }
     match/entryMembers/{entryMembersId}{
     	allow read;
       allow create: if isValidEntryMembers(request.resource.data);
-      allow update: if isValidEntryMembers(request.resource.data)
-      	&& (request.resource.data.numbers == resource.data.numbers + 1
-        || request.resource.data.numbers == resource.data.numbers -1);
+      allow update;
     }
     match/docCounters/{docCounterId}{
       allow read;

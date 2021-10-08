@@ -14,10 +14,11 @@ import { RootState } from '../../../../../Other/Store/rootReducer';
 type EntryBtnProps = {
   isMax: boolean;
   setIsMax: React.Dispatch<React.SetStateAction<boolean>>;
+  peopleLimit: number;
 };
 
 const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
-  const { isMax, setIsMax } = props;
+  const { isMax, setIsMax, peopleLimit } = props;
   const [infOpen, setInfOpen] = useState<boolean>(false);
   const history = useHistory();
   const { user } = useContext(UserContext);
@@ -54,31 +55,40 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
   }, [user]);
 
   const doneEntry = async (numbers: number) => {
-    if (numbers === 20) {
+    if (numbers >= peopleLimit) {
       await db
         .collection('entryMembers')
-        .doc('entryNumber')
-        .set({
-          numbers: firebase.firestore.FieldValue.increment(1),
-          maximum: true
-        });
+        .doc(moment().format('YYYYMMDD'))
+        .set(
+          {
+            numbers: firebase.firestore.FieldValue.increment(1),
+            maximum: true
+          },
+          {
+            merge: true
+          }
+        );
     } else {
       await db
         .collection('entryMembers')
-        .doc('entryNumber')
+        .doc(moment().format('YYYYMMDD'))
         .set(
           {
             numbers: firebase.firestore.FieldValue.increment(1),
             maximum: false
           },
-          { merge: true }
+          {
+            merge: true
+          }
         );
     }
   };
 
   const getMember = async () => {
     let unmounted = false;
-    const entoryMembersRef = db.collection('entryMembers').doc('entryNumber');
+    const entoryMembersRef = db
+      .collection('entryMembers')
+      .doc(moment().format('YYYYMMDD'));
     await entoryMembersRef
       .get()
       .then((doc) => {
@@ -111,7 +121,7 @@ const EntryBtn: React.FC<EntryBtnProps> = (props: EntryBtnProps) => {
 
   const entryClick = useCallback(() => {
     getMember();
-  }, []);
+  }, [peopleLimit]);
 
   return (
     <CompEntryBtn

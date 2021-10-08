@@ -32,7 +32,6 @@ const OpenTimeSet: React.FC = () => {
       setMinutes('');
       setOpenTimeDate(new Date());
     } else {
-      console.log('err');
       setSubmitError(true);
     }
   };

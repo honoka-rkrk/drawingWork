@@ -21,7 +21,6 @@ const TimeLimit: React.FC = () => {
       setHour('');
       setMinutes('');
     } else {
-      console.log('err');
       setSubmitError(true);
     }
   };

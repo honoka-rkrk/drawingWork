@@ -13,11 +13,12 @@ const useStyle = makeStyles((theme: Theme) =>
       borderRadius: '4px',
       color: theme.palette.green.main,
       '&:hover': {
-        backgroundColor: theme.palette.green.disabled
+        backgroundColor: theme.palette.green.disabled,
+        color: theme.palette.white.main
       },
       '&:disabled': {
         backgroundColor: theme.palette.green.disabled,
-        color: theme.palette.green.main
+        color: theme.palette.white.main
       }
     },
     buttonPhone: {
@@ -27,11 +28,12 @@ const useStyle = makeStyles((theme: Theme) =>
       borderRadius: '4px',
       color: theme.palette.white.main,
       '&:hover': {
-        backgroundColor: theme.palette.green.second
+        backgroundColor: theme.palette.green.second,
+        color: theme.palette.white.main
       },
       '&:disabled': {
         backgroundColor: theme.palette.green.disabled,
-        color: theme.palette.green.main
+        color: theme.palette.white.main
       }
     },
     text: {

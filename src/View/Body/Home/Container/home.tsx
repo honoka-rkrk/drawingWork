@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import firebase from 'firebase';
@@ -12,6 +12,32 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const [nextHour, setNextHour] = useState<number>(0);
   const [nextMinutes, setNextMinutes] = useState<number>(0);
+  const peopleLimit = useRef<number>(0);
+
+  //firestoreから制限人数を取得する
+  const getPeopleLimit = async () => {
+    let unmounted = false;
+    const openTimeRef = db.collection('peopleLimits').doc('peopleLimit');
+    await openTimeRef
+      .get()
+      .then((doc) => {
+        if (!unmounted) {
+          if (doc.exists) {
+            const getData: any = doc.data();
+            console.log(getData.peopleLimit);
+            peopleLimit.current = getData.peopleLimit;
+          } else {
+            peopleLimit.current = 20;
+          }
+        }
+      })
+      .catch((error) => {
+        console.log('Error getting document', error);
+      });
+    return () => {
+      unmounted = true;
+    };
+  };
 
   //firestoreから現在参加している人数を取得する
   const getMember = async () => {
@@ -55,7 +81,6 @@ const Home: React.FC = () => {
         if (!unmounted) {
           if (doc.exists) {
             const getData: any = doc.data();
-            console.log(getData);
             dispatch(
               setOpenTimeInfo({ hour: getData.hour, minutes: getData.minutes })
             );
@@ -107,7 +132,6 @@ const Home: React.FC = () => {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log(doc.data());
           const getData: any = doc.data();
           dispatch(setTimeLimitInfo({ minutes: getData.minutes }));
         }
@@ -118,6 +142,7 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    getPeopleLimit();
     getMember();
     getOpenTime();
     getTommorowOpenTime();
@@ -130,6 +155,7 @@ const Home: React.FC = () => {
       setIsMax={setIsMax}
       nextHour={nextHour}
       nextMinutes={nextMinutes}
+      peopleLimit={peopleLimit.current}
     />
   );
 };
