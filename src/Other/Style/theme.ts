@@ -1,5 +1,4 @@
 import { createTheme } from '@material-ui/core/styles';
-import { settings } from 'cluster';
 
 const theme = createTheme({
   palette: {

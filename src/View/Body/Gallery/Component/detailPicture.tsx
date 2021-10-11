@@ -1,17 +1,11 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Fab from '@material-ui/core/Fab';
-import { Image } from '../../../../Other/Model/image';
 import { UserImage } from '../../../../Other/Model/userImage';
 
 const useStyles = makeStyles((theme: Theme) =>

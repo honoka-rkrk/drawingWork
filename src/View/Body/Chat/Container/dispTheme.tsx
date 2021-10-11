@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import moment from 'moment';
 import { db } from '../../../../firebase';
-import firebase from 'firebase';
-import { DrawTheme } from '../../../../Other/Model/drawTheme';
 
 import CompDispTheme from '../Component/dipTheme';
 

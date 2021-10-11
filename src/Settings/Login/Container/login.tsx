@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
-import moment from 'moment';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 
@@ -10,7 +9,6 @@ import { UserContext } from '../../../Other/Context/contexts';
 import { setIsAuthorInfo } from '../../../Other/Store/isAuthor';
 
 const Login: React.FC = () => {
-  const [isAuthor, setIsAuthor] = useState<boolean>(false); //管理者か
   const [password, setPassword] = useState<string>('');
   const [authors, setAuthors] = useState<Array<Author> | null>(null);
   const { user } = useContext(UserContext);

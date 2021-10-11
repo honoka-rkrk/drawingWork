@@ -3,7 +3,6 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 
-import { Image } from '../../../../Other/Model/image';
 import { UserImage } from '../../../../Other/Model/userImage';
 import { FavoriteNum } from '../../../../Other/Model/favoriteNum';
 import DetailPicture from '../Container/detailPicture';

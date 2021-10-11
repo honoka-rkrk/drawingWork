@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Avatar from '@material-ui/core/Avatar';
@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { Message } from '../../../../../Other/Model/message';
 
-const useStyle = makeStyles((theme: Theme) =>
+const useStyle = makeStyles(() =>
   createStyles({
     tableRow: {
       height: 'calc(((100vh - 180px) * 0.95) / 28'

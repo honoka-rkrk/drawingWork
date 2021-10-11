@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import moment from 'moment';
 
 import firebase, { db } from '../../../firebase';
 import CompDrawThemeSet from '../Component/drawThemeSet';

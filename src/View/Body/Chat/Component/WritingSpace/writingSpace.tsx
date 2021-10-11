@@ -2,10 +2,8 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import Fab from '@material-ui/core/Fab';
-import Typography from '@material-ui/core/Typography';
 import MediaQuery from 'react-responsive';
 
 const useStyle = makeStyles((theme: Theme) =>

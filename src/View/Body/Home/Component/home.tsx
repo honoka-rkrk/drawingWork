@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import MediaQuery from 'react-responsive';
 
@@ -8,7 +8,7 @@ import DispPicture from '../Container/dispPicture';
 import EntryBtn from '../Container/Btn/entryBtn';
 import LoginBtn from '../Container/Btn/loginBtn';
 
-const useStyle = makeStyles((theme: Theme) =>
+const useStyle = makeStyles(() =>
   createStyles({
     msgDisp: {
       gridRow: 2,

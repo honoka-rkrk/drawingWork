@@ -8,7 +8,6 @@ import { RootState } from '../../../Other/Store/rootReducer';
 import MenuIcons from '../Container/menu';
 import LoginOut from '../Container/loginout';
 import Exit from '../Container/exit';
-import { User } from '../../../Other/Model/user';
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({

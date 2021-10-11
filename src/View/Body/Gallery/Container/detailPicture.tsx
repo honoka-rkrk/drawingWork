@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import firebase, { db } from '../../../../firebase';
+import React from 'react';
 
-import { collectionName } from '../../../../Other/Functions/constants';
-import { Image } from '../../../../Other/Model/image';
 import { UserImage } from '../../../../Other/Model/userImage';
 import CompDetailPicture from '../Component/detailPicture';
-import { UserContext } from '../../../../Other/Context/contexts';
 
 type DetailPictureProps = {
   image: UserImage;

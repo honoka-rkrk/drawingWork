@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import firebase, { db } from '../../../../firebase';
-import { Image } from '../../../../Other/Model/image';
 import { UserImage } from '../../../../Other/Model/userImage';
 import { FavoriteNum } from '../../../../Other/Model/favoriteNum';
-import { collectionName } from '../../../../Other/Functions/constants';
 import { UserContext } from '../../../../Other/Context/contexts';
 
 import CompAllPicture from '../Component/allPicture';

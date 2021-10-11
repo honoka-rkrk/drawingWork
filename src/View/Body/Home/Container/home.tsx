@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import firebase from 'firebase';
 import { db } from '../../../../firebase';
 import CompHome from '../Component/home';
 import { setOpenTimeInfo } from '../../../../Other/Store/openTime';

@@ -3,9 +3,6 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Avatar from '@material-ui/core/Avatar';
 
 import DisplayCell from '../../Container/Display/displayCell';
 import { Message } from '../../../../../Other/Model/message';
