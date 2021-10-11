@@ -123,8 +123,6 @@ const DetailPicture: React.FC<DetailPictureProps> = (props: DetailPictureProps) 
   const { image, favNum = 0 } = props;
   const styles = useStyles();
 
-  console.log(favNum);
-
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
