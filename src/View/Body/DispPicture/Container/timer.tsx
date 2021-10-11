@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import moment, { Moment } from 'moment';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { RootState } from '../../../../Other/Store/rootReducer';
 import CompTimer from '../Component/timer';
+import { setIsEntryInfo } from '../../../../Other/Store/isEntry';
 
 const Timer: React.FC = () => {
   const [end, setEnd] = useState<Moment | null>(null);
@@ -13,6 +14,7 @@ const Timer: React.FC = () => {
   const [danger, setDanger] = useState<boolean>(false);
   const [isEnd, setIsEnd] = useState<boolean>(false);
   const history = useHistory();
+  const dispatch = useDispatch();
   const openTimeInfo = useSelector(
     (state: RootState) => state.openTime.openTimeInfo
   );
@@ -58,6 +60,7 @@ const Timer: React.FC = () => {
   }, [updateTime, isEnd]);
 
   const clickOK = useCallback(() => {
+    dispatch(setIsEntryInfo({ entryState: false }));
     history.push('/');
   }, []);
 

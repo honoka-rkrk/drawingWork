@@ -52,6 +52,7 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100%',
       fontSize: '1em',
       padding: '1em',
+      fontFamily: 'Kosugi Maru',
       color: theme.palette.red.main
     }
   })

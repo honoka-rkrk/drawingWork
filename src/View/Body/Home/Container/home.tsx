@@ -24,7 +24,6 @@ const Home: React.FC = () => {
         if (!unmounted) {
           if (doc.exists) {
             const getData: any = doc.data();
-            console.log(getData.peopleLimit);
             peopleLimit.current = getData.peopleLimit;
           } else {
             peopleLimit.current = 20;

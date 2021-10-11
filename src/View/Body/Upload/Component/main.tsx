@@ -20,14 +20,18 @@ const useStyle = makeStyles((theme: Theme) =>
     },
     backgroundPC: {
       backgroundColor: theme.palette.green.main,
-      height: '130px',
-      width: '100%'
+      gridRow: '1',
+      gridColumn: '1'
+    },
+    backgroundRoot: {
+      display: 'grid',
+      gridTemplateRows: '15% 85%',
+      gridColumn: '100%'
     },
     backgroundPhone: {
       backgroundColor: theme.palette.green.main,
-      marginTop: '10px',
-      height: '108px',
-      width: '100%'
+      gridRow: '1',
+      gridColumn: '1'
     }
   })
 );
@@ -37,16 +41,20 @@ const Main: React.FC = () => {
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
-        <Box className={styles.backgroundPC}>
-          <Box className={styles.rootPC}>
-            <Upload />
+        <Box className={styles.backgroundRoot}>
+          <Box className={styles.backgroundPC}>
+            <Box className={styles.rootPC}>
+              <Upload />
+            </Box>
           </Box>
         </Box>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
-        <Box className={styles.backgroundPhone}>
-          <Box className={styles.rootPhone}>
-            <Upload />
+        <Box className={styles.backgroundRoot}>
+          <Box className={styles.backgroundPhone}>
+            <Box className={styles.rootPhone}>
+              <Upload />
+            </Box>
           </Box>
         </Box>
       </MediaQuery>

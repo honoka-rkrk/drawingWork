@@ -23,6 +23,11 @@ const useStyle = makeStyles((theme: Theme) =>
       height: '100px',
       width: '100%'
     },
+    backgroundRoot: {
+      display: 'grid',
+      gridTemplateRows: '15% 85%',
+      gridColumn: '100%'
+    },
     backgroundPhone: {
       backgroundColor: theme.palette.green.main,
       height: '80px',
@@ -36,16 +41,20 @@ const Main: React.FC = () => {
   return (
     <>
       <MediaQuery query='(min-width:767px)'>
-        <Box className={styles.backgroundPC}>
-          <Box className={styles.rootPhone}>
-            <DispPicture />
+        <Box className={styles.backgroundRoot}>
+          <Box className={styles.backgroundPC}>
+            <Box className={styles.rootPhone}>
+              <DispPicture />
+            </Box>
           </Box>
         </Box>
       </MediaQuery>
       <MediaQuery query='(max-width:767px)'>
-        <Box className={styles.backgroundPhone}>
-          <Box className={styles.rootPhone}>
-            <DispPicture />
+        <Box className={styles.backgroundRoot}>
+          <Box className={styles.backgroundPhone}>
+            <Box className={styles.rootPhone}>
+              <DispPicture />
+            </Box>
           </Box>
         </Box>
       </MediaQuery>
