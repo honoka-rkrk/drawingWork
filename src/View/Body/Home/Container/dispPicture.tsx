@@ -46,6 +46,7 @@ const DispPicture: React.FC = () => {
   useEffect(() => {
     let unmounted = false;
     if (images) {
+      const newFavNum: any[] = [];
       images.forEach((_, index) => {
         const getFav = async () => {
           await db
@@ -56,7 +57,6 @@ const DispPicture: React.FC = () => {
             .collection('favoriteNum')
             .get()
             .then((snapshot: firebase.firestore.QuerySnapshot) => {
-              const newFavNum: any[] = [];
               snapshot.forEach((doc) => {
                 newFavNum.push({
                   id: doc.id,
