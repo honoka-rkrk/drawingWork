@@ -11,10 +11,12 @@ import { UserImage } from '../../../../Other/Model/userImage';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     rootPC: {
-      minWidth: 345
+      minWidth: 345,
+      marginBottom: '20px'
     },
     rootPhone: {
-      minWidth: 180
+      minWidth: 180,
+      marginBottom: '10px'
     },
     inner_outerPC: {
       position: 'relative',

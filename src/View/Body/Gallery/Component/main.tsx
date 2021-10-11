@@ -7,9 +7,7 @@ const useStyle = makeStyles((theme: Theme) =>
   createStyles({
     background: {
       backgroundColor: theme.palette.green.main,
-      marginTop: '10px',
-      width: '100%',
-      height: '100vh'
+      width: '100%'
     }
   })
 );
